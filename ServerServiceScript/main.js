@@ -33,13 +33,16 @@ Creek: [
         { name: "Macquarie Perch", rarity: "Common", baseWeight: 5, cashValue: 2, progress: 10, minusProgress: 0, power: 1 },
         { name: "Brook Trout", rarity: "Common", baseWeight: 2, cashValue: 1.5, progress: 8, minusProgress: 1, power: 1 },
         { name: "Smallmouth Bass", rarity: "Uncommon", baseWeight: 3, cashValue: 2.5, progress: 7, minusProgress: 2, power: 2 },
-        { name: "Rainbow Trout", rarity: "Common", baseWeight: 4, cashValue: 2, progress: 8, minusProgress: 1, power: 2 },
-        { name: "Brown Trout", rarity: "Rare", baseWeight: 5, cashValue: 4, progress: 6, minusProgress: 3, power: 3 },
+        { name: "Rainbow Trout", rarity: "Common", baseWeight: 4, cashValue: 2,
+        progress: 8, minusProgress: 0, power: 2 },
+        { name: "Brown Trout", rarity: "Rare", baseWeight: 5, cashValue: 4,
+        progress: 6, minusProgress: 0, power: 3 },
         { name: "Rock Bass", rarity: "Common", baseWeight: 1, cashValue: 1, progress: 9, minusProgress: 0, power: 1 },
         { name: "Creek Chub", rarity: "Common", baseWeight: 0.8, cashValue: 1, progress: 10, minusProgress: 0, power: 1 },
         { name: "Bluegill", rarity: "Common", baseWeight: 1, cashValue: 1, progress: 9, minusProgress: 1, power: 1 },
         { name: "White Sucker", rarity: "Uncommon", baseWeight: 2.5, cashValue: 2, progress: 7, minusProgress: 3, power: 2 },
-        { name: "Redbreast Sunfish", rarity: "Uncommon", baseWeight: 1, cashValue: 1.5, progress: 8, minusProgress: 2, power: 1.5 },
+        { name: "Redbreast Sunfish", rarity: "Uncommon", baseWeight: 1,
+        cashValue: 1.5, progress: 0, minusProgress: 2, power: 1.5 },
         { name: "Channel Catfish", rarity: "Rare", baseWeight: 6, cashValue: 5, progress: 6, minusProgress: 4, power: 4 },
         { name: "Trash Bag", rarity: "Junk", baseWeight: 2, cashValue: 0, progress: 5, minusProgress: 10, power: 0 },
         { name: "Old Tire", rarity: "Junk", baseWeight: 10, cashValue: 0, progress: 3, minusProgress: 15, power: 0 },
@@ -47,7 +50,7 @@ Creek: [
         { name: "Leaf", rarity: "Junk", baseWeight: 0.1, cashValue: 0, progress: 1, minusProgress: 2, power: 0 },
         { name: "Plank", rarity: "Junk", baseWeight: 0.1, cashValue: 0, progress: 1, minusProgress: 2, power: 0 }
     ],
-
+    
  ShallowOcean: [
         { name: "Clownfish", rarity: "Common", baseWeight: 0.2, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
         { name: "Damselfish", rarity: "Common", baseWeight: 0.3, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
