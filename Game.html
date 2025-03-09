@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Style/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initia-scale=1.0">
+    <title>Fiz🎣 - Server null</title>
+<div id="sky">
+
+
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensures full height */
+    background: linear-gradient(to bottom, #87CEEB, #1E90FF); 
+    transition: background 5s ease-in-out; /* Smooth transition */
+align-content: center;
+}
+
+        #gameScreen {
+            padding: 20px;
+        }
+
+        #miniGame {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        #catchBar {
+            width: 50px;
+            height: 300px;
+            border: 2px solid white;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            background: black;
+        }
+
+        #fishIcon {
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .fish-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+            width: 200px;
+            background: #f4f4f4;
+        }
+#rodStats {
+            margin-top: 10px;
+            border: 1px solid #000;
+            padding: 10px;
+            display: inline-block;
+            background: #f9f9f9;
+        }
+        .area {
+margin-top: 10px;
+            border: 1px solid #000;
+            padding: 10px;
+            display: inline-block;
+            background: #f9f9f9;
+        }
+    /* Shop Styles */
+/* Shop Popup Styling */
+#shopPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+/* Shop Items Grid */
+#shopItems {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Individual Shop Item */
+.shop-item {
+    background: #089;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+}
+.shop-item p {
+  color:white;
+}
+
+/* Close Button */
+#closeShop {
+    display: block;
+    margin: 10px auto 0;
+    padding: 8px 15px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Custom Alert */
+#customAlert {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: red;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 1001;
+}
+
+/* Mobile Optimization */
+@media (max-width: 600px) {
+    #shopPopup {
+        width: 95%;
+        max-width: 90%;
+        padding: 10px;
+    }
+    .shop-item {
+        font-size: 14px;
+    }
+}
+/* 🔹 Floating Inventory Button (Bottom Right) */
+#inventoryButton {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background-color: rgba(30, 30, 30, 0.9);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+/* 🔹 Pop-Up Inventory (Now Positioned Higher) */
+#inventoryPopup {
+    display: none;
+    position: fixed;
+    top: 5%; /* Moved slightly higher */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    max-height: 80vh; /* Prevents it from covering too much space */
+    overflow-y: auto;
+}
+
+/* 🔹 Add Space Below to Prevent Overlap */
+#inventoryPopup::after {
+    content: "";
+    display: block;
+    height: 50px; /* Creates space so the button is not covered */
+}
+
+/* 🔹 Responsive for Mobile */
+@media (max-width: 600px) {
+    #inventoryPopup {
+        width: 95%;
+        max-width: 350px;
+        top: 50%; /* Adjusted for better visibility */
+    }
+
+    #inventoryButton {
+        padding: 14px;
+        font-size: 14px;
+        bottom: 10px;
+        right: 10px;
+    }
+     .inventory-container {
+            width: 100%;
+            max-width: 400px; /* Limits max width for better readability */
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Inventory slot */
+        .inventory-item {
+          color: white;
+            background: #2a2a2a;
+            border: 2px solid #444;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            width: 97%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: 0.2s;
+        }
+
+        /* Highlight on hover */
+        .inventory-item:hover {
+            border-color: #66c2ff;
+            transform: scale(1.02);
+        }
+
+        /* Name styling with auto text sizing */
+        .inventory-item strong {
+            font-size: 1.2em;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            color: #66c2ff;
+        }
+
+        /* Details styling */
+        .inventory-item span {
+            font-size: 1em;
+            display: block;
+            color: #ddd;
+        }
+
+        /* Responsive: Adjust font size for smaller screens */
+        @media (max-width: 500px) {
+            .inventory-item strong {
+                font-size: 1em;
+            }
+            .inventory-item span {
+                font-size: 0.9em;
+            }
+        }
+}
+.area {
+    background: linear-gradient(135deg, #0093E9, #80D0C7); /* Blue Ocean Gradient */
+    border: 3px solid #0077B6; /* Deep Blue Border */
+    border-radius: 15px; /* Rounded Corners */
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Soft Shadow */
+    color: white; /* White Text */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 15px 10px;
+    position: relative; 
+    overflow: hidden;
+}
+
+/* 🌊 Animated Wave Effect */
+
+
+/* 🌊 Wave Animation */
+@keyframes wave {
+    0% { transform: translateX(-10%); }
+    50% { transform: translateX(10%); }
+    100% { transform: translateX(-10%); }
+}
+
+/* 🌟 Header Styling */
+.area h3 {
+    font-size: 22px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 📜 Paragraph Styling */
+.area p {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* 🎣 Fishing Button */
+.area button {
+    background: #ffdd57; /* Gold Button */
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.area button:hover {
+    background: #ffd700;
+    transform: scale(2.05);
+}
+
+/* 🌊 Mobile Responsive */
+@media (max-width: 600px) {
+    .area {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .area h3 {
+        font-size: 18px;
+    }
+}
+/* General Styling */
+
+/* EXP Bar Container */
+/* EXP Container */
+.exp-container {
+    position: fixed;
+    top: 77%; /* Adjust for visibility */
+    left: 85%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 30, 0.9); /* Darker background for contrast */
+    color: white;
+    padding: 10px 20px;
+    font-size: 4px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Level Text */
+#levelText {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* EXP Text */
+#expText {
+    display: block;
+    font-size: 16px;
+    color: #ffd700; /* Gold color for better visibility */
+}
+
+/* Centered Floating EXP Notification */
+.exp-notification {
+    position: fixed;
+    top: 30%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Exact center */
+    background: rgba(255, 215, 0, 0.95); /* Gold background */
+    color: #1b2838; /* Dark text */
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 1000;
+}
+
+/* Inner text styling */
+.exp-notification span {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+/* Full Menu Container */
+.FullMenuio {
+    background: rgba(15, 15, 15, 0.95); /* Dark semi-transparent */
+    border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px; /* Adjustable */
+    max-width: 90%;
+    margin: 20px auto; /* Center it */
+    color: white;
+    font-size: 18px;
+    
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5); /* Soft cyan glow */
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+
+
+/* Full Menu Items */
+.FullMenuio p {
+    color: white;
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+/* Buttons Inside FullMenuio */
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <div id="gameScreen">
+      <div class="FullMenuio">
+<div class="exp-container">
+    <span id="levelText">Level 1</span> <!-- Level display -->
+</div>
+
+        <h2>Your Kit</h2>
+<p>Total Power: <span id="totalPower">0</span></p>
+<p>Cash: ₱<span id="cashCount">0</span></p>
+
+<button id="openShop">🛒 Open Shop</button>
+
+<div id="shopPopup" style="display: none;">
+    <h2>🛍️ Fishing Rod Shop</h2>
+    <div id="shopItems"></div>
+    <button id="closeShop">Close</button>
+</div>
+
+<div id="customAlert" style="display: none;">
+    <p id="alertMessage"></p>
+    <button id="closeAlert">OK</button>
+</div>
+
+<select id="rodSelect"></select>
+
+</div>
+<fieldset class="area">
+  <img src="">
+  <h3>Creek💦</h3>
+  <p>A creek and full of water motion, with a beutiful sunset spot and a bench.
+  The smooth flowing water, a good Fishing Start should be here!</p>
+  <center>
+        <button id="riverButton" onclick="startFishing('Creek')">🎣 Fish on
+        Creek</button>
+  </center>
+</fieldset>
+<fieldset class="area">
+  <h3>Shallow Ocean🌊</h3>
+  <p>Shallow Ocean a place where life live to its Glory. Thousands of fishes
+  swimming in the waters</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('ShallowOcean')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+<fieldset class="area" style="margin-top:600px;">
+  <h3>Haystack Beach🏖️</h3>
+  <p>Amazing Haystack Beach with amazing Species Lived Together in a major
+  ecosystem🌅</p>
+ <p>Lies Covered Under the sands.</p>
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('HaystackBeach')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+<fieldset class="area" style="background: linear-gradient(135deg, Green, #80D0C7);">
+  <h3>Haystack Isle ( Pond )</h3>
+  <p>Massive Pond, but did you know else massive? LOOOOOOOOOOOOOOOOOOOW
+  TAPER</p>
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('HaystackislePound')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+<fieldset class="area">
+  <h3>Haystack Beach🏖️</h3>
+  <p>Amazing Haystack Beach with amazing Species Lived Together in a major
+  ecosystem🌅</p>
+ <p>Lies Covered Under the sands.</p>
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('HaystackBeach')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+<fieldset class="area">
+  <h3>Shallow Ocean🌊</h3>
+  <p>Shallow Ocean a place where life live to its Glory. Thousands of fishes
+  swimming in the waters</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('ShallowOcean')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🌊THE OCEAN🪸</h3>
+  <p>The Species living here is big and small a abalanced ecosystem but is there
+  someone more bigger under us or.... something is predatoring us </p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+<fieldset class="area" id="GreatWhiteShark-pool" style="display:none;
+margin-top:900px;">
+  <h3>📍Great White Shark Spot</h3>
+  <p>a Fisherman Spotted a Great White Shark here!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('GreatWhiteShark')">🎣
+        Fish Here?</button>
+  </center>
+</fieldset>
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🌊THE OCEAN🪸</h3>
+  <p>The Species living here is big and small a abalanced ecosystem but is there
+  someone more bigger under us or.... something is predatoring us </p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+<fieldset class="area" id="GreatHammerHead-pool" style="display:none;
+margin-top:900px;">
+  <h3>📍Great HammerHead Shark Spot</h3>
+  <p>GREAT HAMMERHEAD SHARK SPOTTED BY A FISHERMAN!!!!!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('GreatHammerHead')">🎣
+        Fish Here?</button>
+  </center>
+</fieldset>
+
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🌊THE OCEAN🪸</h3>
+  <p>The Species living here is big and small a abalanced ecosystem but is there
+  someone more bigger under us or.... something is predatoring us </p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+
+
+<!-- 🔹 Floating Inventory Button -->
+<!-- 🔹 Floating Inventory Button -->
+<button id="inventoryButton">🎒 Inventory</button>
+
+<!-- 🔹 Inventory Pop-Up -->
+<div id="inventoryPopup">
+    <div id="inventoryContent">
+
+        <h3>🎣 Fish Inventory</h3>
+
+ 
+<div id="inventory"></div>
+
+   </div>
+</div>
+
+
+
+<div id="miniGame" style="display: none; text-align: center; background: #222; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); color: white;">
+    <h2 style="color: cyan; text-shadow: 0px 0px 5px cyan;">Catch the Fish!</h2>
+
+    <p id="minusProgressText" style="color: red; font-size: 18px; font-weight: bold; text-shadow: 0px 0px 10px red;"></p> 
+
+    <div id="progressContainer" style="width: 50px; height: 250px; background: #444; border-radius: 12px; overflow: hidden; position: relative; margin: auto; box-shadow: inset 0 0 10px black;">
+        <div id="progressBar" style="width: 50px; height: 0%; position: absolute; bottom: 0; transition: height 0.3s ease-in-out, background 0.3s;"></div>
+        <div id="fishIcon" style="position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); font-size: 30px; transition: bottom 0.3s ease-in-out;">🐟</div>
+    </div>
+
+    <!-- NEW Rod Wheel -->
+    <div id="rodWheelContainer" style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+        <div id="tapbutton" onclick="tapButton()" style="width: 80px; height: 80px; background: gold; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); cursor: grab;">
+            🎣
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+    <script>//NOTIFICATIONS
+function showExpNotification(expGained) {
+    // Create notification element
+    let notification = document.createElement("div");
+    notification.classList.add("exp-notification");
+
+    // Create inner span for dynamic content
+    let span = document.createElement("span");
+    span.innerHTML = `+${expGained} EXP`; // ✅ Dynamic content
+    notification.appendChild(span);
+
+    // Append to body
+    document.body.appendChild(notification);
+
+    // Animate: Fade In → Stay → Fade Out
+    setTimeout(() => {
+        notification.style.opacity = "1";
+        notification.style.transform = "translate(-50%, -55%)"; 
+    }, 50);
+
+    setTimeout(() => {
+        notification.style.opacity = "0";
+        notification.style.transform = "translate(-50%, -70%)"; 
+    }, 1500);
+
+    setTimeout(() => {
+        notification.remove(); // Remove after animation
+    }, 2000);
+}
+ 
+
+function showCatchNotification(fishName, fishWeight, fishRarity, mutationName = "") {
+    let notification = document.createElement("div");
+    notification.style.position = "fixed";
+    notification.style.top = "90%";
+    notification.style.left = "50%";
+    notification.style.transform = "translate(-50%, -50%)";
+    notification.style.padding = "15px 20px";
+    notification.style.background = "rgba(0, 0, 0, 0.8)";
+    notification.style.borderRadius = "10px";
+    notification.style.color = "white";
+    notification.style.fontSize = "18px";
+    notification.style.fontWeight = "bold";
+    notification.style.textAlign = "center";
+    notification.style.zIndex = "9999";
+    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
+    notification.style.animation = "fadeOut 3s forwards";
+
+    // Notification text
+    notification.innerHTML = `
+        You caught a <span style="color: yellow;">${fishRarity} ${mutationName}${fishName}</span> weighing <span style="color: cyan;">${fishWeight}KG</span>!
+    `;
+
+    document.body.appendChild(notification);
+
+    // Remove after animation
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
+
+function showFailedCatchNotification(reason) {
+Reelerio.pause();
+    let notification = document.createElement("div");
+    notification.style.position = "fixed";
+    notification.style.top = "50%";
+    notification.style.left = "50%";
+    notification.style.transform = "translate(-50%, -50%)";
+    notification.style.padding = "15px 20px";
+    notification.style.background = "rgba(0, 0, 0, 0.8)";
+    notification.style.borderRadius = "10px";
+    notification.style.color = "white";
+    notification.style.fontSize = "18px";
+    notification.style.fontWeight = "bold";
+    notification.style.textAlign = "center";
+    notification.style.zIndex = "9999";
+    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
+    notification.style.animation = "fadeOut 3s forwards";
+
+    // Notification text
+    notification.innerHTML = `
+        <span style="color: red;">Failed to catch the fish!</span> <br> 
+        <span style="color: gray;">${reason}</span>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Remove after animation
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+function showMoneyNotification(amount) {
+    let notification = document.createElement("div");
+    notification.style.position = "fixed";
+    notification.style.top = "50px"; // Appears at the top
+    notification.style.left = "50%";
+    notification.style.transform = "translateX(-50%)";
+    notification.style.padding = "10px 20px";
+    notification.style.background = "rgba(0, 0, 0, 0.8)";
+    notification.style.borderRadius = "8px";
+    notification.style.color = "white";
+    notification.style.fontSize = "18px";
+    notification.style.fontWeight = "bold";
+    notification.style.textAlign = "center";
+    notification.style.zIndex = "9999"; 
+    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
+    notification.style.opacity = "1";
+    notification.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+    
+    // Notification text with gold color for coins
+    notification.innerHTML = `<span style="color: gold;">+${amount} Coins!</span>`;
+
+    document.body.appendChild(notification);
+
+    // Fade out and move up after a delay
+    setTimeout(() => {
+        notification.style.opacity = "0";
+        notification.style.transform = "translateX(-50%) translateY(-20px)";
+    }, 2500);
+
+    // Remove after animation
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+function showEvent(message) {
+    let notification = document.createElement("div");
+    notification.style.position = "fixed";
+    notification.style.top = "10px"; // Appears at the top
+    notification.style.left = "50%";
+    notification.style.transform = "translateX(-50%)";
+    notification.style.padding = "10px 20px";
+    notification.style.background = "rgba(0, 0, 0, 0.8)";
+    notification.style.borderRadius = "8px";
+    notification.style.color = "white";
+    notification.style.fontSize = "18px";
+    notification.style.fontWeight = "bold";
+    notification.style.textAlign = "center";
+    notification.style.zIndex = "9999";
+    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
+    notification.style.opacity = "1";
+    notification.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+    
+    // Notification text with gold color for coins
+    notification.innerHTML = message;
+
+    document.body.appendChild(notification);
+
+    // Fade out and move up after a delay
+    setTimeout(() => {
+        notification.style.opacity = "0";
+        notification.style.transform = "translateX(-50%) translateY(-20px)";
+    }, 2500);
+
+    // Remove after animation
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+function startEventLoop() {
+    function showFieldset() {
+        let GreatWhiteSharkPOOL = document.getElementById("GreatWhiteShark-pool");
+        let GreatHammerHeadPOOL = document.getElementById("GreatHammerHead-pool");
+        
+        if (!GreatHammerHeadPOOL) return;
+showEvent("A <span style='color:Pink;'>Great HammerHeadP Shark</span> Spotted in the Ocean")
+
+        GreatHammerHeadPOOL.style.display = "block"; // Show fieldset
+
+        setTimeout(() => {
+            GreatHammerHeadPOOL.style.display = "none"; // Hide after 15s
+            startRandomTimer(); // Restart loop
+        }, 300000);
+        
+        if (!GreatWhiteSharkPOOL) return;
+showEvent("A <span style='color:Pink;'>Great White Shark</span> Spotted in the Ocean")
+
+        GreatWhiteSharkPOOL.style.display = "block"; // Show fieldset
+
+        setTimeout(() => {
+            GreatWhiteSharkPOOL.style.display = "none"; // Hide after 15s
+            startRandomTimer(); // Restart loop
+        }, 300000);
+    }
+
+    function startRandomTimer() {
+let randomTime = Math.floor(Math.random() * (86400000 - 3600000 + 1)) + 3600000; // 1-24 hours
+
+
+        setTimeout(() => {
+            showFieldset();
+        }, randomTime);
+    }
+
+    startRandomTimer(); // Start the first timer on page load
+}
+
+
+
+
+
+
+    </script>
+    <script defer src="ServerServiceScript/AudioSoundSfx.js"></script>
+    <script defer src="ServerServiceScript/Weather.js"></script>
+    <script defer src="ServerServiceScript/main.js"></script>
+    <script defer src="ServerServiceScript/Rod.js"></script>
+
+</body>
+</html>
+
+<audio id="musicgameSFX" src="Sounds/sfx-bg.mp3" loop></audio>
+<audio id="Music-Background" src="Sounds/BGM.mp3" loop></audio>
+
+<script>// JUST SOUND MECHANICS DONT TOUCH IT OR I TOUCH YOU
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const inventoryButton = document.getElementById("inventoryButton");
+    const inventoryPopup = document.getElementById("inventoryPopup");
+    const closeInventory = document.getElementById("closeInventory");
+
+    // Toggle Inventory on Button Click
+    inventoryButton.addEventListener("click", function () {
+        inventoryPopup.style.display = (inventoryPopup.style.display === "block") ? "none" : "block";
+    });
+
+    // Close Inventory on Close Button Click
+    closeInventory.addEventListener("click", function () {
+        inventoryPopup.style.display = "none";
+    });
+
+    // Close Inventory on Outside Click
+    window.addEventListener("click", function (event) {
+        if (event.target === inventoryPopup) {
+            inventoryPopup.style.display = "none";
+        }
+    });
+});
+
+
+
+</script>
+<script>
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Check if user is registered
+    if (!localStorage.getItem("userRegistered")) {
+        window.location.href = "index.html"; // Redirect to register page if not registered
+    }
+});
+
+</script>

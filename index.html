@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+
+    <header>
+        <div class="logo">FIZ</div>
+        <nav>
+            <ul>
+                <li><a href="#play">Play</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#others">Others</a></li>
+            </ul>
+        </nav>
+    </header>
+<div id="registerPopup" class="popup">
+    <div class="popup-content">
+        <h2>Register</h2>
+        <input type="text" id="username" class="forminput" placeholder="Username">
+        <input type="email" id="email" class="forminput" placeholder="Email">
+        <button class="formbutton" onclick="registerUser()">Register</button>
+    </div>
+</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome!</h1>
+        <p>Fiz and ready to fish today, hope you be getting good fishes🎣💙</p>
+        <p>🐟100+ Different Types of Fish🏖️</p>
+    </section>
+
+    <section id="play" class="mkou">
+
+      <center>
+        <img style="width:50%; border-radius:10px; " src="img/logo.png">
+        <h2>🎣Fiz</h2>
+        <kbd>New • (0 Active)</kbd>
+        <p>Server Ping:60</p>
+    <button class="fizzplay" onclick="play()">Play</button>
+    </center>
+    </section>
+<div class="loading-screen">
+        <h1>Joining...</h1>
+        <button onclick="skipLoading()">Skip</button>
+    </div>
+
+    <section id="about">
+        <h2>About</h2>
+        <p>A Game About Fizing or we say Fishing. Fish🎣 Buy💸 Competetion🏆
+        Discover Secrets beyond the horizon of Fiz🎣</p>
+        <figure></figure>
+        <p>Pure Grind is the best Policy here. Try to catch the best fish and
+        redeem big cashes and buybest rods. watch out of Sharks might Bite you
+        along the way of your journey</p>
+        <p>theres so Many Secret Fishes you accidently catch away on your
+        Journey, try catching different spot to find the best grinding spot.</p>
+      <p>The Bigger The Fish is the bigger Cash it gives</p>      <p>Made with
+      💙 by
+      OniwaPenut</p>  
+    </section>
+
+    <!-- New Updates Section -->
+
+    <!-- Others Section -->
+    <section id="others">
+        <h2>Others</h2>
+        <p>???</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Fiz </p>
+    </footer>
+
+</body>
+</html>
+
+<style>
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: url('https://source.unsplash.com/1600x900/?ocean,waves') no-repeat center/cover;
+    color: white;
+    
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+align-items: center;
+    background: rgba(0, 102, 204, 0.8); /* Deep ocean blue */
+    padding: 15px 10%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+p {
+  margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    color: #00e1ff; /* Light blue highlight */
+}
+
+/* Hero Section */
+.hero {
+    padding: 100px 10%;
+    background: rgba(0, 102, 204, 0.6); /* Ocean blue overlay */
+    margin-top: 60px;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* Sections */
+section {
+    padding: 40px 10%;
+    background: rgba(0, 140, 255, 0.7); /* Light blue section background */
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    padding: 20px;
+    background: rgba(0, 102, 204, 0.8);
+}
+
+.fizzplay {
+  background-color: blue;
+  border-color: blue;
+  padding:15px;
+  border-radius: 19px;
+  color:white;
+  width:50%;
+  box-shadow: 1px 2px 2px black;
+}
+
+
+/* Main Content */
+.main-content {
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Title */
+.main-content h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Join Button */
+.join-btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(45deg, #0077ff, #00c3ff);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.5);
+    width: 100%;
+    max-width: 250px;
+}
+
+.join-btn:hover {
+    background: linear-gradient(45deg, #0055cc, #00aaff);
+    transform: scale(1.05);
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Skip Button */
+.loading-screen button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background: linear-gradient(45deg, #ff6600, #ffcc00);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.5);
+}
+
+.loading-screen button:hover {
+    background: linear-gradient(45deg, #cc5500, #ffbb00);
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .main-content h1 {
+        font-size: 1.8rem;
+    }
+    .join-btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    .loading-screen {
+        font-size: 1.5rem;
+    }
+}
+/* Register Popup (Hidden by Default) */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show Popup */
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Popup Content */
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Input Fields */
+.forminput {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Register Button */
+.formbutton {
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.formbutton:hover {
+    background: darkblue;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById("registerPopup");
+
+    // Check if user is already registered
+    if (!localStorage.getItem("userRegistered")) {
+        popup.classList.add("show");
+    }
+
+    // Register User
+    window.registerUser = function () {
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        if (username === "" || email === "") {
+            alert("Please fill in all fields!");
+            return;
+        }
+
+        // Save to LocalStorage
+        localStorage.setItem("userRegistered", "true");
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+
+        // Close popup
+        popup.classList.remove("show");
+    };
+});
+
+    </script>
+<script>
+  function play() {
+  const body = document.body;
+    console.log("play pick random server")
+    console.log("Server Undefined = 0")
+    console.warn("server starting")
+    console.table("Server(Game)", "Players:59273848", "Joinable")
+            body.overflow = false
+            document.querySelector(".loading-screen").style.display = "flex";
+            document.querySelector(".mkou").style.display = "none";
+
+            // Auto-redirect after 3 seconds
+            setTimeout(skipLoading, 3000);
+        }
+
+        function skipLoading() {
+            window.location.href = "Game.html"; 
+        }
+</script>
+
+
+</body>
+</html>
