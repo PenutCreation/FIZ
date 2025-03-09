@@ -306,7 +306,7 @@ function getRandomFish(fishList) {
     fishList.forEach(fish => {
         let chance = 0;
         switch (fish.rarity) {
-            case "Junk": chance = 56; break;
+            case "Junk": chance = 38; break;
             case "Common": chance = 50; break;  // 50% chance
             case "Uncommon": chance = 25; break; // 25% chance
             case "Rare": chance = 15; break; 
