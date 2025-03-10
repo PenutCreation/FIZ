@@ -40,8 +40,38 @@
       <center>
         <img style="width:50%; border-radius:10px; " src="img/logo.png">
         <h2>🎣Fiz</h2>
-        <kbd>New • (0 Active)</kbd>
-        <p>Server Ping:60</p>
+<kbd>32 Visits • (<span id="activePlayers"></span> Active)</kbd>
+
+<script>
+    function updateActivePlayers() {
+        // Generate a random number for active players (e.g., between 1 and 10)
+        let activePlayers = Math.floor(Math.random() * 15) + 1;
+
+        // Save to localStorage
+        localStorage.setItem("activePlayers", activePlayers);
+
+        // Update the span element
+        document.getElementById("activePlayers").textContent = activePlayers;
+    }
+
+    function loadActivePlayers() {
+        // Get the last saved active player count or generate a new one
+        let savedPlayers = localStorage.getItem("activePlayers");
+        if (savedPlayers) {
+            document.getElementById("activePlayers").textContent = savedPlayers;
+        } else {
+            updateActivePlayers();
+        }
+    }
+
+    // Load the saved player count on page load
+    loadActivePlayers();
+
+    // Update every 30 minutes (1800000 ms)
+    setInterval(updateActivePlayers, 1800000);
+</script>
+
+        <p>Server Ping:Good</p>
     <button class="fizzplay" onclick="play()">Play</button>
     </center>
     </section>
@@ -379,6 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function skipLoading() {
             window.location.href = "Game.html"; 
         }
+       
 </script>
 
 
