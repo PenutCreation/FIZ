@@ -4,7 +4,7 @@
 
 
 const rods = [
-  { name: "Wooden Rod", price: 0, lucky: 1, power: 3, resilience: 0, lureSpeed: 25, passive: "None" },
+    { name: "Wooden Rod", price: 0, lucky: 1, power: 3, resilience: 0, lureSpeed: 25, passive: "None" },
   { name: "Steel Rod", price: 1000, lucky: 2, power: 3, resilience: 10, lureSpeed: 24, passive: "None" },
   { name: "Carbon Rod", price: 1500, lucky: 3, power: 9, resilience: 15, lureSpeed: 23, passive: "None" },
   { name: "Lucky Rod", price: 2000, lucky: 5, power: 5, resilience: 20, lureSpeed: 22, passive: "None" },
@@ -12,22 +12,22 @@ const rods = [
   { name: "Dark Rod", price: 3100, lucky: 7, power: 7, resilience: 30, lureSpeed: 20, passive: "None" },
   { name: "Kimber Rod", price: 5000, lucky: 10, power: 8, resilience: 35,
   lureSpeed: 19, passive: "None" },
-  { name: "Lost Rod", price: 2000, lucky: 30, power: 9, resilience: 35,
+  { name: "Lost Rod", price: 2000, lucky: 170, power: 13, resilience: 20,
   lureSpeed: 19, passive: "None" },
-  { name: "Zehim Rod", price: 9000, lucky: 10, power: 15, resilience: 35,
-  lureSpeed: 19, passive: "None" },
-  { name: "Zehim Rod", price: 9000, lucky: 10, power: 15, resilience: 35,
+  { name: "Zehim Rod", price: 9000, lucky: 90, power: 12, resilience: 5,
   lureSpeed: 19, passive: "Electric Mutation" },
-  { name: "Rock Rod", price: 20000, lucky: -1, power: 19, resilience: 35,
+  { name: "Rock Rod", price: 20000, lucky: -1, power: 20, resilience: 35,
   lureSpeed: 19, passive: "3x Chance Mutations" },
-  { name: "Squid's Fang Rod", price: 50000, lucky: 30, power: 25, resilience: 5,
+  { name: "Squid‘s Fang Rod", price: 50000, lucky: 120, power: 21, resilience:
+  400,
   lureSpeed: 19, passive: "Per 10 Catches Double Power " },
-  { name: "ProsTem Rod", price: 65000, lucky: 23, power: 21, resilience: 60,
+  { name: "ProsTem Rod", price: 65000, lucky: 23, power: 13, resilience: 60,
   lureSpeed: 19, passive: "2x Exp Per Mythical" },
-  { name: "Darkness Rod", price: 6000, lucky: 100, power: 17, resilience: 0,
+  { name: "Darkness Rod", price: 6000, lucky: 10, power: 10, resilience: 0,
   lureSpeed: 19, passive: "2x Exp Per Mythical" },
-  { name: "Zero Rod", price: 500000, lucky: 100, power: 30, resilience: 10,
-  lureSpeed: 19, passive: "Mutation Chances Improvement" }
+  { name: "Zero Rod", price: 500000, lucky: 100, power: 20, resilience: 10,
+  lureSpeed: 19, passive: "Mutatiom Chances Improvement" },
+
 ];
 
 
