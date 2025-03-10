@@ -551,37 +551,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <button id="openShop">🛒 Open Shop</button>
 <!-- Shop Button -->
-<button onclick="openBaitShop()">🛒 Open Bait Shop</button>
 <h4>🎣Rod Equipment</h4>
 <select id="rodSelect"></select>
-
-    <h4>🐟 Select Bait</h4>
-    <select id="baitSelect"></select>
-    <button onclick="useBait()">✨ Use Bait</button>
-    <!-- 🎣 Totem Shop (Popup) -->
-<!-- 🌟 Totem Selection (Dropdown) -->
-    <p id="activeBaitMessage"></p>
-    <div id="baitShopPopup" class="shop-container">
-        <div class="shop-content">
-            <h2>🛒 Bait Shop</h2>
-            <fieldset>
-                <h3>🍞 Bread Bait</h3>
-                <p>🐟 Increases chance of Common Fish</p>
-                <button onclick="buyBait('Bread Bait', 100)">Buy - $100</button>
-            </fieldset>
-            <fieldset>
-                <h3>🦐 Shrimp Bait</h3>
-                <p>🎣 Increases chance of Rare Fish</p>
-                <button onclick="buyBait('Shrimp Bait', 250)">Buy - $250</button>
-            </fieldset>
-            <fieldset>
-<h3>🐙 Squid Bait</h3>
-                <p>🌟 Increases chance of Mythical Fish</p>
-                <button onclick="buyBait('Squid Bait', 500)">Buy - $500</button>
-            </fieldset>
-            <button onclick="closeBaitShop()">❌ Close</button>
-        </div>
-    </div>
 
 <div id="shopPopup" style="display: none;">
     <h2>🛍️ Fishing Rod Shop</h2>
