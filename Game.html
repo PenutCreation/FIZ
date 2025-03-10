@@ -6,7 +6,19 @@
     <meta name="viewport" content="width=device-width, initia-scale=1.0">
     <title>Fiz🎣 - Server null</title>
 <div id="sky">
+<div class="ban-overlay" id="banOverlay"></div>
 
+    <!-- Ban Popup -->
+    <div class="ban-popup" id="banPopup">
+        <h2>🚫 You are Banned!</h2>
+        <p>Dear, <span>Fisher</span> You Have Break one of my rules, </p>
+        <p><strong>Reason:</strong> <span id="banReason"></span></p>
+        <p><strong>Banned By:</strong> <span id="bannedBy"></span></p>
+        <p><strong>Time:</strong> <span id="banTime"></span></p>
+        <p><strong>Case ID:</strong> <span id="caseID"></span></p>
+        <button class="ban-btn"
+        onclick="window.location.href='https://google.com'">Leave</button>
+    </div>
 
     <style>
 body {
@@ -47,6 +59,7 @@ align-content: center;
             overflow: hidden;
             background: black;
         }
+
 
         #fishIcon {
             width: 40px;
@@ -95,7 +108,36 @@ margin-top: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
 }
-
+#shopPopupq {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    color:black;
+}
+#baitShopPopup {
+display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    color:black;
+}
 /* Shop Items Grid */
 #shopItems {
     display: flex;
@@ -392,7 +434,23 @@ margin-top: 10px;
     display: inline-block;
     font-family: Arial, sans-serif;
 }
-/* Full Menu Container */
+.totemshop {
+background: rgba(15, 15, 15, 0.95); /* Dark semi-transparent */
+    border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px; /* Adjustable */
+    max-width: 90%;
+    margin: 20px auto; /* Center it */
+    color: white;
+    font-size: 18px;
+    
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5); /* Soft cyan glow */
+    transition: 0.3s ease-in-out;
+}
+.totemshop p {
+  color:white;
+} 
 .FullMenuio {
     background: rgba(15, 15, 15, 0.95); /* Dark semi-transparent */
     border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
@@ -417,11 +475,58 @@ margin-top: 10px;
     font-size: 16px;
     margin: 8px 0;
 }
+/* Ban Popup Styles */
+.ban-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.5);
+    max-width: auto;
+    display: none; /* Hidden by default */
+    z-index: 1000;
+}
 
-/* Buttons Inside FullMenuio */
+.ban-popup h2 {
+    color: #ff4d4d;
+}
 
+.ban-popup p {
+    font-size: 16px;
+    margin: 10px 0;
+}
 
+/* Ban Button */
+.ban-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 10px;
+}
 
+.ban-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Dark Overlay */
+.ban-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: none;
+    z-index: 999;
+}
 
     </style>
 </head>
@@ -433,11 +538,50 @@ margin-top: 10px;
     <span id="levelText">Level 1</span> <!-- Level display -->
 </div>
 
-        <h2>Your Kit</h2>
-<p>Total Power: <span id="totalPower">0</span></p>
+        <h3><span>Username</span>'s Kit</h3>
+        <script>
+document.addEventListener("DOMContentLoaded", function() {
+    let username = localStorage.getItem("username") || "Player"; // Default to "Player" if no username is set
+    document.querySelector("h3 span").textContent = username;
+});
+
+        </script>
+
 <p>Cash: ₱<span id="cashCount">0</span></p>
 
 <button id="openShop">🛒 Open Shop</button>
+<!-- Shop Button -->
+<button onclick="openBaitShop()">🛒 Open Bait Shop</button>
+<h4>🎣Rod Equipment</h4>
+<select id="rodSelect"></select>
+
+    <h4>🐟 Select Bait</h4>
+    <select id="baitSelect"></select>
+    <button onclick="useBait()">✨ Use Bait</button>
+    <!-- 🎣 Totem Shop (Popup) -->
+<!-- 🌟 Totem Selection (Dropdown) -->
+    <p id="activeBaitMessage"></p>
+    <div id="baitShopPopup" class="shop-container">
+        <div class="shop-content">
+            <h2>🛒 Bait Shop</h2>
+            <fieldset>
+                <h3>🍞 Bread Bait</h3>
+                <p>🐟 Increases chance of Common Fish</p>
+                <button onclick="buyBait('Bread Bait', 100)">Buy - $100</button>
+            </fieldset>
+            <fieldset>
+                <h3>🦐 Shrimp Bait</h3>
+                <p>🎣 Increases chance of Rare Fish</p>
+                <button onclick="buyBait('Shrimp Bait', 250)">Buy - $250</button>
+            </fieldset>
+            <fieldset>
+<h3>🐙 Squid Bait</h3>
+                <p>🌟 Increases chance of Mythical Fish</p>
+                <button onclick="buyBait('Squid Bait', 500)">Buy - $500</button>
+            </fieldset>
+            <button onclick="closeBaitShop()">❌ Close</button>
+        </div>
+    </div>
 
 <div id="shopPopup" style="display: none;">
     <h2>🛍️ Fishing Rod Shop</h2>
@@ -450,8 +594,6 @@ margin-top: 10px;
     <button id="closeAlert">OK</button>
 </div>
 
-<select id="rodSelect"></select>
-
 </div>
 <fieldset class="area">
   <img src="">
@@ -459,7 +601,7 @@ margin-top: 10px;
   <p>A creek and full of water motion, with a beutiful sunset spot and a bench.
   The smooth flowing water, a good Fishing Start should be here!</p>
   <center>
-        <button id="riverButton" onclick="startFishing('Creek')">🎣 Fish on
+        <button id="StartButtonFish" onclick="startFishing('Creek')">🎣 Fish on
         Creek</button>
   </center>
 </fieldset>
@@ -554,6 +696,49 @@ margin-top:900px;">
 </fieldset>
 
 <fieldset class="area" style="margin-top:800px;">
+  <h3>❄️Snow Isles❄️</h3>
+  <p>Ver~ Very- Cold🥶❄️</p>
+ <p>ther- theres a saying the colder the enviroment the larger the species</p>
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('SNOWISLES')">🎣 Fish
+        on Snow Isles</button>
+  </center>
+  <h3>Snow Isles Shop:</h3>
+<div class="totemshop">
+    <div class="shop-content">
+        <h4>🎣 Totem Shop</h4>
+
+        <fieldset>
+            <h3>C³ Totem</h3>
+            <p style="color:black;">Attracts Huge Fishes</p>
+            <button onclick="buyTotem('C³ Totem', 500)">C³ Totem - $500</button>
+        </fieldset>
+
+        <fieldset>
+            <h3>Aaoura Totem</h3>
+            <p style="color:black;">Boosts Mythical Fish chances (Lasts 15 min)</p>
+            <button onclick="buyTotem('Aaoura Totem', 1000)">Aaoura Totem - $1000</button>
+        </fieldset>
+
+        <fieldset>
+            <h3>Eclipse Totem</h3>
+            <p style="color:black;">Mysterious Effects</p>
+            <button onclick="buyTotem('Eclipse Totem', 750)">Eclipse Totem - $750</button>
+        </fieldset>
+    </div>
+</div>
+</fieldset>
+<fieldset class="area" >
+  <h3>Shallow Ocean🌊</h3>
+  <p>Shallow Ocean a place where life live to its Glory. Thousands of fishes
+  swimming in the waters</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('ShallowOcean')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+<fieldset class="area" style="margin-top:800px;">
   <h3>🌊THE OCEAN🪸</h3>
   <p>The Species living here is big and small a abalanced ecosystem but is there
   someone more bigger under us or.... something is predatoring us </p>
@@ -563,8 +748,11 @@ margin-top:900px;">
         on Ocean</button>
   </center>
 </fieldset>
-
-
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🌊Seamounts🪨</h3>
+  <p>a island raising from underwater</p>
+ <p>Sands Cracks and Corals Destroyed from devasting Movement of th Island</p>
+</fieldset>
 <!-- 🔹 Floating Inventory Button -->
 <!-- 🔹 Floating Inventory Button -->
 <button id="inventoryButton">🎒 Inventory</button>
@@ -817,8 +1005,8 @@ let randomTime = Math.floor(Math.random() * (86400000 - 3600000 + 1)) + 3600000;
 
 
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4004537826473039"
-     crossorigin="anonymous"></script>
+  <script defer src="ServerServiceScript/Shopitem.js"></script>
+    <script defer src="ServerServiceScript/BannedChecker.js"></script>
     <script defer src="ServerServiceScript/AudioSoundSfx.js"></script>
     <script defer src="ServerServiceScript/Weather.js"></script>
     <script defer src="ServerServiceScript/main.js"></script>
