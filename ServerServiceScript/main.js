@@ -44,8 +44,8 @@ const maxExp = 200;
 const mutationChance = 0.2;
 const fishList = {
 Creek: [
-        { name: "Nile Tilapia", rarity: "Common", baseWeight: 5, cashValue: 2, progress: 10, minusProgress: 0, power: 1 },
-        { name: "Macquarie Perch", rarity: "Common", baseWeight: 5, cashValue: 2, progress: 10, minusProgress: 0, power: 1 },
+        { name: "Nile Tilapia", rarity: "Common", baseWeight: 5, cashValue: 1, progress: 10, minusProgress: 0, power: 1 },
+        { name: "Macquarie Perch", rarity: "Common", baseWeight: 5, cashValue: 1, progress: 10, minusProgress: 0, power: 1 },
         { name: "Brook Trout", rarity: "Common", baseWeight: 2, cashValue: 1.5, progress: 10, minusProgress: 1, power: 1 },
         { name: "Smallmouth Bass", rarity: "Uncommon", baseWeight: 3, cashValue:
         2.5, progress: 10, minusProgress: 2, power: 2 },
@@ -369,24 +369,24 @@ function getRandomFish(fishList) {
 }
 
 const fishMutations = [
-    { name: "Albino", effect: (fish) => fish.cashValue += 5 },
+    { name: "Albino", effect: (fish) => fish.cashValue += 1 },
     { name: "Big", effect: (fish) => fish.baseWeight *= 10 },
     { name: "Shiny", effect: (fish) => fish.cashValue *= 5 },
     { name: "Sparkling", effect: (fish) => fish.cashValue += 1 },
     { name: "Sparkling", effect: (fish) => fish.cashValue += 2 },
     { name: "Electric", effect: (fish) => fish.cashValue += 2 },
     { name: "Negative", effect: (fish) => fish.cashValue += 3 },
-    { name: "Fossilized", effect: (fish) => fish.cashValue += 16 },
+    { name: "Fossilized", effect: (fish) => fish.cashValue += 1 },
     { name: "Lunar", effect: (fish) => fish.cashValue += 10 },
-    { name: "Solarblaze", effect: (fish) => fish.cashValue += 10 },
-    { name: "Translucent", effect: (fish) => fish.cashValue += 5.2},
+    { name: "Solarblaze", effect: (fish) => fish.cashValue += 3 },
+    { name: "Translucent", effect: (fish) => fish.cashValue += 1},
     { name: "Darkened", effect: (fish) => fish.cashValue += 2 },
     { name: "Hexed", effect: (fish) => fish.cashValue += 3 },
     { name: "Silver", effect: (fish) => fish.cashValue += 2 },
     { name: "Ambered", effect: (fish) => fish.cashValue += 6 },
-    { name: "Midas", effect: (fish) => fish.cashValue += 7 },
+    { name: "Midas", effect: (fish) => fish.cashValue += 2 },
     { name: "Glossy", effect: (fish) => fish.cashValue += 3 },
-    { name: "Abbysal", effect: (fish) => fish.cashValue += 20 },
+    { name: "Abbysal", effect: (fish) => fish.cashValue += 2 },
     { name: "Giant", effect: (fish) => fish.baseWeight *= 60 },
 ];
 
@@ -487,11 +487,15 @@ function fishCaught() {
     clearInterval(miniGameInterval);
     document.getElementById("miniGame").style.display = "none";
 
-    // ✅ Always fetch the latest cash from localStorage
+    // ✅ Fetch latest cash from localStorage
     let cash = parseFloat(localStorage.getItem("cash")) || 0;
 
+    // ✅ Generate a random weight between 1KG and the fish's baseWeight
     let randomWeight = (Math.random() * (currentFish.baseWeight - 1) + 1).toFixed(2);
+
+    // ✅ Calculate money based on fish's base value and weight
     let moneyGained = parseFloat(randomWeight) * currentFish.cashValue;
+
     let fishPower = currentFish.power;
     let expGained = expRewards[currentFish.rarity] || 0;
 
@@ -507,14 +511,14 @@ function fishCaught() {
     cash += moneyGained;
     localStorage.setItem("cash", cash.toFixed(2));
 
-    // ✅ Update exp
+    // ✅ Update experience
     exp += expGained;
 
-    // ✅ Correct mutation name formatting
+    // ✅ Format mutation name correctly
     let mutationName = mutation ? `${mutation.name} ` : "";
     let fishKey = `${currentFish.rarity}_${mutationName}${currentFish.name}`;
 
-    // ✅ Ensure `ownedFish` object exists before modifying it
+    // ✅ Ensure `ownedFish` object exists
     if (!ownedFish[fishKey]) {
         ownedFish[fishKey] = {
             name: currentFish.name,
@@ -533,7 +537,7 @@ function fishCaught() {
     ownedFish[fishKey].power += fishPower;
     ownedFish[fishKey].weight += parseFloat(randomWeight);
 
-    // ✅ Display notifications correctly
+    // ✅ Show notifications
     showExpNotification(`+${expGained} EXP`);
     checkLevelUp();
     showCatchNotification(`${mutationName}${currentFish.name}`, randomWeight, currentFish.rarity);
@@ -546,10 +550,13 @@ function fishCaught() {
     Succesor.play();
     document.body.style.overflow = "auto";
     stopFishing();
+
+    // ✅ Update UI
     updateUI();
     updateExpUI();
     updateInventoryUI();
 }
+
 
 // ✅ Move updateInventoryUI() outside of fishCaught()
 
