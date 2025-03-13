@@ -3,365 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiz</title>
+    <title>Fiz🎣</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-
-
+    <!-- Header -->
     <header>
-        <div class="logo">FIZ</div>
+        <div class="logo">FIZ🎣</div>
         <nav>
             <ul>
                 <li><a href="#play">Play</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#others">Others</a></li>
+                <li><a href="#leaderboard">Leaderboard</a></li>
             </ul>
         </nav>
     </header>
-<div id="registerPopup" class="popup">
-    <div class="popup-content">
-        <h2>Register</h2>
-        <input type="text" id="username" class="forminput" placeholder="Username">
-        <input type="email" id="email" class="forminput" placeholder="Email">
-        <button class="formbutton" onclick="registerUser()">Register</button>
+
+    <!-- Registration Popup -->
+    <div id="registerPopup" class="popup">
+        <div class="popup-content">
+            <h2>Register</h2>
+            <input type="text" id="username" class="forminput" placeholder="Username">
+            <input type="email" id="email" class="forminput" placeholder="Email">
+            <button class="formbutton" onclick="registerUser()">Register</button>
+        </div>
     </div>
-</div>
+
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Welcome!</h1>
-        <p>Fiz and ready to fish today, hope you be getting good fishes🎣💙</p>
-        <p>🐟100+ Different Types of Fish🏖️</p>
+        <h1>Welcome to Fiz🎣</h1>
+        <p>100+ Different Types of Fish! Hope you catch something rare!</p>
     </section>
 
-    <section id="play" class="mkou">
-
-      <center>
-        <img style="width:50%; border-radius:10px; " src="img/logo.png">
-        <h2>(⌛)Fiz</h2>
-<kbd>682 Visits • (<span id="activePlayers"></span> Active)</kbd>
-
-<script>
-    function updateActivePlayers() {
-        // Generate a random number for active players (e.g., between 1 and 10)
-        let activePlayers = Math.floor(Math.random() * 15) + 1;
-
-        // Save to localStorage
-        localStorage.setItem("activePlayers", activePlayers);
-
-        // Update the span element
-        document.getElementById("activePlayers").textContent = activePlayers;
-    }
-
-    function loadActivePlayers() {
-        // Get the last saved active player count or generate a new one
-        let savedPlayers = localStorage.getItem("activePlayers");
-        if (savedPlayers) {
-            document.getElementById("activePlayers").textContent = savedPlayers;
-        } else {
-            updateActivePlayers();
-        }
-    }
-
-    // Load the saved player count on page load
-    loadActivePlayers();
-
-    // Update every 30 minutes (1800000 ms)
-    setInterval(updateActivePlayers, 1800000);
-</script>
-
-        <p>Server Ping:Good</p>
-    <button class="fizzplay" onclick="play()">Play</button>
-    </center>
+    <!-- Play Section -->
+    <section id="play">
+        <center>
+            <img src="img/logo.png" style="width:50%; border-radius:10px;">
+            <h2>🌾Fiz</h2>
+            <kbd>1K Visits • (<span id="activePlayers"></span> Active)</kbd>
+            <p>Server Ping: Meduim</p>
+            
+            <button class="fizzplay" onclick="play()">Play</button>
+        </center>
     </section>
-<div class="loading-screen">
+    
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
         <h1>Joining...</h1>
+        <kbd>Server Redirecting</kbd>
         <button onclick="skipLoading()">Skip</button>
     </div>
 
+    <!-- Leaderboard Section -->
+
+
+    <!-- About Section -->
     <section id="about">
+        <h3>New Update (UPDATE 1) 🌾:</h3>
+        <strong>🦈 Megalodon Event</strong>
+        <p>The Megalodon event has arrived! Catch it if you dare.</p>
+        <strong>🌻 Season Event</strong>
+        <p>6 New Limited fishes, limited-time rods, and a new island: Hay Island!</p>
+        <strong>🎣 New Events</strong>
+        <p>Amberjack Abundance and other seasonal events.</p>
+        <strong>🐋Whale Shark Hunt</strong>
+        <p>Whale Shark a Commom Event Gives the best money ever</p>
+        <p>whale shark dispawn:10min</p>
+<div class="slider">
+    <button class="sbutton"id="prev" onclick="prevSlide()">&#10094;</button>
+    <img id="sliderImage" src="img/fishin.png" alt="Slide">
+    <button class="sbutton"id="next" onclick="nextSlide()">&#10095;</button>
+</div>
         <h2>About</h2>
-        <p>A Game About Fizing or we say Fishing. Fish🎣 Buy💸 Competetion🏆
-        Discover Secrets beyond the horizon of Fiz🎣</p>
-        <figure></figure>
-        <p>Pure Grind is the best Policy here. Try to catch the best fish and
-        redeem big cashes and buybest rods. watch out of Sharks might Bite you
-        along the way of your journey</p>
-        <p>theres so Many Secret Fishes you accidently catch away on your
-        Journey, try catching different spot to find the best grinding spot.</p>
-      <p>The Bigger The Fish is the bigger Cash it gives</p>      <p>Made with
-      💙 by
-      OniwaPenut</p>  
+        <p>Fiz🎣 is a fishing adventure where you buy rods, compete, and uncover ocean secrets.</p>
+        <p>Catch the biggest fish to earn the most cash, but beware of sharks!</p>
+        <p>Explore different spots to find the best fishing areas.</p>
+
     </section>
-
-    <!-- New Updates Section -->
-
-    <!-- Others Section -->
-    <section id="others">
-        <h2>Others</h2>
-        <p>???</p>
+    <section id="leaderboard">
+        <h2>🏆 Leaderboard 🏆 (Most Fish Caught)</h2>
+        <ul id="leaderboard-list"></ul>
     </section>
-
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Fiz </p>
+        <p>&copy; 2025 Fiz🎣 by OniwaPenut Made with 💙</p>
+        <p>Realesed on March 9 2025 • Version 2</p>
+        
     </footer>
 
-</body>
-</html>
+    <script>
+const images = ["img/dl.png", "img/ke.png", "img/dl.png"]; // Add your image paths here
+let currentIndex = 0;
+const sliderImage = document.getElementById("sliderImage");
 
-<style>
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: url('https://source.unsplash.com/1600x900/?ocean,waves') no-repeat center/cover;
-    color: white;
-    
-}
-
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-align-items: center;
-    background: rgba(0, 102, 204, 0.8); /* Deep ocean blue */
-    padding: 15px 10%;
-    position: fixed;
-    width: 100%;
-    top: 0;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-p {
-  margin-bottom: 10px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-}
-
-nav ul li a:hover {
-    color: #00e1ff; /* Light blue highlight */
-}
-
-/* Hero Section */
-.hero {
-    padding: 100px 10%;
-    background: rgba(0, 102, 204, 0.6); /* Ocean blue overlay */
-    margin-top: 60px;
-    border-radius: 10px;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-}
-
-/* Sections */
-section {
-    padding: 40px 10%;
-    background: rgba(0, 140, 255, 0.7); /* Light blue section background */
-    margin: 10px auto;
-    border-radius: 10px;
-}
-
-/* Footer */
-footer {
-    padding: 20px;
-    background: rgba(0, 102, 204, 0.8);
-}
-
-.fizzplay {
-  background-color: blue;
-  border-color: blue;
-  padding:15px;
-  border-radius: 19px;
-  color:white;
-  width:50%;
-  box-shadow: 1px 2px 2px black;
-}
-
-
-/* Main Content */
-.main-content {
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-}
-
-/* Title */
-.main-content h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-/* Join Button */
-.join-btn {
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    color: white;
-    background: linear-gradient(45deg, #0077ff, #00c3ff);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.5);
-    width: 100%;
-    max-width: 250px;
-}
-
-.join-btn:hover {
-    background: linear-gradient(45deg, #0055cc, #00aaff);
-    transform: scale(1.05);
-}
-
-/* Loading Screen */
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 2rem;
-    animation: fadeIn 1s ease-in-out;
-}
-
-/* Skip Button */
-.loading-screen button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background: linear-gradient(45deg, #ff6600, #ffcc00);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.5);
-}
-
-.loading-screen button:hover {
-    background: linear-gradient(45deg, #cc5500, #ffbb00);
-    transform: scale(1.05);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .main-content h1 {
-        font-size: 1.8rem;
+function showSlide(index) {
+    if (index < 0) {
+        currentIndex = images.length - 1;
+    } else if (index >= images.length) {
+        currentIndex = 0;
+    } else {
+        currentIndex = index;
     }
-    .join-btn {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-    .loading-screen {
-        font-size: 1.5rem;
-    }
-}
-/* Register Popup (Hidden by Default) */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    sliderImage.src = images[currentIndex];
 }
 
-/* Show Popup */
-.popup.show {
-    visibility: visible;
-    opacity: 1;
+function prevSlide() {
+    showSlide(currentIndex - 1);
 }
 
-/* Popup Content */
-.popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease-in-out;
+function nextSlide() {
+    showSlide(currentIndex + 1);
 }
-
-/* Input Fields */
-.forminput {
-    display: block;
-    width: 90%;
-    margin: 10px auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Register Button */
-.formbutton {
-    padding: 10px 20px;
-    background: blue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.formbutton:hover {
-    background: darkblue;
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-
-</style>
-<script>
 document.addEventListener("DOMContentLoaded", function () {
     const popup = document.getElementById("registerPopup");
 
@@ -390,28 +144,298 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 });
 
+// Fake Active Players Count
+function updateActivePlayers() {
+    let active = Math.floor(Math.random() * 199) + 1;
+    localStorage.setItem("activePlayers", active);
+    document.getElementById("activePlayers").textContent = active;
+}
+
+function loadActivePlayers() {
+    let savedPlayers = localStorage.getItem("activePlayers");
+    if (savedPlayers) {
+        document.getElementById("activePlayers").textContent = savedPlayers;
+    } else {
+        updateActivePlayers();
+    }
+}
+
+loadActivePlayers();
+setInterval(updateActivePlayers, 18000); // Update every 30 minutes
+
+// Fake Leaderboard Data
+const leaderboard = [
+    { name: "Bababoy", fish: 6371302 },
+    { name: "ShellyMASTA", fish: 1586378 },
+    { name: "ShedForm", fish: 818280 },
+    { name: "AngelOfDarkness", fish: 493274 },
+    { name: "PDDR", fish: 22620 }
+];
+
+
+
+
+function loadLeaderboard() {
+    const leaderboardList = document.getElementById("leaderboard-list");
+    leaderboardList.innerHTML = "";
+    leaderboard.forEach(player => {
+        const li = document.createElement("li");
+        li.textContent = `${player.name} - 🐟 ${player.fish} Fish`;
+        leaderboardList.appendChild(li);
+    });
+}
+
+loadLeaderboard();
+
+// Play Button Function
+function play() {
+    console.log("🎣 Searching for a server...");
+    console.warn("⚠️ Server Starting...");
+    console.table([
+        { Server: "Server-01", Players: 0 },
+        { Server: "Server-02", Players: 0 },
+        { Server: "Server-03", Players: 0 }
+    ]);
+
+    // Show Loading Screen
+    document.getElementById("loadingScreen").style.display = "flex";
+
+    // Simulate loading
+    setTimeout(() => {
+        console.log("✅ Connected to server!");
+        document.getElementById("loadingScreen").style.display = "none";
+        window.location.href = "Game.html";
+    }, 500);
+}
+
+// Skip Loading
+function skipLoading() {
+    document.getElementById("loadingScreen").style.display = "none";
+}
+
+
+
     </script>
-<script>
-  function play() {
-  const body = document.body;
-    console.log("play pick random server")
-    console.log("Server Undefined = 0")
-    console.warn("server starting")
-    console.table("Server(Game)", "Players:59273848", "Joinable")
-            body.overflow = false
-            document.querySelector(".loading-screen").style.display = "flex";
-            document.querySelector(".mkou").style.display = "none";
+    <style>
+    /* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-            // Auto-redirect after 3 seconds
-            setTimeout(skipLoading, 3000);
-        }
+/* Body Background */
+body {
+    background-color:lightblue;
+    color: white;
+    text-align: center;
+    padding-top: 80px; /* Prevent content from hiding under fixed header */
+}
 
-        function skipLoading() {
-            window.location.href = "Game.html"; 
-        }
-       
-</script>
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 102, 204, 0.9);
+    padding: 15px 10%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
 
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+    border-radius: 10px;
+    max-width: 600px;
+}
+
+/* Play Button */
+.fizzplay {
+    background-color: #007bff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.fizzplay:hover {
+    background-color: #0056b3;
+}
+.slider {
+    position: relative;
+    width: 300px; /* Adjust as needed */
+    height: 200px;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider img {
+    width: 100%;
+    height: auto;
+}
+
+.sbutton {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#prev {
+    left: 10px;
+}
+
+#next {
+    right: 10px;
+}
+
+/* Popup Styling */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup.show {
+    display: flex;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+}
+
+.forminput {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.formbutton {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formbutton:hover {
+    background: #0056b3;
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 2rem;
+}
+
+.loading-screen button {
+    margin-top: 20px;
+    background: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.loading-screen button:hover {
+    background: darkred;
+}
+
+/* Leaderboard */
+#leaderboard {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+#leaderboard-list {
+    list-style: none;
+    padding: 0;
+}
+
+#leaderboard-list li {
+    background: white;
+    color: black;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+    </style>
 </body>
 </html>
