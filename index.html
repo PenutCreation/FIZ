@@ -439,3 +439,28 @@ footer {
     </style>
 </body>
 </html>
+<script>//PREVENT USER. SERVER NLT USAGE
+// Function to detect if the browser is an in-app/local browser
+function isInAppBrowser() {
+    let ua = navigator.userAgent || navigator.vendor || window.opera;
+    
+    // Detect common in-app browsers (Messenger, Instagram, Facebook, Twitter, TikTok, etc.)
+    return /FBAN|FBAV|Instagram|Twitter|Snapchat|TikTok|WeChat|Line/i.test(ua);
+}
+
+// Function to check if the user is using Chrome
+function isChrome() {
+    let ua = navigator.userAgent.toLowerCase();
+    return ua.includes("chrome") && !ua.includes("edg") && !ua.includes("brave") && !ua.includes("opr") && !ua.includes("firefox");
+}
+
+// Prevent in-app/local browsers
+if (isInAppBrowser()) {
+    alert("Please open this website in Google Chrome for the best experience.");
+    window.location.href = "googlechrome://" + window.location.href.replace(/^https?:\/\//, '');
+} else if (!isChrome()) {
+    alert("This website is only supported on Google Chrome. Please open it in Chrome.");
+    window.location.href = "googlechrome://" + window.location.href.replace(/^https?:\/\//, '');
+}
+    
+</script>
