@@ -41,7 +41,7 @@ let lastClickTimes = [];
 const maxClicksPerSecond = 10; // Adjust based on tolerance
 const maxLevel = 300;
 const maxExp = 200;
-const mutationChance = 0.2;
+const mutationChance = 0.1;
 const fishList = {
   
 Creek: [
@@ -49,7 +49,7 @@ Creek: [
         { name: "Macquarie Perch", rarity: "Common", baseWeight: 5, cashValue: 1, progress: 10, minusProgress: 0, power: 1 },
         { name: "Brook Trout", rarity: "Common", baseWeight: 2, cashValue: 1, progress: 10, minusProgress: 1, power: 1 },
         { name: "Smallmouth Bass", rarity: "Uncommon", baseWeight: 3, cashValue:
-        1, progress: 10, minusProgress: 2, power: 2 },
+        1, progress: 10, minusProgress: 0, power: 2 },
         { name: "Rainbow Trout", rarity: "Common", baseWeight: 4, cashValue: 2,
         progress: 10, minusProgress: 0, power: 2 },
         { name: "Brown Trout", rarity: "Rare", baseWeight: 5, cashValue: 4,
@@ -57,16 +57,22 @@ Creek: [
         { name: "Rock Bass", rarity: "Common", baseWeight: 1, cashValue: 1, progress: 9, minusProgress: 0, power: 1 },
         { name: "Creek Chub", rarity: "Common", baseWeight: 0.8, cashValue: 1, progress: 10, minusProgress: 0, power: 1 },
         { name: "Bluegill", rarity: "Common", baseWeight: 1, cashValue: 1, progress: 10, minusProgress: 1, power: 1 },
-        { name: "White Sucker", rarity: "Uncommon", baseWeight: 2.5, cashValue: 2, progress: 10, minusProgress: 3, power: 2 },
+        { name: "White Sucker", rarity: "Uncommon", baseWeight: 2.5, cashValue:
+        2, progress: 10, minusProgress: 0, power: 2 },
         { name: "Redbreast Sunfish", rarity: "Uncommon", baseWeight: 1,
-        cashValue: 1.5, progress: 10, minusProgress: 2, power: 1.5 },
-        { name: "Channel Catfish", rarity: "Rare", baseWeight: 6, cashValue: 5, progress: 10, minusProgress: 4, power: 4 },
+        cashValue: 1.5, progress: 10, minusProgress: 0, power: 1.5 },
+        { name: "Channel Catfish", rarity: "Rare", baseWeight: 6, cashValue: 5,
+        progress: 10, minusProgress: 0, power: 4 },
         { name: "Trash Bag", rarity: "Junk", baseWeight: 2, cashValue: 0,
         progress: 10, minusProgress: 10, power: 0 },
-        { name: "Old Tire", rarity: "Junk", baseWeight: 10, cashValue: 0, progress: 10, minusProgress: 15, power: 0 },
-        { name: "Rock", rarity: "Junk", baseWeight: 5, cashValue: 0, progress: 10, minusProgress: 8, power: 0 },
-        { name: "Leaf", rarity: "Junk", baseWeight: 0.1, cashValue: 0, progress: 10, minusProgress: 2, power: 0 },
-        { name: "Plank", rarity: "Junk", baseWeight: 0.1, cashValue: 0, progress: 10, minusProgress: 2, power: 0 }
+        { name: "Old Tire", rarity: "Junk", baseWeight: 10, cashValue: 0,
+        progress: 10, minusProgress: 0, power: 0 },
+        { name: "Rock", rarity: "Junk", baseWeight: 5, cashValue: 0, progress:
+        10, minusProgress: 2, power: 0 },
+        { name: "Leaf", rarity: "Junk", baseWeight: 0.1, cashValue: 0, progress:
+        10, minusProgress: 0, power: 0 },
+        { name: "Plank", rarity: "Junk", baseWeight: 0.1, cashValue: 0,
+        progress: 10, minusProgress: 0, power: 0 }
     ],
 
  ShallowOcean: [
@@ -80,28 +86,32 @@ Creek: [
         { name: "Wrasse", rarity: "Uncommon", baseWeight: 1.5, cashValue: 6, progress: 1, minusProgress: 2, power: 2 },
         { name: "Hogfish", rarity: "Uncommon", baseWeight: 2, cashValue: 7, progress: 1, minusProgress: 3, power: 3 },
         { name: "Trumpetfish", rarity: "Uncommon", baseWeight: 1.8, cashValue: 6, progress: 1, minusProgress: 3, power: 3 },
+        { name: "Barrel's of Fish", rarity: "Rare", baseWeight: 5, cashValue:
+        2, progress: 1, minusProgress: 5, power: 1 },
         { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1, progress: 8, minusProgress: 0, power: 1 },
         { name: "Blue Fin Tuna", rarity: "Legendary", baseWeight: 100, cashValue: 10, progress: 29, minusProgress: 20, power: 14 },
         { name: "Yellow Fin Tuna", rarity: "Legendary", baseWeight: 100, cashValue: 10, progress: 1, minusProgress: 20, power: 14 },
         { name: "Big Eye Tuna", rarity: "Legendary", baseWeight: 100, cashValue: 20, progress: 6, minusProgress: 20, power: 14 },
-        { name: "Grouper", rarity: "Legendary", baseWeight: 400, cashValue: 15, progress: 1, minusProgress: 50, power: 99 },
-        { name: "Goliath Grouper", rarity: "Legendary", baseWeight: 455, cashValue: 20, progress: 1, minusProgress: 55, power: 99 },
+        { name: "Grouper", rarity: "Legendary", baseWeight: 400, cashValue: 5, progress: 1, minusProgress: 50, power: 99 },
+        { name: "Goliath Grouper", rarity: "Legendary", baseWeight: 455,
+        cashValue: 9, progress: 1, minusProgress: 55, power: 99 },
         { name: "Prehistoric SeaSlug", rarity: "Secret", baseWeight: 9000, cashValue: 300, progress: 1, minusProgress: 70, power: 200 }
     ],
  
  HaystackBeach: [
-        { name: "Lionfish", rarity: "Rare", baseWeight: 3, cashValue: 10, progress: 7, minusProgress: 4, power: 5 },
-        { name: "Scorpionfish", rarity: "Rare", baseWeight: 2.5, cashValue: 9, progress: 7, minusProgress: 4, power: 5 },
-        { name: "Needlefish", rarity: "Rare", baseWeight: 2, cashValue: 9, progress: 7, minusProgress: 4, power: 5 },
-        { name: "Flying Fish", rarity: "Rare", baseWeight: 2.2, cashValue: 9, progress: 7, minusProgress: 5, power: 5 },
+        { name: "Lionfish", rarity: "Rare", baseWeight: 3, cashValue: 2, progress: 7, minusProgress: 4, power: 5 },
+        { name: "Scorpionfish", rarity: "Rare", baseWeight: 2.5, cashValue: 2, progress: 7, minusProgress: 4, power: 5 },
+        { name: "Needlefish", rarity: "Rare", baseWeight: 2, cashValue: 2, progress: 7, minusProgress: 4, power: 5 },
+        { name: "Western Flying Fish", rarity: "Rare", baseWeight: 2.2, cashValue: 9, progress: 7, minusProgress: 5, power: 5 },
         { name: "Moray Eel", rarity: "Rare", baseWeight: 5, cashValue: 2, progress: 7, minusProgress: 5, power: 6 },
-        { name: "Lemon Shark", rarity: "Rare", baseWeight: 26, cashValue: 12, progress: 5, minusProgress: 4, power: 10 },
+        { name: "Lemon Shark", rarity: "Rare", baseWeight: 26, cashValue: 3, progress: 5, minusProgress: 4, power: 10 },
         { name: "Infant SeaSlug", rarity: "Unusual", baseWeight: 8, cashValue: 1, progress: 5, minusProgress: 1, power: 1 },
         { name: "Matured SeaSlug", rarity: "Unusual", baseWeight: 8, cashValue: 2, progress: 5, minusProgress: 2, power: 1 },
         { name: "Mutated Sardine", rarity: "Unusual", baseWeight: 8, cashValue: 2, progress: 5, minusProgress: 7, power: 1 },
-        { name: "Tarpon", rarity: "Unusual", baseWeight: 10, cashValue: 5, progress: 6, minusProgress: 9, power: 9 },
-        { name: "Giant Trevally", rarity: "Unusual", baseWeight: 20, cashValue: 5, progress: 6, minusProgress: 12, power: 12 },
-        { name: "Barracuda", rarity: "Unusual", baseWeight: 25, cashValue: 5, progress: 6, minusProgress: 14, power: 14 }
+        { name: "Tarpon", rarity: "Unusual", baseWeight: 10, cashValue: 2, progress: 6, minusProgress: 9, power: 9 },
+        { name: "Giant Trevally", rarity: "Unusual", baseWeight: 20, cashValue:
+        2, progress: 6, minusProgress: 12, power: 12 },
+        { name: "Barracuda", rarity: "Unusual", baseWeight: 25, cashValue: 2, progress: 6, minusProgress: 14, power: 14 }
     ],
 HaystackislePound: [
     { name: "Trash Bag", rarity: "Junk", baseWeight: 2, cashValue: 0, progress: 5, minusProgress: 10, power: 0 },
@@ -117,7 +127,7 @@ HaystackislePound: [
     { name: "Fathead Minnow", rarity: "Common", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
 
     { name: "Mud Crab", rarity: "Rare", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
-    { name: "Scylla Serrata (Crab)", rarity: "Legendary", baseWeight: 15, cashValue: 5, progress: 1, minusProgress: 25, power: 1 },
+    { name: "Scylla Serrata (Crab)", rarity: "Legendary", baseWeight: 15, cashValue: 5, progress: 1, minusProgress: 5, power: 1 },
     { name: "Slippers", rarity: "Legendary", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 20, power: 1 },
     
     { name: "Greg's Snail", rarity: "Mythical", baseWeight: 5, cashValue: 10, progress: 1, minusProgress: 15, power: 1 },
@@ -140,13 +150,127 @@ SNOWISLES: [
     progress: 1, minusProgress: 0, power: 0 },
     { name: "Polar Oyster", rarity: "Unusual", baseWeight: 10, cashValue: 5,
     progress: 1, minusProgress: 0, power: 0 },
-    { name: "Polar Shark", rarity: "Legendary", baseWeight: 35, cashValue: 8,
+    { name: "Polar Shark", rarity: "Legendary", baseWeight: 35, cashValue: 3,
     progress: 1, minusProgress: 5, power: 0 },
     { name: "Polar Smetch Shark", rarity: "Mythical", baseWeight: 80,
-    cashValue: 10,
+    cashValue: 5,
     progress: 1, minusProgress: 16, power: 0 }
   ],
-
+HayBay: [
+    { name: "Farm Sish", rarity: "Common", baseWeight: 1, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sertio Fish", rarity: "Common", baseWeight: 5, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Mud Skipper", rarity: "Common", baseWeight: 1, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Hay Crab", rarity: "Common", baseWeight: 5, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cribal Fish", rarity: "Common", baseWeight: 2, cashValue: 2,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cray Fish", rarity: "Uncommon", baseWeight: 1, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Fresh Water Clams", rarity: "Uncommon", baseWeight: 1, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Wheat Fish", rarity: "Uncommon", baseWeight: 1, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Crabbians Lobster", rarity: "Unusual", baseWeight: 1, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Crabbians Clams", rarity: "Unusual", baseWeight: 1, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "(🚜)Hay Fish", rarity: "Limited", baseWeight: 10, cashValue: 5,
+    progress: 1, minusProgress: 20, power: 0 },
+    { name: "(🚜)FishLeafer", rarity: "Limited", baseWeight: 10, cashValue: 1,
+    progress: 1, minusProgress: 20, power: 0 },
+    { name: "(🚜)Pumkin Eel", rarity: "Limited", baseWeight: 35, cashValue: 8,
+    progress: 1, minusProgress: 45, power: 0 },
+    { name: "(🚜)Big MudSkipper", rarity: "Limited", baseWeight: 35, cashValue: 8,
+    progress: 1, minusProgress: 45, power: 0 },
+    { name: "(🚜)Rice Leaf", rarity: "Limited", baseWeight: 35, cashValue: 8,
+    progress: 1, minusProgress: 10, power: 0 },
+    { name: "HayShark", rarity: "Mythical", baseWeight: 80,
+    cashValue: 10,
+    progress: 1, minusProgress: 40, power: 0 }
+  ],
+  SkullLands: [
+    { name: "Skull Fish", rarity: "Common", baseWeight: 4,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Skull Salmon", rarity: "Common", baseWeight: 4,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Ghost Octopos", rarity: "Common", baseWeight: 4,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Snail Fish", rarity: "Uncommon", baseWeight: 2,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sundian Fish", rarity: "Uncommon", baseWeight: 4,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cat Fish", rarity: "Unusual", baseWeight: 10,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "(☠️)Kings of The Skull", rarity: "Limited", baseWeight: 500,
+    cashValue: 1,
+    progress: 1, minusProgress: 45, power: 0 }
+    ],
+    
+    SunkenCity: [
+    { name: "Fish Bones", rarity: "Common", baseWeight: 2,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Fish", rarity: "Common", baseWeight: 2,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Tuna", rarity: "Common", baseWeight: 70,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Sardine", rarity: "Common", baseWeight: 2,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Dolphin", rarity: "Common", baseWeight: 2,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Haddock", rarity: "Common", baseWeight: 2,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Mullet", rarity: "Common", baseWeight: 2,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sunken Crates", rarity: "Common", baseWeight: 6,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Amberjack", rarity: "Common", baseWeight: 30,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Crab", rarity: "Common", baseWeight: 1,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Sunfish", rarity: "Uncommon", baseWeight: 20,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Prawn", rarity: "Uncommon", baseWeight: 1,
+    cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sloppy Shark", rarity: "Legendary", baseWeight: 1,
+    cashValue: 1,
+    progress: 1, minusProgress: 30, power: 0 },
+    { name: "Sloppy Bull Shark", rarity: "Legendary", baseWeight: 111,
+    cashValue: 5,
+    progress: 1, minusProgress: 30, power: 0 },
+    { name: "Sloppy RabbitFish", rarity: "Legendary", baseWeight: 3,
+    cashValue: 1,
+    progress: 1, minusProgress: 30, power: 0 },
+    { name: "Sloppy OarFish", rarity: "Mythical", baseWeight: 11,
+    cashValue: 1,
+    progress: 1, minusProgress: 40, power: 0 },
+    { name: "Sloppy Sea Pickle", rarity: "Mythical", baseWeight: 11,
+    cashValue: 1,
+    progress: 1, minusProgress: 40, power: 0 },
+    { name: "Sloppy Colossal Squid", rarity: "Mythical", baseWeight: 1001,
+    cashValue: 2,
+    progress: 1, minusProgress: 50, power: 0 },
+      ],
 //DEFUALT FISHON
 THEOCEAN: [
     { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
@@ -161,7 +285,7 @@ THEOCEAN: [
     1, minusProgress: 0, power: 0 },
    { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1,
    progress: 1, minusProgress: 0, power: 1 },
-    { name: "Amberjack", rarity: "Uncommon", baseWeight: 99.9, cashValue: 15, progress:
+    { name: "Amberjack", rarity: "Uncommon", baseWeight: 99.9, cashValue: 3, progress:
     1, minusProgress: 0, power: 0 },
     { name: "Cod", rarity: "Uncommon", baseWeight: 24, cashValue: 1, progress:
     1, minusProgress: 0, power: 0 },
@@ -213,6 +337,137 @@ THEOCEAN: [
   ],
 
     //EVENT FISHES
+MEGPOOLAES: [
+     { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Mackerel", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Mullet", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Porgy", rarity: "Common", baseWeight: 6, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Sea Bass", rarity: "Common", baseWeight: 20, cashValue: 2, progress:
+    1, minusProgress: 0, power: 0 },
+   { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1,
+   progress: 1, minusProgress: 0, power: 1 },
+    { name: "Amberjack", rarity: "Uncommon", baseWeight: 99.9, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Cod", rarity: "Uncommon", baseWeight: 24, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Crab", rarity: "Uncommon", baseWeight: 3, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Oyster", rarity: "Uncommon", baseWeight: 1, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Salmon", rarity: "Uncommon", baseWeight: 11, cashValue: 3, progress:
+    1, minusProgress: 0, power: 0 },
+        { name: "Barracuda", rarity: "Unusual", baseWeight: 25, cashValue: 2,
+        progress: 1, minusProgress: 1, power: 14 },
+        { name: "Lobster", rarity: "Unusual", baseWeight: 3, cashValue: 3,
+        progress: 1, minusProgress: 1, power: 14 },
+        { name: "Nurse Shark", rarity: "Unusual", baseWeight: 125, cashValue: 2,
+        progress: 1, minusProgress: 10, power: 14 },
+        { name: "Angler Fish", rarity: "Rare", baseWeight: 1, cashValue: 2,
+        progress: 1, minusProgress: 2, power: 0 },
+        { name: "Sea Urchin", rarity: "Rare", baseWeight: 1, cashValue: 1,
+        progress: 1, minusProgress: 0, power: 0 },
+        { name: "Cookiecutter Shark", rarity: "Rare", baseWeight: 1, cashValue: 2,
+        progress: 1, minusProgress: 1, power: 0 },
+        { name: "Coelacanth", rarity: "Rare", baseWeight: 10, cashValue: 1,
+        progress: 1, minusProgress: 8, power: 0 },
+        { name: "Sting Ray", rarity: "Rare", baseWeight: 2, cashValue: 1,
+        progress: 1, minusProgress: 3, power: 0 },
+        { name: "Halibut", rarity: "Rare", baseWeight: 461, cashValue: 2,
+        progress: 1, minusProgress: 25, power: 0 },
+        { name: "Pufferfish", rarity: "Rare", baseWeight: 2, cashValue: 2,
+        progress: 1, minusProgress: 5, power: 0 },
+        { name: "Bull Shark", rarity: "Legendary", baseWeight: 10, cashValue: 2,
+        progress: 1, minusProgress: 30, power: 0 },
+        { name: "Crown Bass", rarity: "Legendary", baseWeight: 3, cashValue: 5,
+        progress: 1, minusProgress: 35, power: 0 },
+        { name: "Dolphin", rarity: "Legendary", baseWeight: 451, cashValue: 2,
+        progress: 1, minusProgress: 5, power: 0 },
+        { name: "Flying Fish", rarity: "Legendary", baseWeight: 14, cashValue: 3, progress: 1, minusProgress: 26, power: 0 },
+        { name: "Moon Fish", rarity: "Legendary", baseWeight: 1003, cashValue:
+        5,
+        progress: 1, minusProgress: 50, power: 0 },
+        { name: "SawFish", rarity: "Legendary", baseWeight: 50, cashValue: 5,
+        progress: 1, minusProgress: 21, power: 0 },
+        { name: "Sea Pickle", rarity: "Mythical", baseWeight: 1, cashValue: 6,
+        progress: 1, minusProgress: 42, power: 0 },
+        { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 2,
+        progress: 1, minusProgress: 35, power: 0 },
+        { name: "Colossal Squid", rarity: "Mythical", baseWeight: 3300,
+        cashValue: 15,
+        progress: 1, minusProgress: 70, power: 0 },
+    { name: "Megalodon", rarity: "Exotic", baseWeight: 120000 , cashValue: 5000,
+    progress: 1, minusProgress: 80, power: 250 }
+],
+MEGPOOLAESOANHAY: [
+     { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Mackerel", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Mullet", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Porgy", rarity: "Common", baseWeight: 6, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Sea Bass", rarity: "Common", baseWeight: 20, cashValue: 2, progress:
+    1, minusProgress: 0, power: 0 },
+   { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1,
+   progress: 1, minusProgress: 0, power: 1 },
+    { name: "Amberjack", rarity: "Uncommon", baseWeight: 99.9, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Cod", rarity: "Uncommon", baseWeight: 24, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Crab", rarity: "Uncommon", baseWeight: 3, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Oyster", rarity: "Uncommon", baseWeight: 1, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Salmon", rarity: "Uncommon", baseWeight: 11, cashValue: 3, progress:
+    1, minusProgress: 0, power: 0 },
+        { name: "Barracuda", rarity: "Unusual", baseWeight: 25, cashValue: 2,
+        progress: 1, minusProgress: 1, power: 14 },
+        { name: "Lobster", rarity: "Unusual", baseWeight: 3, cashValue: 3,
+        progress: 1, minusProgress: 1, power: 14 },
+        { name: "Nurse Shark", rarity: "Unusual", baseWeight: 125, cashValue: 2,
+        progress: 1, minusProgress: 10, power: 14 },
+        { name: "Angler Fish", rarity: "Rare", baseWeight: 1, cashValue: 2,
+        progress: 1, minusProgress: 2, power: 0 },
+        { name: "Sea Urchin", rarity: "Rare", baseWeight: 1, cashValue: 1,
+        progress: 1, minusProgress: 0, power: 0 },
+        { name: "Cookiecutter Shark", rarity: "Rare", baseWeight: 1, cashValue: 2,
+        progress: 1, minusProgress: 1, power: 0 },
+        { name: "Coelacanth", rarity: "Rare", baseWeight: 10, cashValue: 1,
+        progress: 1, minusProgress: 8, power: 0 },
+        { name: "Sting Ray", rarity: "Rare", baseWeight: 2, cashValue: 1,
+        progress: 1, minusProgress: 3, power: 0 },
+        { name: "Halibut", rarity: "Rare", baseWeight: 461, cashValue: 2,
+        progress: 1, minusProgress: 25, power: 0 },
+        { name: "Pufferfish", rarity: "Rare", baseWeight: 2, cashValue: 2,
+        progress: 1, minusProgress: 5, power: 0 },
+        { name: "Bull Shark", rarity: "Legendary", baseWeight: 10, cashValue: 2,
+        progress: 1, minusProgress: 30, power: 0 },
+        { name: "Crown Bass", rarity: "Legendary", baseWeight: 3, cashValue: 5,
+        progress: 1, minusProgress: 35, power: 0 },
+        { name: "Dolphin", rarity: "Legendary", baseWeight: 451, cashValue: 2,
+        progress: 1, minusProgress: 5, power: 0 },
+        { name: "Flying Fish", rarity: "Legendary", baseWeight: 14, cashValue: 3, progress: 1, minusProgress: 26, power: 0 },
+        { name: "Moon Fish", rarity: "Legendary", baseWeight: 1003, cashValue:
+        5,
+        progress: 1, minusProgress: 50, power: 0 },
+        { name: "SawFish", rarity: "Legendary", baseWeight: 50, cashValue: 5,
+        progress: 1, minusProgress: 21, power: 0 },
+        { name: "Sea Pickle", rarity: "Mythical", baseWeight: 1, cashValue: 6,
+        progress: 1, minusProgress: 42, power: 0 },
+        { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 2,
+        progress: 1, minusProgress: 35, power: 0 },
+        { name: "Colossal Squid", rarity: "Mythical", baseWeight: 3300,
+        cashValue: 15,
+        progress: 1, minusProgress: 70, power: 0 },
+    { name: "Seasonal Megalodon", rarity: "Exotic", baseWeight: 1200000
+    , cashValue: 9000,
+    progress: 1, minusProgress: 85, power: 509 }
+],
 GreatWhiteShark: [
    { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
     1, minusProgress: 0, power: 0 },
@@ -341,9 +596,155 @@ GreatHammerHead: [
         progress: 1, minusProgress: 70, power: 0 },
     { name: "Great HammerHead Shark", rarity: "Mythical", baseWeight: 1012,
     cashValue: 420, progress: 1, minusProgress: 35, power: 250 }
-    ]
+    ],
+WhaleShark: [
+    { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Mackerel", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Mullet", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Porgy", rarity: "Common", baseWeight: 6, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Sea Bass", rarity: "Common", baseWeight: 20, cashValue: 5, progress:
+    1, minusProgress: 0, power: 0 },
+   { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1,
+   progress: 1, minusProgress: 0, power: 1 },
+    { name: "Amberjack", rarity: "Uncommon", baseWeight: 99.9, cashValue: 15, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Cod", rarity: "Uncommon", baseWeight: 24, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Crab", rarity: "Uncommon", baseWeight: 3, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Oyster", rarity: "Uncommon", baseWeight: 1, cashValue: 1, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Salmon", rarity: "Uncommon", baseWeight: 11, cashValue: 3, progress:
+    1, minusProgress: 0, power: 0 },
+        { name: "Barracuda", rarity: "Unusual", baseWeight: 25, cashValue: 5,
+        progress: 1, minusProgress: 1, power: 14 },
+        { name: "Lobster", rarity: "Unusual", baseWeight: 3, cashValue: 3,
+        progress: 1, minusProgress: 1, power: 14 },
+        { name: "Nurse Shark", rarity: "Unusual", baseWeight: 125, cashValue: 2,
+        progress: 1, minusProgress: 10, power: 14 },
+        { name: "Angler Fish", rarity: "Rare", baseWeight: 1, cashValue: 2,
+        progress: 1, minusProgress: 2, power: 0 },
+        { name: "Sea Urchin", rarity: "Rare", baseWeight: 1, cashValue: 1,
+        progress: 1, minusProgress: 0, power: 0 },
+        { name: "Cookiecutter Shark", rarity: "Rare", baseWeight: 1, cashValue: 2,
+        progress: 1, minusProgress: 1, power: 0 },
+        { name: "Coelacanth", rarity: "Rare", baseWeight: 10, cashValue: 1,
+        progress: 1, minusProgress: 8, power: 0 },
+        { name: "Sting Ray", rarity: "Rare", baseWeight: 2, cashValue: 1,
+        progress: 1, minusProgress: 3, power: 0 },
+        { name: "Halibut", rarity: "Rare", baseWeight: 461, cashValue: 2,
+        progress: 1, minusProgress: 25, power: 0 },
+        { name: "Pufferfish", rarity: "Rare", baseWeight: 2, cashValue: 2,
+        progress: 1, minusProgress: 5, power: 0 },
+        { name: "Bull Shark", rarity: "Legendary", baseWeight: 10, cashValue: 2,
+        progress: 1, minusProgress: 30, power: 0 },
+        { name: "Crown Bass", rarity: "Legendary", baseWeight: 3, cashValue: 5,
+        progress: 1, minusProgress: 35, power: 0 },
+        { name: "Dolphin", rarity: "Legendary", baseWeight: 451, cashValue: 2,
+        progress: 1, minusProgress: 5, power: 0 },
+        { name: "Flying Fish", rarity: "Legendary", baseWeight: 14, cashValue: 3, progress: 1, minusProgress: 26, power: 0 },
+        { name: "Moon Fish", rarity: "Legendary", baseWeight: 1003, cashValue:
+        5,
+        progress: 1, minusProgress: 50, power: 0 },
+        { name: "SawFish", rarity: "Legendary", baseWeight: 50, cashValue: 5,
+        progress: 1, minusProgress: 21, power: 0 },
+        { name: "Sea Pickle", rarity: "Mythical", baseWeight: 1, cashValue: 6,
+        progress: 1, minusProgress: 42, power: 0 },
+        { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 2,
+        progress: 1, minusProgress: 35, power: 0 },
+        { name: "Colossal Squid", rarity: "Mythical", baseWeight: 3300,
+        cashValue: 15,
+        progress: 1, minusProgress: 70, power: 0 },
+    { name: "Whale Shark", rarity: "Mythical", baseWeight: 21000,
+    cashValue: 650, progress: 1, minusProgress: 75, power: 250 }
+    ],
+    
+Event: [
+
+    { name: "Great HammerHead Shark", rarity: "Mythical", baseWeight: 1012,
+    cashValue: 420, progress: 1, minusProgress: 35, power: 250 },
+    { name: "Great White Shark", rarity: "Mythical", baseWeight: 1400,
+    cashValue: 580, progress: 1, minusProgress: 45, power: 250 },
+    { name: "Whale Shark", rarity: "Mythical", baseWeight: 21000,
+    cashValue: 650, progress: 1, minusProgress: 75, power: 250 },
+ 
+    { name: "Megalodon", rarity: "Exotic", baseWeight: 120000 , cashValue: 5000,
+    progress: 1, minusProgress: 80, power: 250 },
+    { name: "Seasonal Megalodon", rarity: "Exotic", baseWeight: 1200000
+    , cashValue: 9000,
+    progress: 1, minusProgress: 85, power: 509 }
+ ]
 };
 
+// ✅ Open Fish Index (ONLY Creek & Ocean)
+
+
+// ✅ Open Fish Index (ONLY Creek & Ocean)
+function openFishIndex() {
+    document.getElementById("fishIndexOverlay").style.display = "flex";
+    updateFishList(""); // Load all fish initially
+}
+
+// ✅ Close Fish Index
+function closeFishIndex() {
+    document.getElementById("fishIndexOverlay").style.display = "none";
+}
+function updateFishList(searchTerm) {
+    const fishListContainer = document.getElementById("fishListContainer");
+    fishListContainer.innerHTML = ""; // Clear previous list
+
+    const inventory = document.getElementById("inventory").textContent; // Get inventory content
+    const allowedLocations = ["Creek", "ShallowOcean", "HaystackBeach",
+        "HaystackislePound", "SNOWISLES", "HayBay", "SkullLands", "SunkenCity", " THEOCEAN", "Event"]; // ✅ Only show these locations
+
+    allowedLocations.forEach(location => {
+        if (fishList[location]) {
+            const filteredFish = fishList[location].filter(fish =>
+                fish.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            if (filteredFish.length > 0) {
+                const locationHeader = document.createElement("h2");
+                locationHeader.textContent = location;
+               locationHeader.id = location.replace(/\s+/g, "-");
+                fishListContainer.appendChild(locationHeader);
+            }
+
+            filteredFish.forEach(fish => {
+                const isCaught = inventory.includes(fish.name); // Check if fish is in inventory
+                const displayName = isCaught ? fish.name : "???";
+                const displayRarity = isCaught ? fish.rarity : "???";
+                const displayBaseWeight = isCaught ? `${fish.baseWeight} KG` : "???";
+                const displayCashValue = isCaught ? `${fish.cashValue} Coins` : "???";
+                const displayPower = isCaught ? fish.power : "???";
+                const displayProgress = isCaught ? fish.progress : "???";
+
+                const fishCard = document.createElement("div");
+                fishCard.classList.add("fish-card");
+                fishCard.innerHTML = `
+                    <h3>${displayName} (${displayRarity})</h3>
+                    <p><strong>Location:</strong> ${location}</p>
+                    <p><strong>Base Weight:</strong> ${displayBaseWeight}</p>
+                    <p><strong>Value:</strong> ${displayCashValue}</p>
+                    <p><strong>Power:</strong> ${displayPower}</p>
+                    <p><strong>Progress:</strong> ${displayProgress}</p>
+                `;
+                fishListContainer.appendChild(fishCard);
+            });
+        }
+    });
+}
+
+
+// ✅ Handle Input Search
+function searchFish() {
+    const searchTerm = document.getElementById("fishSearch").value;
+    updateFishList(searchTerm);
+}
 function getRandomFish(fishList) {
     let fishPool = [];
     let mythicalBoost = localStorage.getItem("mythicalBoost") === "active"; // ✅ Check if Aaoura Totem is active
@@ -351,11 +752,12 @@ function getRandomFish(fishList) {
     fishList.forEach(fish => {
         let chance = 0;
         switch (fish.rarity) {
-            case "Junk": chance = 56; break;
+            case "Junk": chance = 30; break;
             case "Common": chance = 50; break;
             case "Uncommon": chance = 25; break;
-            case "Rare": chance = 15; break;
-            case "Unusual": chance = 10; break;
+            case "Rare": chance = 5; break;
+            case "Limited": chance = 3; break;
+            case "Unusual": chance = 2; break;
             case "Legendary": chance = 6; break;
             case "Mythical": chance = mythicalBoost ? 10 : 5; break; // ✅ Doubled chance if boost is active
             case "Exotic": chance = 1; break;
@@ -369,7 +771,6 @@ function getRandomFish(fishList) {
 
     return fishPool[Math.floor(Math.random() * fishPool.length)];
 }
-
 const fishMutations = [
     { name: "Albino", effect: (fish) => fish.cashValue += 5 },
     { name: "Big", effect: (fish) => fish.baseWeight *= 10 },
@@ -378,7 +779,7 @@ const fishMutations = [
     { name: "Sparkling", effect: (fish) => fish.cashValue += 2 },
     { name: "Electric", effect: (fish) => fish.cashValue += 2 },
     { name: "Negative", effect: (fish) => fish.cashValue += 3 },
-    { name: "Fossilized", effect: (fish) => fish.cashValue += 16 },
+    { name: "Fossilized", effect: (fish) => fish.cashValue += 5 },
     { name: "Lunar", effect: (fish) => fish.cashValue += 10 },
     { name: "Solarblaze", effect: (fish) => fish.cashValue += 10 },
     { name: "Translucent", effect: (fish) => fish.cashValue += 5.2},
@@ -388,7 +789,7 @@ const fishMutations = [
     { name: "Ambered", effect: (fish) => fish.cashValue += 6 },
     { name: "Midas", effect: (fish) => fish.cashValue += 7 },
     { name: "Glossy", effect: (fish) => fish.cashValue += 3 },
-    { name: "Abbysal", effect: (fish) => fish.cashValue += 20 },
+    { name: "Abbysal", effect: (fish) => fish.cashValue += 3 },
     { name: "Giant", effect: (fish) => fish.baseWeight *= 60 },
 ];
 
@@ -407,8 +808,7 @@ function tapButton() {
       //CHEATDEFENSE BY ONIWA POGI
         CHEATER.play();
         CheaterFuckYou.play();
-        alert("Auto-clicking detected! Slow down.");
-        confirm("ANTICHEAT:", "You Have Detected as Hacking. you be Redirect to google");
+        alert("Anti Cheat: Your Rod Had Been Broken for AutoClicking to fast. You Have Kicked From the server");
         window.location.href = "google.com"; 
         return; // Prevent further execution
     }
@@ -485,67 +885,69 @@ const expRewards = {
 };
 
 // Modify fishCaught() to include EXP & leveling
+function spawnCaughtParticles(x, y) {
+    for (let i = 0; i < 15; i++) { // Creates 15 particles
+        let particle = document.createElement("div");
+        particle.classList.add("particle");
+
+        // ✅ Randomize particle movement
+        let xMove = (Math.random() - 0.5) * 200 + "px"; // Left or right
+        let yMove = (Math.random() - 0.5) * 200 + "px"; // Up or down
+        let xMove2 = (Math.random() - 0.5) * 300 + "px"; // More variance
+        let yMove2 = (Math.random() - 0.5) * 300 + "px";
+
+        particle.style.setProperty("--x", xMove);
+        particle.style.setProperty("--y", yMove);
+        particle.style.setProperty("--x2", xMove2);
+        particle.style.setProperty("--y2", yMove2);
+
+        // ✅ Position near the fish
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+
+        document.body.appendChild(particle);
+
+        // ✅ Remove after animation ends
+        setTimeout(() => {
+            particle.remove();
+        }, 1000);
+    }
+}
+
+// 🎣 Call the function when a fish is caught
 function fishCaught() {
     clearInterval(miniGameInterval);
     document.getElementById("miniGame").style.display = "none";
 
-    // ✅ Fetch latest cash from localStorage
     let cash = parseFloat(localStorage.getItem("cash")) || 0;
-
-    // ✅ Generate a random weight between 1KG and the fish's baseWeight
     let randomWeight = (Math.random() * (currentFish.baseWeight - 1) + 1).toFixed(2);
-
-    // ✅ Calculate money based on fish's base value and weight
     let moneyGained = parseFloat(randomWeight) * currentFish.cashValue;
 
-    let fishPower = currentFish.power;
     let expGained = expRewards[currentFish.rarity] || 0;
+    let mutation = Math.random() < mutationChance ? fishMutations[Math.floor(Math.random() * fishMutations.length)] : null;
+    if (mutation) mutation.effect(currentFish);
 
-    let mutation = null;
-
-    // ✅ Handle mutation properly
-    if (Math.random() < mutationChance) {
-        mutation = fishMutations[Math.floor(Math.random() * fishMutations.length)];
-        mutation.effect(currentFish);
-    }
-
-    // ✅ Update cash and save it
     cash += moneyGained;
     localStorage.setItem("cash", cash.toFixed(2));
-
-    // ✅ Update experience
     exp += expGained;
 
-    // ✅ Format mutation name correctly
     let mutationName = mutation ? `${mutation.name} ` : "";
     let fishKey = `${currentFish.rarity}_${mutationName}${currentFish.name}`;
 
-    // ✅ Ensure `ownedFish` object exists
     if (!ownedFish[fishKey]) {
-        ownedFish[fishKey] = {
-            name: currentFish.name,
-            rarity: currentFish.rarity,
-            mutation: mutation ? mutation.name : null,
-            count: 0,
-            totalPower: 0,
-            power: 0,
-            weight: 0
-        };
+        ownedFish[fishKey] = { name: currentFish.name, rarity: currentFish.rarity, mutation: mutation ? mutation.name : null, count: 0, totalPower: 0, power: 0, weight: 0 };
     }
 
-    // ✅ Update fish inventory
     ownedFish[fishKey].count++;
     ownedFish[fishKey].totalPower += parseFloat(randomWeight);
-    ownedFish[fishKey].power += fishPower;
+    ownedFish[fishKey].power += currentFish.power;
     ownedFish[fishKey].weight += parseFloat(randomWeight);
 
-    // ✅ Show notifications
     showExpNotification(`+${expGained} EXP`);
     checkLevelUp();
     showCatchNotification(`${mutationName}${currentFish.name}`, randomWeight, currentFish.rarity);
     showMoneyNotification(`+${moneyGained.toFixed(2)} Coins`);
 
-    // ✅ Enable Start Button and play sounds
     document.getElementById("StartButtonFish").disabled = false;
     Reelerio.pause();
     fishslpash.play();
@@ -553,11 +955,133 @@ function fishCaught() {
     document.body.style.overflow = "auto";
     stopFishing();
 
-    // ✅ Update UI
     updateUI();
     updateExpUI();
     updateInventoryUI();
+
+    triggerInventoryItemAnimation(fishKey);
+    spawnJumpingFishStats(fishKey, ownedFish[fishKey]);
+
+    // ✅ Spawn particles at the center of the screen (adjust as needed)
+    let centerX = window.innerWidth / 2;
+    let centerY = window.innerHeight / 2;
+    spawnCaughtParticles(centerX, centerY);
 }
+
+function spawnJumpingFishStats(fishKey, fishData) {
+    let jumpingStats = document.createElement("div");
+    jumpingStats.classList.add("jumping-fish-stats");
+
+    // ✅ Copy fish stats
+    jumpingStats.innerHTML = `
+        <strong class="${fishData.rarity}">${fishData.rarity} ${fishData.mutation || ''} ${fishData.name}</strong>
+        <br>Count: ${fishData.count}
+        <br>Weight: ${fishData.weight.toFixed(2)} KG
+        <br>Power: ${fishData.power}
+        ${fishData.mutation ? `<br><b>Effect:</b> ${fishData.mutation}` : ""}
+    `;
+
+    document.body.appendChild(jumpingStats);
+
+    // ✅ Randomized launch position
+    let startX = Math.random() * (window.innerWidth - 200);
+    jumpingStats.style.left = `${startX}px`;
+
+    // ✅ Randomized rotation & fling direction
+    let randomAngle = Math.random() * 60 - 30; // Between -30° to 30°
+    jumpingStats.style.transform = `rotate(${randomAngle}deg)`;
+
+    // ✅ Apply animation
+    jumpingStats.style.animation = `fishFling 2s ease-out`;
+
+    // ✅ Remove after animation ends
+    setTimeout(() => {
+        jumpingStats.remove();
+    }, 2000);
+}
+
+
+function triggerMegalodonDialogue(jumpingStats) {
+    let dialogueBox = document.createElement("div");
+    dialogueBox.classList.add("megalodon-dialogue");
+    dialogueBox.innerHTML = `<p>Woah, what's this?</p><button onclick="nextMegalodonText(1)">Next</button>`;
+    document.body.appendChild(dialogueBox);
+    
+    window.nextMegalodonText = function(step) {
+        if (step === 1) {
+            dialogueBox.innerHTML = `<p>Oh my...</p><button onclick="nextMegalodonText(2)">Next</button>`;
+        } else if (step === 2) {
+            dialogueBox.remove();
+            triggerMegalodonCutscene(jumpingStats);
+        }
+    };
+}
+
+function triggerMegalodonCutscene(jumpingStats) {
+    // ✅ Darken the screen
+    let overlay = document.createElement("div");
+    overlay.classList.add("megalodon-overlay");
+    document.body.appendChild(overlay);
+
+    // ✅ Camera Shake Effect
+    document.body.classList.add("shake-hard");
+
+    // ✅ Play deep ocean sound
+    let oceanSound = new Audio("deep_ocean.mp3");
+    oceanSound.volume = 0.7;
+    oceanSound.play();
+
+    // ✅ Play distant roar after 2 seconds
+    setTimeout(() => {
+        let roarSound = new Audio("megalodon_roar.mp3");
+        roarSound.volume = 1;
+        roarSound.play();
+    }, 2000);
+
+    // ✅ Create dramatic text
+    let textPopup = document.createElement("div");
+    textPopup.classList.add("megalodon-text");
+    textPopup.innerText = "The Legend Rises...";
+    document.body.appendChild(textPopup);
+
+    // ✅ Make the Megalodon appear BIG and jump SLOWER
+    jumpingStats.classList.add("megalodon-jump");
+
+    // ✅ Splash Effect
+    setTimeout(() => {
+        let splash = document.createElement("div");
+        splash.classList.add("megalodon-splash");
+        document.body.appendChild(splash);
+
+        // Remove splash after 3s
+        setTimeout(() => {
+            splash.remove();
+        }, 3000);
+    }, 3500);
+
+    // ✅ Remove everything after 5 seconds
+    setTimeout(() => {
+        document.body.classList.remove("shake-hard");
+        overlay.remove();
+        textPopup.remove();
+        jumpingStats.remove();
+    }, 5000);
+}
+
+function triggerInventoryItemAnimation(fishKey) {
+    // Find the newly added fish element in the inventory
+    let fishElement = document.getElementById(`fish-${fishKey}`);
+    if (fishElement) {
+        // Add the jump class to trigger animation
+        fishElement.classList.add('jump');
+
+        // Remove the jump class after the animation ends to allow it to be triggered again
+        fishElement.addEventListener('animationend', () => {
+            fishElement.classList.remove('jump');
+        });
+    }
+}
+
 
 // ✅ Move updateInventoryUI() outside of fishCaught()
 
@@ -607,15 +1131,13 @@ function updateUI() {
     localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
     updateInventoryUI();
 }
-
-
-
 function updateInventoryUI() {
     let inventoryElement = document.getElementById("inventory");
-    
+    let searchQuery = document.getElementById("inventorySearch").value.toLowerCase();
+
     if (!inventoryElement) {
         console.error("Inventory element not found!");
-        return; // Stop function if inventory doesn't exist
+        return;
     }
 
     let inventoryHTML = "";
@@ -625,24 +1147,102 @@ function updateInventoryUI() {
 
         if (!fish || !fish.name) {
             console.warn(`Invalid fish data:`, fish);
-            continue; // Skip broken data
+            continue;
+        }
+
+        if (!fish.name.toLowerCase().includes(searchQuery)) {
+            continue;
         }
 
         let mutationText = fish.mutation ? `(${fish.mutation})` : "";
-        
+        let mutationEffect = "";
+        let mutationClass = "";
+        let rarityColor = ""; // Color for rarity
+
+        // ✅ Assign colors based on rarity
+        switch (fish.rarity) {
+            case "Common":
+                rarityColor = "blue";
+                break;
+            case "Uncommon":
+                rarityColor = "lightblue";
+                break;
+            case "Unusual":
+                rarityColor = "mediumslateblue";
+                break;
+            case "Rare":
+                rarityColor = "lightgreen";
+                break;
+            case "Limited":
+                rarityColor = "limited-text";
+                break;
+            case "Legendary":
+                rarityColor = "legendary";
+                break;
+            case "Mythical":
+                rarityColor = "mythical";
+                break;
+            case "Exotic":
+                rarityColor = "rainbow-text"; // Special CSS for rainbow effect
+                break;
+            case "Secret":
+                rarityColor = "black-white-text"; // Special CSS for black & white effect
+                break;
+            default:
+                rarityColor = "white"; // Default color
+        }
+
+        let mutation = fishMutations.find(m => m.name === fish.mutation);
+        if (mutation) {
+            let effectMatch = mutation.effect.toString().match(/[\d.]+/);
+            let effectValue = effectMatch ? effectMatch[0] : "";
+
+            if (mutation.name === "Big" || mutation.name === "Giant") {
+                mutationEffect = `Weight x${effectValue}`;
+            } else {
+                mutationEffect = `Cash +${effectValue}`;
+            }
+
+            if (["Shiny", "Sparkling", "Glossy"].includes(mutation.name)) {
+                mutationClass = "sparkle-effect";
+            } else if (["Lunar", "Solarblaze", "Electric"].includes(mutation.name)) {
+                mutationClass = "glow-effect";
+            } else if (["Darkened", "Abyssal"].includes(mutation.name)) {
+                mutationClass = "dark-aura";
+            } else if (["Hexed"].includes(mutation.name)) {
+                mutationClass = "hexer";
+            } else if (mutation.name === "Translucent") {
+                mutationClass = "translucent-effect";
+            } else if (mutation.name === "Electric") {
+                mutationClass = "electric-effect";
+            } else if (mutation.name === "Fossilized") {
+                mutationClass = "fossilized-effect";
+            } else if (mutation.name === "Abyssal") {
+                mutationClass = "abyssal-effect";
+            } else if (mutation.name === "Silver") {
+                mutationClass = "silver-effect";
+            } else if (mutation.name === "Ambered") {
+                mutationClass = "ambered-effect";
+            } else if (mutation.name === "Albino") {
+                mutationClass = "Albino-Color";
+            } else if (mutation.name === "Negative") {
+                mutationClass = "minusFishhahaha";
+            }
+        }
+
         inventoryHTML += `
-            <div class="inventory-item">
-                <strong>${fish.rarity} ${mutationText} ${fish.name}</strong>
+            <div id="fish-${key}" class="inventory-item ${mutationClass}">
+                <strong class="${rarityColor}">${fish.rarity} ${mutationText} ${fish.name}</strong>
                 <br>Count: ${fish.count}
                 <br>Weight: ${fish.weight.toFixed(2)} KG
                 <br>Power: ${fish.power}
+                ${mutationEffect ? `<br><b>Effect:</b> ${mutationEffect}` : ""}
             </div>
         `;
     }
 
-    inventoryElement.innerHTML = inventoryHTML || "<p>No fish caught yet.</p>";
+    inventoryElement.innerHTML = inventoryHTML || "<p>No fish found.</p>";
 }
 
-// ✅ Call updateUI() properly at the end
 updateUI();
-updateExpUI()
+updateExpUI();
