@@ -7,50 +7,66 @@ var Reelerio = new Audio("Sounds/SoundReeler.mp3");
 var fishslpash = new Audio("Sounds/splash-6213.mp3");
 var fishsail = new Audio("Sounds/failsnap.mp3");
 
-Reelerio.volume = 0.2; // Set volume to 20%
-Reelerio.loop = true; // Enable looping
+Reelerio.volume = 0.2;
+Reelerio.loop = true;
+let musicTracks = [
+    "./Sounds/BGM.mp3",
+    "./Sounds/BGM2.mp3",
+    "./Sounds/BGM3.mp3",
+    "./Sounds/BGM4.mp3",
+    "./Sounds/BGM5.mp3"
+];
 
-document.addEventListener("DOMContentLoaded", function () {
-    var audio1 = document.getElementById("musicgameSFX");
-    var audio2 = document.getElementById("Music-Background");
-    startEventLoop();
-    if (!audio1 || !audio2) {
-        console.error("Audio elements not found! Check your HTML IDs.");
-        return;
-    }
+let currentTrackIndex = Math.floor(Math.random() * musicTracks.length);
+let bgMusic = new Audio(musicTracks[currentTrackIndex]);
+bgMusic.loop = false;
+bgMusic.volume = 0.9;
 
-    // Lower volume (0.5 = 50% volume, adjust as needed)
-    audio1.volume = 0.3;
-    audio2.volume = 0.2;
 
-    // Enable looping
-    audio1.loop = true;
-    audio2.loop = true;
+bgMusic.addEventListener("ended", playNextTrack);
 
-    // Try playing audio with user interaction fallback
-    var playPromise1 = audio1.play();
-    var playPromise2 = audio2.play();
+function playNextTrack() {
+    currentTrackIndex = (currentTrackIndex + 1) % musicTracks.length;
+    bgMusic.src = musicTracks[currentTrackIndex];
+    bgMusic.load(); // Ensure the new track is loaded
+    bgMusic.play().catch(() => {
+        console.log("Autoplay blocked. Waiting for user interaction.");
+    });
+}
 
-    if (playPromise1 !== undefined) {
-        playPromise1.catch(() => {
-            console.warn("Autoplay blocked for SFX. Waiting for user interaction.");
-            document.addEventListener("click", playAudioOnce);
-        });
-    }
-
-    if (playPromise2 !== undefined) {
-        playPromise2.catch(() => {
-            console.warn("Autoplay blocked for BGM. Waiting for user interaction.");
-            document.addEventListener("click", playAudioOnce);
-        });
-    }
-
-    function playAudioOnce() {
-        audio1.play();
-        audio2.play();
-        document.removeEventListener("click", playAudioOnce);
-    }
+// ** Start Playing Music with Autoplay Handling **
+bgMusic.addEventListener("canplaythrough", () => {
+    bgMusic.play().catch(() => {
+        console.log("Autoplay blocked. Waiting for user interaction.");
+        document.addEventListener("click", enableMusic, { once: true });
+    });
 });
+
+// ** Handle User Interaction to Start Music (If Needed) **
+function enableMusic() {
+    bgMusic.play().then(() => {
+        console.log("Music started after user interaction.");
+    }).catch(error => {
+        console.error("Failed to start music:", error);
+    });
+}
+
+let musicgameSFX = new Audio("./Sounds/sfx-bg.mp3");
+musicgameSFX.loop = true; 
+musicgameSFX.volume = 0.2;
+
+musicgameSFX.addEventListener("canplaythrough", () => {
+    musicgameSFX.play().catch(() => {
+        console.log("Autoplay blocked for SFX. Waiting for interaction.");
+        document.addEventListener("click", enableSFX, { once: true });
+    });
+});
+
+function enableSFX() {
+    musicgameSFX.play().catch(error => {
+        console.error("Failed to play SFX:", error);
+    });
+}
 
 // Function to play click sound
 function playClickSound() {
