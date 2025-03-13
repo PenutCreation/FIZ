@@ -454,13 +454,20 @@ function isChrome() {
     return ua.includes("chrome") && !ua.includes("edg") && !ua.includes("brave") && !ua.includes("opr") && !ua.includes("firefox");
 }
 
-// Prevent in-app/local browsers
-if (isInAppBrowser()) {
-    alert("Please open this website in Google Chrome for the best experience.");
+// Function to force the user to leave
+function forceExit() {
+    alert("You must open this website in Google Chrome!");
     window.location.href = "googlechrome://" + window.location.href.replace(/^https?:\/\//, '');
-} else if (!isChrome()) {
-    alert("This website is only supported on Google Chrome. Please open it in Chrome.");
-    window.location.href = "googlechrome://" + window.location.href.replace(/^https?:\/\//, '');
-}
     
+    // If redirect fails, keep showing the alert
+    setTimeout(() => {
+        forceExit();
+    }, 1000);
+}
+
+// Prevent in-app/local browsers or non-Chrome users
+if (isInAppBrowser() || !isChrome()) {
+    forceExit();
+}
+
 </script>
