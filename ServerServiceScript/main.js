@@ -337,8 +337,7 @@ THEOCEAN: [
   ],
 
     //EVENT FISHES
-
-  CursedMeg: [
+CURSEDMEG: [
     { name: "Cursed Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
     { name: "Cursed Mackerel", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
     { name: "Cursed Mullet", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
@@ -369,8 +368,9 @@ THEOCEAN: [
     { name: "Cursed Sea Pickle", rarity: "Mythical", baseWeight: 1, cashValue: 6, progress: 1, minusProgress: 42, power: 0 },
     { name: "Cursed OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 2, progress: 1, minusProgress: 35, power: 0 },
     { name: "Cursed Colossal Squid", rarity: "Mythical", baseWeight: 3300, cashValue: 15, progress: 1, minusProgress: 70, power: 0 },
-    { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000, cashValue: 5000, progress: 1, minusProgress: 80, power: 250 }
+    { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000, cashValue: 5000, progress: 1, minusProgress: 85, power: 250 }
   ],
+
 MEGPOOLAES: [
      { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
     1, minusProgress: 0, power: 0 },
