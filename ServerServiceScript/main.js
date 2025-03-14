@@ -337,70 +337,39 @@ THEOCEAN: [
   ],
 
     //EVENT FISHES
-CursedMeg: [
-    { name: "Cursed Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
-    1, minusProgress: 0, power: 0 },
-    { name: "Cursed Mackerel", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
-    1, minusProgress: 0, power: 0 },
-    { name: "Cursed Mullet", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
-    1, minusProgress: 0, power: 0 },
-    { name: "Cursed Porgy", rarity: "Common", baseWeight: 6, cashValue: 1, progress:
-    1, minusProgress: 0, power: 0 },
-    { name: "Cursed Sea Bass", rarity: "Common", baseWeight: 20, cashValue: 5, progress:
-    1, minusProgress: 0, power: 0 },
-   { name: "Cursed Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1,
-   progress: 1, minusProgress: 0, power: 1 },
-    { name: "Cursed Amberjack", rarity: "Uncommon", baseWeight: 99.9, cashValue: 3, progress:
-    1, minusProgress: 0, power: 0 },
-    { name: "Cursed Cod", rarity: "Uncommon", baseWeight: 24, cashValue: 1, progress:
-    1, minusProgress: 0, power: 0 },
-    { name: "Cursed Crab", rarity: "Uncommon", baseWeight: 3, cashValue: 1, progress:
-    1, minusProgress: 0, power: 0 },
-    { name: "Cursed Oyster", rarity: "Uncommon", baseWeight: 1, cashValue: 1, progress:
-    1, minusProgress: 0, power: 0 },
-    { name: "Cursed Salmon", rarity: "Uncommon", baseWeight: 11, cashValue: 3, progress:
-    1, minusProgress: 0, power: 0 },
-        { name: "Cursed Barracuda", rarity: "Unusual", baseWeight: 25, cashValue: 5,
-        progress: 1, minusProgress: 1, power: 14 },
-        { name: "Cursed Lobster", rarity: "Unusual", baseWeight: 3, cashValue: 3,
-        progress: 1, minusProgress: 1, power: 14 },
-        { name: "Cursed Nurse Shark", rarity: "Unusual", baseWeight: 125, cashValue: 2,
-        progress: 1, minusProgress: 10, power: 14 },
-        { name: "Cursed Angler Fish", rarity: "Rare", baseWeight: 1, cashValue: 2,
-        progress: 1, minusProgress: 2, power: 0 },
-        { name: "Cursed Sea Urchin", rarity: "Rare", baseWeight: 1, cashValue: 1,
-        progress: 1, minusProgress: 0, power: 0 },
-        { name: "Cursed Cookiecutter Shark", rarity: "Rare", baseWeight: 1, cashValue: 2,
-        progress: 1, minusProgress: 1, power: 0 },
-        { name: "Cursed Coelacanth", rarity: "Rare", baseWeight: 10, cashValue: 1,
-        progress: 1, minusProgress: 8, power: 0 },
-        { name: "Cursed Sting Ray", rarity: "Rare", baseWeight: 2, cashValue: 1,
-        progress: 1, minusProgress: 3, power: 0 },
-        { name: "Cursed Halibut", rarity: "Rare", baseWeight: 461, cashValue: 2,
-        progress: 1, minusProgress: 25, power: 0 },
-        { name: "Cursed Pufferfish", rarity: "Rare", baseWeight: 2, cashValue: 2,
-        progress: 1, minusProgress: 5, power: 0 },
-        { name: "Cursed Bull Shark", rarity: "Legendary", baseWeight: 10, cashValue: 2,
-        progress: 1, minusProgress: 30, power: 0 },
-        { name: "Cursed Crown Bass", rarity: "Legendary", baseWeight: 3, cashValue: 5,
-        progress: 1, minusProgress: 35, power: 0 },
-        { name: "Cursed Dolphin", rarity: "Legendary", baseWeight: 451, cashValue: 2,
-        progress: 1, minusProgress: 5, power: 0 },
-        { name: "Cursed Flying Fish", rarity: "Legendary", baseWeight: 14, cashValue: 3, progress: 1, minusProgress: 26, power: 0 },
-        { name: "Cursed Moon Fish", rarity: "Legendary", baseWeight: 1003, cashValue:
-        5,
-        progress: 1, minusProgress: 50, power: 0 },
-        { name: "Cursed SawFish", rarity: "Legendary", baseWeight: 50, cashValue: 5,
-        progress: 1, minusProgress: 21, power: 0 },
-        { name: "Cursed Sea Pickle", rarity: "Mythical", baseWeight: 1, cashValue: 6,
-        progress: 1, minusProgress: 42, power: 0 },
-        { name: "Cursed OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 2,
-        progress: 1, minusProgress: 35, power: 0 },
-        { name: "Cursed Colossal Squid", rarity: "Mythical", baseWeight: 3300,
-        cashValue: 15,
-        progress: 1, minusProgress: 70, power: 0 },
-    { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000 , cashValue: 5000,
-    progress: 1, minusProgress: 80, power: 250 }
+
+  CursedMeg: [
+    { name: "Cursed Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Mackerel", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Mullet", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Porgy", rarity: "Common", baseWeight: 6, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Sea Bass", rarity: "Common", baseWeight: 20, cashValue: 5, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
+    { name: "Cursed Amberjack", rarity: "Uncommon", baseWeight: 99.9, cashValue: 3, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Cod", rarity: "Uncommon", baseWeight: 24, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Crab", rarity: "Uncommon", baseWeight: 3, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Oyster", rarity: "Uncommon", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Salmon", rarity: "Uncommon", baseWeight: 11, cashValue: 3, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Barracuda", rarity: "Unusual", baseWeight: 25, cashValue: 5, progress: 1, minusProgress: 1, power: 14 },
+    { name: "Cursed Lobster", rarity: "Unusual", baseWeight: 3, cashValue: 3, progress: 1, minusProgress: 1, power: 14 },
+    { name: "Cursed Nurse Shark", rarity: "Unusual", baseWeight: 125, cashValue: 2, progress: 1, minusProgress: 10, power: 14 },
+    { name: "Cursed Angler Fish", rarity: "Rare", baseWeight: 1, cashValue: 2, progress: 1, minusProgress: 2, power: 0 },
+    { name: "Cursed Sea Urchin", rarity: "Rare", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Cursed Cookiecutter Shark", rarity: "Rare", baseWeight: 1, cashValue: 2, progress: 1, minusProgress: 1, power: 0 },
+    { name: "Cursed Coelacanth", rarity: "Rare", baseWeight: 10, cashValue: 1, progress: 1, minusProgress: 8, power: 0 },
+    { name: "Cursed Sting Ray", rarity: "Rare", baseWeight: 2, cashValue: 1, progress: 1, minusProgress: 3, power: 0 },
+    { name: "Cursed Halibut", rarity: "Rare", baseWeight: 461, cashValue: 2, progress: 1, minusProgress: 25, power: 0 },
+    { name: "Cursed Pufferfish", rarity: "Rare", baseWeight: 2, cashValue: 2, progress: 1, minusProgress: 5, power: 0 },
+    { name: "Cursed Bull Shark", rarity: "Legendary", baseWeight: 10, cashValue: 2, progress: 1, minusProgress: 30, power: 0 },
+    { name: "Cursed Crown Bass", rarity: "Legendary", baseWeight: 3, cashValue: 5, progress: 1, minusProgress: 35, power: 0 },
+    { name: "Cursed Dolphin", rarity: "Legendary", baseWeight: 451, cashValue: 2, progress: 1, minusProgress: 5, power: 0 },
+    { name: "Cursed Flying Fish", rarity: "Legendary", baseWeight: 14, cashValue: 3, progress: 1, minusProgress: 26, power: 0 },
+    { name: "Cursed Moon Fish", rarity: "Legendary", baseWeight: 1003, cashValue: 5, progress: 1, minusProgress: 50, power: 0 },
+    { name: "Cursed SawFish", rarity: "Legendary", baseWeight: 50, cashValue: 5, progress: 1, minusProgress: 21, power: 0 },
+    { name: "Cursed Sea Pickle", rarity: "Mythical", baseWeight: 1, cashValue: 6, progress: 1, minusProgress: 42, power: 0 },
+    { name: "Cursed OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 2, progress: 1, minusProgress: 35, power: 0 },
+    { name: "Cursed Colossal Squid", rarity: "Mythical", baseWeight: 3300, cashValue: 15, progress: 1, minusProgress: 70, power: 0 },
+    { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000, cashValue: 5000, progress: 1, minusProgress: 80, power: 250 }
   ],
 MEGPOOLAES: [
      { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
