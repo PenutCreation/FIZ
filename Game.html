@@ -4,8 +4,9 @@
     <link rel="stylesheet" href="Style/main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initia-scale=1.0">
-<meta name="google-adsense-account" content="ca-pub-4004537826473039">
-    <title>Fiz🎣 - Server null</title>
+    <title>Fiz🎣 - Game</title>
+
+</head>
 <div id="sky">
 <div class="ban-overlay" id="banOverlay"></div>
 
@@ -22,6 +23,7 @@
     </div>
 
     <style>
+    
 body {
     margin: 0;
     padding: 0;
@@ -87,13 +89,28 @@ align-content: center;
             display: inline-block;
             background: #f9f9f9;
         }
-        .area {
-margin-top: 10px;
-            border: 1px solid #000;
-            padding: 10px;
-            display: inline-block;
-            background: #f9f9f9;
-        }
+.area-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.area {
+    margin-top: 10px;
+    border: 1px solid #000;
+    padding: 10px;
+    background: #f9f9f9;
+    width: 100%;
+    max-width: 90%;
+}
+
+/* Center `.area` on larger screens */
+@media (min-width: 768px) { 
+    .area {
+        max-width: 50%; /* Adjust as needed */
+    }
+}
+
     /* Shop Styles */
 /* Shop Popup Styling */
 #shopPopup {
@@ -329,7 +346,6 @@ background:#2a2a2a;
     margin: 15px 10px;
     position: relative; 
     overflow: hidden;
-    width:100%;
 }
 
 /* 🌊 Animated Wave Effect */
@@ -945,7 +961,7 @@ content: "";
     100% { transform: translateY(-50px) scale(0.5); opacity: 0; }
   }
     </style>
-</head>
+
 <body>
 
     <div id="gameScreen">
@@ -1001,6 +1017,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 
 </div>
+<div class="area-container">
 <fieldset class="area">
   <img src="">
   <h3>Creek💦</h3>
@@ -1011,6 +1028,8 @@ document.addEventListener("DOMContentLoaded", function() {
         Creek</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area">
   <h3>Shallow Ocean🌊</h3>
   <p>Shallow Ocean a place where life live to its Glory. Thousands of fishes
@@ -1021,6 +1040,8 @@ document.addEventListener("DOMContentLoaded", function() {
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" style="margin-top:600px;">
   <h3>Haystack Beach🏖️</h3>
   <p>Amazing Haystack Beach with amazing Species Lived Together in a major
@@ -1031,6 +1052,8 @@ document.addEventListener("DOMContentLoaded", function() {
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" style="background: linear-gradient(135deg, Green, #80D0C7);">
   <h3>Haystack Isle ( Pond )</h3>
   <p>Massive Pond, but did you know else massive? LOOOOOOOOOOOOOOOOOOOW
@@ -1040,6 +1063,8 @@ document.addEventListener("DOMContentLoaded", function() {
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area">
   <h3>Haystack Beach🏖️</h3>
   <p>Amazing Haystack Beach with amazing Species Lived Together in a major
@@ -1050,6 +1075,8 @@ document.addEventListener("DOMContentLoaded", function() {
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area">
   <h3>Shallow Ocean🌊</h3>
   <p>Shallow Ocean a place where life live to its Glory. Thousands of fishes
@@ -1060,6 +1087,8 @@ document.addEventListener("DOMContentLoaded", function() {
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" id="Tunas"style="margin-top:800px; display:none;">
   <h3>🐟 Abundance</h3>
   <p>Abundance AmberJack, Jumping in the ocean. and in a mass of numbers</p>
@@ -1069,6 +1098,8 @@ document.addEventListener("DOMContentLoaded", function() {
         on here</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" style="margin-top:800px;">
   <h3>🌊THE OCEAN🪸</h3>
   <p>The Species living here is big and small a abalanced ecosystem but is there
@@ -1079,6 +1110,8 @@ document.addEventListener("DOMContentLoaded", function() {
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" id="GreatWhiteShark-pool" style="display:none;
 margin-top:900px; background: linear-gradient(135deg, pink, #80D0C7);">
   <h3>🚩Great White Shark Spot</h3>
@@ -1089,6 +1122,8 @@ margin-top:900px; background: linear-gradient(135deg, pink, #80D0C7);">
         Fish Here?</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" style="margin-top:800px;">
   <h3>🌊THE OCEAN🪸</h3>
   <p>The Species living here is big and small a abalanced ecosystem but is there
@@ -1099,6 +1134,8 @@ margin-top:900px; background: linear-gradient(135deg, pink, #80D0C7);">
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" id="GreatHammerHead-pool" style="display:;
 margin-top:900px; background: linear-gradient(135deg, pink, #80D0C7);
 display:none;">
@@ -1110,7 +1147,8 @@ display:none;">
         Fish Here?</button>
   </center>
 </fieldset>
-
+</div>
+<div class="area-container">
 <fieldset class="area" style="margin-top:800px;">
   <h3>❄️Snow Isles❄️</h3>
   <p>Ver~ Very- Cold🥶❄️</p>
@@ -1127,23 +1165,25 @@ display:none;">
         <fieldset>
             <h3>C³ Totem</h3>
             <p style="color:white;">Attracts Huge Fishes</p>
-            <button onclick="buyTotem('C³ Totem', 500000)">C³ Totem - $500000</button>
+            <button onclick="buyTotem('C³ Totem', 500)">C³ Totem - $500</button>
         </fieldset>
 
         <fieldset>
             <h3>Aaoura Totem</h3>
             <p style="color:white;">Boosts Mythical Fish chances (Lasts 15 min)</p>
-            <button onclick="buyTotem('Aaoura Totem', 500000)">Aaoura Totem - $500000</button>
+            <button onclick="buyTotem('Aaoura Totem', 1000)">Aaoura Totem - $1000</button>
         </fieldset>
 
         <fieldset>
             <h3>Eclipse Totem</h3>
             <p style="color:white;">Mysterious Effects</p>
-            <button onclick="buyTotem('Eclipse Totem', 7500000)">Eclipse Totem - $7500000</button>
+            <button onclick="buyTotem('Eclipse Totem', 750)">Eclipse Totem - $750</button>
         </fieldset>
     </div>
 </div>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" >
   <h3>Shallow Ocean🌊</h3>
   <p>Shallow Ocean a place where life live to its Glory. Thousands of fishes
@@ -1154,6 +1194,8 @@ display:none;">
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" id="Tunas"style="margin-top:800px; display:none;">
   <h3>🐟Tuna Abundance</h3>
   <p>Abundance AmberJack, Jumping in the ocean. and in a mass of numbers</p>
@@ -1163,6 +1205,8 @@ display:none;">
         on here</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area"id="Meg-pool" style="margin-top:300px; background:
 linear-gradient(135deg, Red, #80D0C7); display:none;">
   <h3>🚩Megalodon Spotted</h3>
@@ -1173,17 +1217,30 @@ linear-gradient(135deg, Red, #80D0C7); display:none;">
         <button id="StartButtonFish" onclick="startFishing('MEGPOOLAES')">🎣 Fish
         here</button>
         </fieldset>
-    
-<fieldset class="area" style="margin-top:800px;">
-  <h3>🌊THE OCEAN🪸</h3>
-  <p>The Species living here is big and small a abalanced ecosystem but is there
-  someone more bigger under us or.... something is predatoring us </p>
+  </div>
+<div class="area-container" id="CursedMrgMegalodon">
+<fieldset class="area"style="margin-top:300px; background:
+linear-gradient(135deg, Red, #80D0C7); display:none;">
+  <h3>🚩Cursed Megalodon Spotted</h3>
+  <p>BLOOD MOON RISES AND THE TIDE HAS RISED A BEAST!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('CURSEDMEG')">🎣 Fish
+        here</button>
+        </fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" id="BlessedTide" style="background:linear-gradient(135deg, lightgreen, #80D0C7); margin-top:800px;">
+  <h3>🍀Blessed Tides🌊</h3>
+  <p>A Secret of blessed waves, the lore of it disturbs you, through your spine</p>
  
   <center>
         <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
-        on Ocean</button>
+        on here</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area"id="Meg-pool-season" style="margin-top:800px; background:
 linear-gradient(135deg, orange, #80D0C7); display:none;">
   <h3>🚩Seasonal Megalodon Spotted</h3>
@@ -1194,6 +1251,8 @@ linear-gradient(135deg, orange, #80D0C7); display:none;">
         <button id="StartButtonFish" onclick="startFishing('MEGPOOLAESOANHAY')">🎣 Fish
         here</button>
         </fieldset>
+        </div>
+<div class="area-container">
 <fieldset class="area" style=" background:
 linear-gradient(135deg, orange, #80D0C7);">
   <h3>🌾Hay Isle (Bay)</h3>
@@ -1204,6 +1263,8 @@ linear-gradient(135deg, orange, #80D0C7);">
         here</button>
  </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" style="margin-top:500px; background:
 linear-gradient(135deg, purple, #80D0C7);">
   <h3>🏝️SkullLands☠️</h3>
@@ -1215,6 +1276,8 @@ linear-gradient(135deg, purple, #80D0C7);">
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" style="margin-top:500px; background:
 linear-gradient(135deg, blue, #80D0C7);">
   <h3>🌊Sunken City🫧</h3>
@@ -1226,7 +1289,8 @@ linear-gradient(135deg, blue, #80D0C7);">
         on Sunken City</button>
   </center>
 </fieldset>
-
+</div>
+<div class="area-container">
 <fieldset class="area" id="WhaleSharkPOOL"style="margin-top:800px; display:none;">
   <h3>🦈Whale Shark Group</h3>
   <p>Whale Shark Spotted Here, a group of them!</p>
@@ -1246,6 +1310,8 @@ linear-gradient(135deg, blue, #80D0C7);">
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" id="AmberJacks"style="margin-top:800px; display:none;">
   <h3>🐟AmberJack Abundance</h3>
   <p>Abundance AmberJack, Jumping in the ocean. and in a mass of numbers</p>
@@ -1255,6 +1321,21 @@ linear-gradient(135deg, blue, #80D0C7);">
         on here</button>
   </center>
 </fieldset>
+</div>
+
+<div class="area-container">
+<fieldset class="area" id="AmberJacks"style="margin-top:800px;">
+  <h3>🦈SharkLand🏝️</h3>
+  <p>Shark land infested by Sharks!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('SHARKLAND')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+</div>
+
+
 <button id="inventoryButton">🎒 Inventory</button>
 
 <!-- 🔹 Inventory Pop-Up -->
@@ -1660,13 +1741,13 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 </script>
-server ping:57.5MS
-<script>
+
+<script>//EVENTS AND MORE
 document.addEventListener("DOMContentLoaded", function () {
     const elements = {
         "AmberJacks": Math.random() * (50000 - 30000) + 30000, // 30s - 50s
         "Tunas": Math.random() * (50000 - 90000) + 30000,
-        "item3": Math.random() * (50000 - 30000) + 30000
+        "item": Math.random() * (50000 - 30000) + 30000
     };
 
     for (const id in elements) document.getElementById(id).style.display = "none";
@@ -1688,4 +1769,27 @@ document.addEventListener("DOMContentLoaded", function () {
     for (const id in elements) spawn(id, elements[id]);
 });
 
+</script>
+<script>
+async function checkRedMoonEvent() {
+        try {
+            let response = await fetch('https://api.farmsense.net/v1/moonphases/?d=' + Date.now());
+            let data = await response.json();
+
+            // Check if the moon phase is near a lunar eclipse (Full Moon or Blood Moon)
+            if (data[0].Phase === "Full Moon" || data[0].Phase === "Blood Moon") {
+                let message = document.getElementById("CursedMrgMegalodon");
+                message.style.display = "block";
+showEvent("🦈🌑Red Moon:A Cursed Megalodon has Awoken from its Hybernation!")
+                // Hide the message after 20 minutes
+                setTimeout(() => {
+                    message.style.display = "none";
+                }, 1200000); // 20 minutes in milliseconds
+            }
+        } catch (error) {
+            console.error("Error fetching moon phase data:", error);
+        }
+    }
+
+    checkRedMoonEvent();
 </script>
