@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://penutcreation.github.io/Fiz/sitemap.xml
