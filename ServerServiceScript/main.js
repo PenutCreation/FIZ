@@ -1,3 +1,6 @@
+const StartfishFoxer = document.getElementById("StartButtonFish");
+function startFishing(area) {
+    let availableFish = fishList[area];
     currentFish = getRandomFish(availableFish);
 
     fishPosition = 130;
