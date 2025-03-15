@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌾Fiz</title>
+    <title>Fiz🎣</title>
     <link rel="stylesheet" href="styles.css">
+<meta name="description" content="Fiz🎣">
+<meta name="keywords" content="fishing game, online fishing, free fishing game,
+fish catching game, Fiz game, fiz OnisaPenut, Fizzzzzzz, Fizer, Fzich, Fisch">
+<meta name="author" content="OniwaPenut">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="V9bOURLuDISiymPR5pt0aVCuL4fOsYTu6y1LDoawxhE" />
 </head>
 <body>
 
     <!-- Header -->
     <header>
-        <div class="logo">Fiz🎣</div>
+        <div class="logo">FIZ🎣</div>
         <nav>
             <ul>
                 <li><a href="#play">Play</a></li>
@@ -217,7 +223,7 @@ function skipLoading() {
 
     </script>
     <style>
-    /* Reset Styles */
+    /* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -225,21 +231,20 @@ function skipLoading() {
     font-family: Arial, sans-serif;
 }
 
-/* Body Background */
 body {
-    background-color:lightblue;
+    background-color: lightblue;
     color: white;
     text-align: center;
-    padding-top: 80px; /* Prevent content from hiding under fixed header */
+    padding-top: 70px; /* Adjusted for header spacing */
 }
 
-/* Header */
+/* Responsive Header */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: rgba(0, 102, 204, 0.9);
-    padding: 15px 10%;
+    padding: 15px 5%;
     position: fixed;
     width: 100%;
     top: 0;
@@ -247,128 +252,112 @@ header {
     z-index: 100;
 }
 
+/* Logo */
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
+/* Navigation Menu */
 nav ul {
     list-style: none;
     display: flex;
+    gap: 15px;
 }
 
 nav ul li {
-    margin-left: 20px;
+    display: inline-block;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 102, 204, 0.95);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        text-align: right;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .menu-icon {
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+    }
 }
 
 /* Hero Section */
 .hero {
-    padding: 50px 20px;
+    padding: 60px 20px;
     background: rgba(0, 0, 0, 0.5);
     margin: 20px auto;
     border-radius: 10px;
-    max-width: 600px;
+    max-width: 90%;
+}
+
+.hero h1 {
+    font-size: 2rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
 }
 
 /* Play Button */
 .fizzplay {
     background-color: #007bff;
-    padding: 15px 30px;
+    padding: 15px 35px;
     border: none;
     border-radius: 10px;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     cursor: pointer;
     margin-top: 10px;
+    transition: 0.3s;
 }
 
 .fizzplay:hover {
     background-color: #0056b3;
 }
-.slider {
-    position: relative;
-    width: 300px; /* Adjust as needed */
-    height: 200px;
-    margin: auto;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+/* Responsive Play Section */
+#play {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
 }
 
-.slider img {
-    width: 100%;
-    height: auto;
-}
-
-.sbutton {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-#prev {
-    left: 10px;
-}
-
-#next {
-    right: 10px;
-}
-
-/* Popup Styling */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-.popup.show {
-    display: flex;
-}
-
-.popup-content {
-    background: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    color: black;
-}
-
-.forminput {
-    display: block;
+#play img {
     width: 80%;
-    padding: 10px;
-    margin: 10px auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.formbutton {
-    background: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.formbutton:hover {
-    background: #0056b3;
+    border-radius: 10px;
 }
 
 /* Loading Screen */
@@ -401,13 +390,62 @@ nav ul li a {
     background: darkred;
 }
 
-/* Leaderboard */
+/* Popup Styling */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup.show {
+    display: flex;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    width: 90%;
+    max-width: 400px;
+}
+
+.forminput {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.formbutton {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formbutton:hover {
+    background: #0056b3;
+}
+
+/* Responsive Leaderboard */
 #leaderboard {
     padding: 20px;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     margin: 20px auto;
-    max-width: 600px;
+    max-width: 90%;
 }
 
 #leaderboard-list {
@@ -419,55 +457,80 @@ nav ul li a {
     background: white;
     color: black;
     padding: 10px;
-    margin: 5px;
+    margin: 5px 0;
     border-radius: 5px;
-    font-weight: bold;
+}
+
+/* Slider */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    margin: 10px auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider img {
+    width: 100%;
+    height: auto;
+}
+
+.sbutton {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#prev {
+    left: 10px;
+}
+
+#next {
+    right: 10px;
 }
 
 /* Footer */
 footer {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
     margin-top: 20px;
+    background: rgba(0, 102, 204, 0.9);
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .fizzplay {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+
+    .popup-content {
+        width: 95%;
+    }
+
+    .forminput {
+        width: 95%;
+    }
 }
 
     </style>
 </body>
 </html>
-<script>//PREVENT USER. SERVER NLT USAGE
-// Function to detect if the browser is an in-app/local browser
-function isInAppBrowser() {
-    let ua = navigator.userAgent || navigator.vendor || window.opera;
-    
-    // Detect common in-app browsers (Messenger, Instagram, Facebook, Twitter, TikTok, etc.)
-    return /FBAN|FBAV|Instagram|Twitter|Snapchat|TikTok|WeChat|Line/i.test(ua);
-}
-
-// Function to check if the user is using Chrome
-function isChrome() {
-    let ua = navigator.userAgent.toLowerCase();
-    return ua.includes("chrome") && !ua.includes("edg") && !ua.includes("brave") && !ua.includes("opr") && !ua.includes("firefox");
-}
-
-// Function to force the user to leave
-function forceExit() {
-    alert("You must open this website in Google Chrome!");
-    window.location.href = "googlechrome://" + window.location.href.replace(/^https?:\/\//, '');
-    
-    // If redirect fails, keep showing the alert
-    setTimeout(() => {
-        forceExit();
-    }, 1000);
-}
-
-// Prevent in-app/local browsers or non-Chrome users
-if (isInAppBrowser() || !isChrome()) {
-    forceExit();
-}
-
-</script>
