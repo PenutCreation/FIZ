@@ -1,6 +1,3 @@
-const StartfishFoxer = document.getElementById("StartButtonFish");
-function startFishing(area) {
-    let availableFish = fishList[area];
     currentFish = getRandomFish(availableFish);
 
     fishPosition = 130;
@@ -271,6 +268,38 @@ HayBay: [
     cashValue: 2,
     progress: 1, minusProgress: 50, power: 0 },
       ],
+
+SHARKLAND: [
+    { name: "Long Eater Shark", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Sand Shark", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Willow Shark", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Mist Shark", rarity: "Uncommon", baseWeight: 6, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Tiger Shark", rarity: "Uncommon", baseWeight: 20, cashValue: 5, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Panther Shark", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
+    { name: "Minnow Shark", rarity: "Uncommon", baseWeight: 99.9, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Elf Shark", rarity: "Uncommon", baseWeight: 24, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "LedShark", rarity: "Uncommon", baseWeight: 3, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Hon Shark", rarity: "Uncommon", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Deli Shark", rarity: "Uncommon", baseWeight: 11, cashValue: 3, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Arjov Shark", rarity: "Unusual", baseWeight: 25, cashValue: 5, progress: 1, minusProgress: 1, power: 14 },
+    { name: "Lobster Shark", rarity: "Unusual", baseWeight: 3, cashValue: 3, progress: 1, minusProgress: 1, power: 14 },
+    { name: "Blue Shark", rarity: "Unusual", baseWeight: 125, cashValue: 2, progress: 1, minusProgress: 10, power: 14 },
+    { name: "Brow Shark", rarity: "Rare", baseWeight: 1, cashValue: 2, progress: 1, minusProgress: 2, power: 0 },
+    { name: "Spiked Shark", rarity: "Rare", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
+    { name: "Tradded Shark", rarity: "Rare", baseWeight: 1, cashValue: 2, progress: 1, minusProgress: 1, power: 0 },
+    { name: "Snail Shark", rarity: "Rare", baseWeight: 10, cashValue: 1, progress: 1, minusProgress: 8, power: 0 },
+    { name: "Octopos Shark", rarity: "Rare", baseWeight: 2, cashValue: 1, progress: 1, minusProgress: 3, power: 0 },
+    { name: "Goblin Shark", rarity: "Rare", baseWeight: 461, cashValue: 2, progress: 1, minusProgress: 25, power: 0 },
+    { name: "XenoTage Shark", rarity: "Rare", baseWeight: 2, cashValue: 2, progress: 1, minusProgress: 5, power: 0 },
+    { name: "Seam Shark", rarity: "Legendary", baseWeight: 10, cashValue: 2, progress: 1, minusProgress: 30, power: 0 },
+    { name: "Milk Shark", rarity: "Legendary", baseWeight: 3, cashValue: 5, progress: 1, minusProgress: 35, power: 0 },
+    { name: "Locked Shark", rarity: "Legendary", baseWeight: 451, cashValue: 2, progress: 1, minusProgress: 5, power: 0 },
+    { name: "Spart Shark", rarity: "Legendary", baseWeight: 14, cashValue: 3, progress: 1, minusProgress: 26, power: 0 },
+    { name: "Deep Shark", rarity: "Legendary", baseWeight: 1003, cashValue: 5, progress: 1, minusProgress: 50, power: 0 },
+    { name: "Antarctic Shark", rarity: "Legendary", baseWeight: 50, cashValue: 5, progress: 1, minusProgress: 21, power: 0 },
+    { name: "Grand Shark", rarity: "Mythical", baseWeight: 293, cashValue: 5,
+    progress: 1, minusProgress: 55, power: 0 }
+  ],
 //DEFUALT FISHON
 THEOCEAN: [
     { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
@@ -294,6 +323,8 @@ THEOCEAN: [
     { name: "Oyster", rarity: "Uncommon", baseWeight: 1, cashValue: 1, progress:
     1, minusProgress: 0, power: 0 },
     { name: "Salmon", rarity: "Uncommon", baseWeight: 11, cashValue: 3, progress:
+    1, minusProgress: 0, power: 0 },
+    { name: "Star Fish", rarity: "Rare", baseWeight: 1, cashValue: 1, progress:
     1, minusProgress: 0, power: 0 },
         { name: "Barracuda", rarity: "Unusual", baseWeight: 25, cashValue: 5,
         progress: 1, minusProgress: 1, power: 14 },
@@ -333,11 +364,19 @@ THEOCEAN: [
         progress: 1, minusProgress: 35, power: 0 },
         { name: "Colossal Squid", rarity: "Mythical", baseWeight: 3300,
         cashValue: 15,
-        progress: 1, minusProgress: 70, power: 0 }
+        progress: 1, minusProgress: 70, power: 0 },
+    { name: "Patrick Star", rarity: "Secret", baseWeight: 1, cashValue: 30, progress:
+    1, minusProgress: 45, power: 0 },
+    { name: "🍀Green Fish", rarity: "Secret", baseWeight: 7000, cashValue: 7, progress:
+    1, minusProgress: 70, power: 0 }
   ],
+  
+
+
 
     //EVENT FISHES
-CURSEDMEG: [
+
+  CURSEDMEG: [
     { name: "Cursed Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
     { name: "Cursed Mackerel", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
     { name: "Cursed Mullet", rarity: "Common", baseWeight: 4, cashValue: 1, progress: 1, minusProgress: 0, power: 0 },
@@ -368,9 +407,9 @@ CURSEDMEG: [
     { name: "Cursed Sea Pickle", rarity: "Mythical", baseWeight: 1, cashValue: 6, progress: 1, minusProgress: 42, power: 0 },
     { name: "Cursed OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 2, progress: 1, minusProgress: 35, power: 0 },
     { name: "Cursed Colossal Squid", rarity: "Mythical", baseWeight: 3300, cashValue: 15, progress: 1, minusProgress: 70, power: 0 },
-    { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000, cashValue: 5000, progress: 1, minusProgress: 85, power: 250 }
+    { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000, cashValue: 5000, progress: 1, minusProgress: 80, power: 250 }
   ],
-
+ 
 MEGPOOLAES: [
      { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
     1, minusProgress: 0, power: 0 },
@@ -710,7 +749,8 @@ Event: [
     progress: 1, minusProgress: 80, power: 250 },
     { name: "Seasonal Megalodon", rarity: "Exotic", baseWeight: 1200000
     , cashValue: 9000,
-    progress: 1, minusProgress: 85, power: 509 }
+    progress: 1, minusProgress: 85, power: 509 },
+    { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000, cashValue: 5000, progress: 1, minusProgress: 80, power: 250 }
  ]
 };
 
@@ -1161,10 +1201,12 @@ function levelUp() {
 
 function updateUI() {
     let cash = parseFloat(localStorage.getItem("cash")) || 0; // Fetch updated cash
-    document.getElementById("cashCount").innerText = cash.toFixed(2);
+    document.getElementById("cashCount").innerText = cash.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
     updateInventoryUI();
 }
+
+
 function updateInventoryUI() {
     let inventoryElement = document.getElementById("inventory");
     let searchQuery = document.getElementById("inventorySearch").value.toLowerCase();
