@@ -24,12 +24,15 @@ const rods = [
   { name: "🦈Great White‘s Fang Rod🎣", price: 1600000, lucky: 300, power: 20,  resilience: 253,
   lureSpeed: 19, passive: "2.5x Rate Meg Chance", limited: false,
   available: true },
+  { name: "Meg Master Rod", price: 1961885978781, lucky: 500, power: 26, resilience:
+  1000, lureSpeed: 9, passive: "Plus Power Meg Catching", limited: false,
+  available: true },
   { name: "(🌻)Season‘s Rod [2025]", price: 50999999, lucky: 300, power: 25, resilience:
   600, lureSpeed: 9, passive: "5x Amber Mutation Rate", limited: true,
-  available: true },
+  available: false },
   { name: "(💫)Lily Heavens Luck Rod[2025]", price: 700000000, lucky: 300, power: 25, resilience:
   600, lureSpeed: 9, passive: "5x Giant Mutation Rate", limited: true,
-  available: true },
+  available: false },
   { name: "Pickle Rick Rod", price: 2514199109, lucky: 300, power: 25, resilience:
   600, lureSpeed: 9, passive: "Pickle Rick!", limited: false,
   available: false }
