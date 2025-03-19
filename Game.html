@@ -1806,3 +1806,18 @@ showEvent("🦈🌑Red Moon:A Cursed Megalodon has Awoken from its Hybernation!"
 
     checkRedMoonEvent();
 </script>
+<script>
+let lastMousePosition = { x: 0, y: 0 };
+
+function onMouseMove(event) {
+    // Compare current mouse position to last known position
+    const moveThreshold = 50; // Detect large movement thresholds
+    if (Math.abs(event.clientX - lastMousePosition.x) > moveThreshold || 
+        Math.abs(event.clientY - lastMousePosition.y) > moveThreshold) {
+        // Large mouse movement detected; allow click
+    } else {
+        // No significant mouse movement, possible auto-clicker
+    }
+    lastMousePosition = { x: event.clientX, y: event.clientY };
+}
+</script>
