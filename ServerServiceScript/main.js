@@ -30,7 +30,11 @@ function stopFishing() {
     if (aurora) aurora.remove();
 }
 
+// Load cash from localStorage when the game starts
+// Always load cash from localStorage correctly
 let cash = parseFloat(localStorage.getItem("cash")) || 0;
+console.log("Loaded Cash:", cash);
+
 let ownedFish = JSON.parse(localStorage.getItem("ownedFish")) || {};
 let exp = parseFloat(localStorage.getItem("exp")) || 0;
 let level = parseInt(localStorage.getItem("level")) || 1;
@@ -42,14 +46,21 @@ const maxClicksPerSecond = 10; // Adjust based on tolerance
 const maxLevel = 300;
 const maxExp = 200;
 const mutationChance = 0.1;
+let fishCaughtCount = 0; // Track total fish caught
+let caughtStreak = parseInt(localStorage.getItem("caughtStreak")) || 0;
+console.log(`🔄 Loaded caught streak: ${caughtStreak}`);
+
+let lastLoginDate = localStorage.getItem("lastLoginDate") || "";
+
 const fishList = {
   
 Creek: [
-        { name: "Nile Tilapia", rarity: "Common", baseWeight: 5, cashValue: 1, progress: 10, minusProgress: 0, power: 1 },
-        { name: "Macquarie Perch", rarity: "Common", baseWeight: 5, cashValue: 1, progress: 10, minusProgress: 0, power: 1 },
-        { name: "Brook Trout", rarity: "Common", baseWeight: 2, cashValue: 1, progress: 10, minusProgress: 1, power: 1 },
+        { name: "Nile Tilapia", rarity: "Common", baseWeight: 5, cashValue: 1,
+        progress: 20, minusProgress: 0, power: 1 },
+        { name: "Macquarie Perch", rarity: "Common", baseWeight: 5, cashValue: 1, progress: 20, minusProgress: 0, power: 1 },
+        { name: "Brook Trout", rarity: "Common", baseWeight: 2, cashValue: 1, progress: 20, minusProgress: 1, power: 1 },
         { name: "Smallmouth Bass", rarity: "Uncommon", baseWeight: 3, cashValue:
-        1, progress: 10, minusProgress: 0, power: 2 },
+        1, progress: 20, minusProgress: 0, power: 2 },
         { name: "Rainbow Trout", rarity: "Common", baseWeight: 4, cashValue: 2,
         progress: 10, minusProgress: 0, power: 2 },
         { name: "Brown Trout", rarity: "Rare", baseWeight: 5, cashValue: 4,
@@ -68,7 +79,7 @@ Creek: [
         { name: "Old Tire", rarity: "Junk", baseWeight: 10, cashValue: 0,
         progress: 10, minusProgress: 0, power: 0 },
         { name: "Rock", rarity: "Junk", baseWeight: 5, cashValue: 0, progress:
-        10, minusProgress: 2, power: 0 },
+        10, minusProgress: 0, power: 0 },
         { name: "Leaf", rarity: "Junk", baseWeight: 0.1, cashValue: 0, progress:
         10, minusProgress: 0, power: 0 },
         { name: "Plank", rarity: "Junk", baseWeight: 0.1, cashValue: 0,
@@ -76,18 +87,26 @@ Creek: [
     ],
 
  ShallowOcean: [
-        { name: "Clownfish", rarity: "Common", baseWeight: 0.2, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
-        { name: "Damselfish", rarity: "Common", baseWeight: 0.3, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
-        { name: "Butterflyfish", rarity: "Common", baseWeight: 0.5, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
-        { name: "Blenny", rarity: "Common", baseWeight: 0.4, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
-        { name: "Goby", rarity: "Common", baseWeight: 0.2, cashValue: 1, progress: 1, minusProgress: 0, power: 1 },
+        { name: "Clownfish", rarity: "Common", baseWeight: 0.2, cashValue: 1,
+        progress: 10, minusProgress: 0, power: 1 },
+        { name: "Damselfish", rarity: "Common", baseWeight: 0.3, cashValue: 1,
+        progress: 10, minusProgress: 0, power: 1 },
+        { name: "Butterflyfish", rarity: "Common", baseWeight: 0.5, cashValue:
+        1, progress: 10, minusProgress: 0, power: 1 },
+        { name: "Blenny", rarity: "Common", baseWeight: 0.4, cashValue: 1,
+        progress: 10, minusProgress: 0, power: 1 },
+        { name: "Goby", rarity: "Common", baseWeight: 0.2, cashValue: 1,
+        progress: 10, minusProgress: 0, power: 1 },
         { name: "Pufferfish", rarity: "Uncommon", baseWeight: 1, cashValue: 5, progress: 8, minusProgress: 2, power: 2 },
         { name: "Sergeant Major", rarity: "Uncommon", baseWeight: 0.8, cashValue: 4, progress: 2, minusProgress: 2, power: 2 },
-        { name: "Wrasse", rarity: "Uncommon", baseWeight: 1.5, cashValue: 6, progress: 1, minusProgress: 2, power: 2 },
-        { name: "Hogfish", rarity: "Uncommon", baseWeight: 2, cashValue: 7, progress: 1, minusProgress: 3, power: 3 },
-        { name: "Trumpetfish", rarity: "Uncommon", baseWeight: 1.8, cashValue: 6, progress: 1, minusProgress: 3, power: 3 },
+        { name: "Wrasse", rarity: "Uncommon", baseWeight: 1.5, cashValue: 6,
+        progress: 10, minusProgress: 2, power: 2 },
+        { name: "Hogfish", rarity: "Uncommon", baseWeight: 2, cashValue: 7,
+        progress: 10, minusProgress: 3, power: 3 },
+        { name: "Trumpetfish", rarity: "Uncommon", baseWeight: 1.8, cashValue:
+        6, progress: 10, minusProgress: 3, power: 3 },
         { name: "Barrel's of Fish", rarity: "Rare", baseWeight: 5, cashValue:
-        2, progress: 1, minusProgress: 5, power: 1 },
+        2, progress: 10, minusProgress: 0, power: 1 },
         { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1, progress: 8, minusProgress: 0, power: 1 },
         { name: "Blue Fin Tuna", rarity: "Legendary", baseWeight: 100, cashValue: 10, progress: 29, minusProgress: 20, power: 14 },
         { name: "Yellow Fin Tuna", rarity: "Legendary", baseWeight: 100, cashValue: 10, progress: 1, minusProgress: 20, power: 14 },
@@ -177,16 +196,6 @@ HayBay: [
     progress: 1, minusProgress: 0, power: 0 },
     { name: "Crabbians Clams", rarity: "Unusual", baseWeight: 1, cashValue: 1,
     progress: 1, minusProgress: 0, power: 0 },
-    { name: "(🚜)Hay Fish", rarity: "Limited", baseWeight: 10, cashValue: 5,
-    progress: 1, minusProgress: 20, power: 0 },
-    { name: "(🚜)FishLeafer", rarity: "Limited", baseWeight: 10, cashValue: 1,
-    progress: 1, minusProgress: 20, power: 0 },
-    { name: "(🚜)Pumkin Eel", rarity: "Limited", baseWeight: 35, cashValue: 8,
-    progress: 1, minusProgress: 45, power: 0 },
-    { name: "(🚜)Big MudSkipper", rarity: "Limited", baseWeight: 35, cashValue: 8,
-    progress: 1, minusProgress: 45, power: 0 },
-    { name: "(🚜)Rice Leaf", rarity: "Limited", baseWeight: 35, cashValue: 8,
-    progress: 1, minusProgress: 10, power: 0 },
     { name: "HayShark", rarity: "Mythical", baseWeight: 80,
     cashValue: 10,
     progress: 1, minusProgress: 40, power: 0 }
@@ -303,6 +312,96 @@ SHARKLAND: [
     { name: "Grand Shark", rarity: "Mythical", baseWeight: 293, cashValue: 5,
     progress: 1, minusProgress: 55, power: 0 }
   ],
+  DEEPSEACANYON: [
+    { name: "Angler", rarity: "Common", baseWeight: 2, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Humpback Angler", rarity: "Common", baseWeight: 2, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Stoplight loosejaw", rarity: "Common", baseWeight: 2, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Footballfish", rarity: "Common", baseWeight: 2, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Black seadevil", rarity: "Common", baseWeight: 2, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Rattail", rarity: "Uncommon", baseWeight: 3, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Kartel Fish", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Ectacted Octopos", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Fathead Angler", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Fathead Angler", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "⚫Void Angler", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Death Angler", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Membraned Angler", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 }
+    ],
+TWILIGJS: [
+    { name: "Infant Lanternfish", rarity: "Common", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Hatchetfish", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Plankton Colony", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Viperfish", rarity: "Rare", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 5, power: 0 },
+    { name: "Deepfin Eel", rarity: "Legendary", baseWeight: 50, cashValue: 1,
+    progress: 1, minusProgress: 35, power: 0 }
+      ],
+   MIDNIGHTTRENCH: [
+    { name: "Fangtooth", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Gulper Eel", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Abbence Eel", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
+    progress: 1, minusProgress: 0, power: 0 },
+    { name: "Golaith Antar Angler", rarity: "Legendary", baseWeight: 20,
+    cashValue: 20,
+    progress: 1, minusProgress: 64, power: 0 },
+    { name: "Abyssal Dragonfish", rarity: "Mythical", baseWeight: 6000,
+    cashValue: 20,
+    progress: 1, minusProgress: 65, power: 0 }
+  ],
+  PHERISTORICLSLDJFSIJ: [
+  { name: "Dunkleosteus", rarity: "Common", baseWeight: 1000, cashValue: 1, progress: 1, minusProgress: 5, power: 1 },  
+  { name: "Ammonite", rarity: "Common", baseWeight: 500, cashValue: 1, progress: 1, minusProgress: 4, power: 1 },  
+  { name: "Elasmosaurus", rarity: "Common", baseWeight: 2000, cashValue: 1, progress: 1, minusProgress: 6, power: 1 },  
+  { name: "Xiphactinus", rarity: "Common", baseWeight: 800, cashValue: 1, progress: 1, minusProgress: 4, power: 1 },  
+  { name: "Mawsonia", rarity: "Common", baseWeight: 600, cashValue: 1, progress: 1, minusProgress: 4, power: 1 },  
+  { name: "Cretoxyrhina", rarity: "Common", baseWeight: 1500, cashValue: 1, progress: 1, minusProgress: 5, power: 1 },  
+  { name: "Belemnite", rarity: "Common", baseWeight: 300, cashValue: 1, progress: 1, minusProgress: 3, power: 1 },  
+  { name: "Coelacanth", rarity: "Common", baseWeight: 700, cashValue: 1, progress: 1, minusProgress: 4, power: 1 },  
+  { name: "Pachycormus", rarity: "Common", baseWeight: 900, cashValue: 1, progress: 1, minusProgress: 5, power: 1 },  
+  { name: "Stethacanthus", rarity: "Common", baseWeight: 1200, cashValue: 1, progress: 1, minusProgress: 5, power: 1 },  
+  { name: "Giant Squid", rarity: "Unusual", baseWeight: 5000, cashValue: 1, progress: 1, minusProgress: 10, power: 1 },  
+  { name: "Snappers", rarity: "Rare", baseWeight: 50, cashValue: 1, progress: 1, minusProgress: 8, power: 1 },  
+  { name: "Lizard Fish", rarity: "Uncommon", baseWeight: 5, cashValue: 1, progress: 1, minusProgress: 6, power: 1 },  
+  { name: "Kronosaurus", rarity: "Mythical", baseWeight: 12000, cashValue: 1, progress: 1, minusProgress: 50, power: 1 },  
+  { name: "Black Demon Shark", rarity: "Legendary", baseWeight: 8000, cashValue: 1, progress: 1, minusProgress: 40, power: 1 },  
+  { name: "Hydrothermal Octopus", rarity: "Unusual", baseWeight: 3000, cashValue: 1, progress: 1, minusProgress: 11, power: 1 },  
+  { name: "Abyssal Leviathan", rarity: "Mythical", baseWeight: 15000, cashValue: 1, progress: 1, minusProgress: 77, power: 1 },  
+  { name: "Shadow Eel", rarity: "Legendary", baseWeight: 6000, cashValue: 1, progress: 1, minusProgress: 30, power: 1 },  
+  { name: "Deep Sea Titan", rarity: "Mythical", baseWeight: 18000, cashValue: 1, progress: 1, minusProgress: 80, power: 1 },  
+  { name: "Frost Serpent", rarity: "Legendary", baseWeight: 7000, cashValue: 1, progress: 1, minusProgress: 35, power: 1 },  
+  { name: "Crimson Fangtooth", rarity: "Unusual", baseWeight: 4000, cashValue: 1, progress: 1, minusProgress: 10, power: 1 },  
+  { name: "Thunderfin Leviathan", rarity: "Mythical", baseWeight: 16000, cashValue: 1, progress: 1, minusProgress: 60, power: 1 },  
+  { name: "Void Angler", rarity: "Legendary", baseWeight: 9000, cashValue: 1, progress: 1, minusProgress: 40, power: 1 },  
+  { name: "Eclipse Ray", rarity: "Unusual", baseWeight: 5500, cashValue: 1, progress: 1, minusProgress: 15, power: 1 },  
+  { name: "Aether Jellyfish", rarity: "Mythical", baseWeight: 11000, cashValue: 1, progress: 1, minusProgress: 55, power: 1 },  
+  { name: "Molten Fangray", rarity: "Legendary", baseWeight: 8500, cashValue: 1, progress: 1, minusProgress: 20, power: 1 },  
+  { name: "Spectral Plesiosaur", rarity: "Mythical", baseWeight: 14000, cashValue: 1, progress: 1, minusProgress: 60, power: 1 },  
+  { name: "Abyss Serpent", rarity: "Legendary", baseWeight: 7500, cashValue: 1, progress: 1, minusProgress: 35, power: 1 },  
+  { name: "Stormcaller Nautilus", rarity: "Unusual", baseWeight: 5000, cashValue: 1, progress: 1, minusProgress: 40, power: 1 },  
+  { name: "Leviadragon", rarity: "Mythical", baseWeight: 20000, cashValue: 1, progress: 1, minusProgress: 60, power: 1 },  
+  { name: "Leviathan", rarity: "Exotic", baseWeight: 1000000, cashValue: 40, progress: 1, minusProgress: 77, power: 1 },  
+  { name: "Ghost Leviathan", rarity: "Exotic", baseWeight: 1000000, cashValue: 40, progress: 1, minusProgress: 80, power: 1 },  
+  { name: "Infant Gargantuan", rarity: "Secret", baseWeight: 10, cashValue: 2, progress: 1, minusProgress: 80, power: 1 },  
+  { name: "🗝️The Lost Key", rarity: "Secret", baseWeight: 0, cashValue: 500, progress: 1, minusProgress: 100, power: 1 }
+    ],
 //DEFUALT FISHON
 THEOCEAN: [
     { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
@@ -341,12 +440,16 @@ THEOCEAN: [
         progress: 1, minusProgress: 0, power: 0 },
         { name: "Cookiecutter Shark", rarity: "Rare", baseWeight: 1, cashValue: 2,
         progress: 1, minusProgress: 1, power: 0 },
+        
         { name: "Coelacanth", rarity: "Rare", baseWeight: 10, cashValue: 1,
         progress: 1, minusProgress: 8, power: 0 },
-        { name: "Sting Ray", rarity: "Rare", baseWeight: 2, cashValue: 1,
-        progress: 1, minusProgress: 3, power: 0 },
-        { name: "Halibut", rarity: "Rare", baseWeight: 461, cashValue: 2,
+      
+        { name: "Star Fish", rarity: "Rare", baseWeight: 1, cashValue: 1,
+        progress: 1, minusProgress: 5, power: 0 },
+  
+        { name: "Halibut", rarity: "Rare", baseWeight: 41, cashValue: 2,
         progress: 1, minusProgress: 25, power: 0 },
+        
         { name: "Pufferfish", rarity: "Rare", baseWeight: 2, cashValue: 2,
         progress: 1, minusProgress: 5, power: 0 },
         { name: "Bull Shark", rarity: "Legendary", baseWeight: 10, cashValue: 2,
@@ -869,37 +972,41 @@ const fishMutations = [
     { name: "Abbysal", effect: (fish) => fish.cashValue += 3 },
     { name: "Giant", effect: (fish) => fish.baseWeight *= 60 },
 ];
-
-// Mutation chances
- // 20% chance to get a mutation
-
 function tapButton() {
     if (!currentFish) return;
 
     let now = Date.now();
-    
-    // Remove old timestamps beyond 1 second
     lastClickTimes = lastClickTimes.filter(time => now - time < 1000);
 
+    // **Overheat Block**
     if (lastClickTimes.length >= maxClicksPerSecond) {
-      //CHEATDEFENSE BY ONIWA POGI
-        CHEATER.play();
-        CheaterFuckYou.play();
-        alert("Anti Cheat: Your Rod Had Been Broken for AutoClicking to fast. You Have Kicked From the server");
-        window.location.href = "google.com"; 
-        return; // Prevent further execution
+        if (!isBlocked) {
+            isBlocked = true;
+            alert("☝️🤓: Your rod has overheated due to excessive clicking! Please wait.");
+            
+            document.getElementById("tapButton").disabled = true;
+            setTimeout(() => {
+                isBlocked = false;
+                document.getElementById("tapButton").disabled = false;
+                alert("✅ Your rod has cooled down. You can fish again!");
+            }, blockDuration);
+        }
+        return;
     }
 
-    lastClickTimes.push(now); // Store current click time
+    lastClickTimes.push(now);
 
     let selectedRod = JSON.parse(localStorage.getItem("selectedRod")) || rods[0];
-    let rodPower = selectedRod.power || 1; // Use rod power for tap strength
+    let rodPower = selectedRod.power || 1;
 
-    fishPosition += rodPower; // Increase fish position based on rod power
+    fishPosition += rodPower;
 
     let progressPercent = (fishPosition / 260) * 100;
     document.getElementById("progressBar").style.height = progressPercent + "%";
     document.getElementById("fishIcon").style.bottom = progressPercent + "%";
+
+    // **Apply Effects to the Mini-Game Only**
+   
 
     if (fishPosition >= 260) {
         Reelerio.pause();
@@ -909,13 +1016,113 @@ function tapButton() {
         return;
     }
 
-    let audl = new Audio("Sounds/ui-click-43196.mp3"); // Create a new instance
+    let audl = new Audio("Sounds/ui-click-43196.mp3");
     audl.play();
     updateFishPosition();
+
+    if (selectedRod.name === "Trident") {
+        TRIDEMTEFFECT();
+    }
+    if (selectedRod.name === "☠️Skull Rod") {
+        SKULLRODD();
+    }
 }
 
 
+//ROD EFFECTS & PASSIVE
+function SKULLRODD() {
+    let fishIcon = document.getElementById("fishIcon");
 
+    if (!fishIcon) return;
+
+    // Create a scratch effect element
+    let scratchEffect = document.createElement("div");
+    scratchEffect.classList.add("BONER-EFFECT");
+
+    // Randomize the position slightly for variation
+    let randomX = Math.floor(Math.random() * 20) - 10; // Shift left/right
+    let randomY = Math.floor(Math.random() * 20) - 10; // Shift up/down
+    let randomRotation = Math.floor(Math.random() * 30) - 15; // Slight rotation
+
+    scratchEffect.style.left = `calc(50% + ${randomX}px)`;
+    scratchEffect.style.top = `calc(50% + ${randomY}px)`;
+    scratchEffect.style.transform = `translate(-50%, -50%) rotate(${randomRotation}deg)`;
+
+    fishIcon.appendChild(scratchEffect);
+
+    // Play slash sound
+    let slashSound = new Audio("./Sounds/SKULLRODIMPACT.mp3");
+    slashSound.play();
+
+    // Remove scratch effect after animation ends
+    setTimeout(() => {
+        scratchEffect.remove();
+    let fsk = new Audio("./Sounds/SKULLRODCOMPELTE.mp3");
+    fsk.volume = 0.3;
+    fsk.play();
+    triggerExplosion();
+    }, 950);
+}
+
+function TRIDEMTEFFECT() {
+    let fishIcon = document.getElementById("fishIcon");
+
+    if (!fishIcon) return;
+
+    // Create a scratch effect element
+    let scratchEffect = document.createElement("div");
+    scratchEffect.classList.add("scratch-effect");
+
+    // Randomize the position slightly for variation
+    let randomX = Math.floor(Math.random() * 20) - 10; // Shift left/right
+    let randomY = Math.floor(Math.random() * 20) - 10; // Shift up/down
+    let randomRotation = Math.floor(Math.random() * 30) - 15; // Slight rotation
+
+    scratchEffect.style.left = `calc(50% + ${randomX}px)`;
+    scratchEffect.style.top = `calc(50% + ${randomY}px)`;
+    scratchEffect.style.transform = `translate(-50%, -50%) rotate(${randomRotation}deg)`;
+
+    fishIcon.appendChild(scratchEffect);
+
+    // Play slash sound
+    let slashSound = new Audio("./Sounds/Trident-soundSlash.mp3");
+    slashSound.play();
+
+    // Remove scratch effect after animation ends
+    setTimeout(() => {
+        scratchEffect.remove();
+        
+    }, 150);
+}
+//EFFECTEXPLODED
+function triggerExplosion() {
+    let fishIcon = document.getElementById("fishIcon");
+
+    for (let i = 0; i < 20; i++) {
+        let particle = document.createElement("div");
+        particle.classList.add("explosion-particle");
+        particle.innerHTML = "☠️";
+
+        let angle = Math.random() * 360; // Random explosion direction
+        let distance = Math.random() * 80 + 20; // Spread distance
+
+        let x = Math.cos(angle * (Math.PI / 180)) * distance;
+        let y = Math.sin(angle * (Math.PI / 180)) * distance;
+
+        particle.style.setProperty("--x", `${x}px`);
+        particle.style.setProperty("--y", `${y}px`);
+
+        fishIcon.appendChild(particle);
+
+        // Remove particles after animation
+        setTimeout(() => {
+            particle.remove();
+        }, 1000);
+    }
+}
+
+
+//MINI GAME
 
 function miniGameLoop() {
     miniGameInterval = setInterval(() => {
@@ -990,29 +1197,98 @@ function spawnCaughtParticles(x, y) {
         }, 1000);
     }
 }
+// Load the caught streak and last login time from localStorage
 
-// 🎣 Call the function when a fish is caught
+
+// Function to check if the player logged in today
+function checkDailyLogin() {
+    let today = new Date().toISOString().split("T")[0]; 
+    let lastLoginDate = localStorage.getItem("lastLoginDate") || "";
+
+    console.log(`🕵️ Last login date: ${lastLoginDate}`);
+    console.log(`🕒 Today's date: ${today}`);
+
+    if (lastLoginDate && lastLoginDate !== today) {
+        let yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        let yesterdayStr = yesterday.toISOString().split("T")[0];
+
+        console.log(`🕒 Yesterday's date: ${yesterdayStr}`);
+
+        if (lastLoginDate !== yesterdayStr) {
+            console.warn("⚠️ Skipped a day! Resetting streak...");
+            showEvent("Your Caught Streak Loss( You Skipped A Day)")
+            caughtStreak = 0;
+            localStorage.setItem("caughtStreak", caughtStreak);
+            updateCaughtStreakUI();
+        } else {
+            console.log("✅ Logged in yesterday! Streak is safe.");
+        }
+    }
+
+    // ✅ Save the current login date
+    localStorage.setItem("lastLoginDate", today);
+    console.log("📅 Last login date updated.");
+}
+
+
+// Call this function when the page loads to check daily login
+
+
 function fishCaught() {
+    fishCaughtCount++;
+    caughtStreak++; // Increase streak
+    localStorage.setItem("caughtStreak", caughtStreak); 
+    console.log(`🎣 Fish caught! Streak increased to: ${caughtStreak}`);
+
+    updateCaughtStreakUI();
+
     clearInterval(miniGameInterval);
     document.getElementById("miniGame").style.display = "none";
 
-    let cash = parseFloat(localStorage.getItem("cash")) || 0;
     let randomWeight = (Math.random() * (currentFish.baseWeight - 1) + 1).toFixed(2);
-    let moneyGained = parseFloat(randomWeight) * currentFish.cashValue;
-
     let expGained = expRewards[currentFish.rarity] || 0;
-    let mutation = Math.random() < mutationChance ? fishMutations[Math.floor(Math.random() * fishMutations.length)] : null;
-    if (mutation) mutation.effect(currentFish);
+    
+    let mutations = [];
 
-    cash += moneyGained;
-    localStorage.setItem("cash", cash.toFixed(2));
-    exp += expGained;
+    // ✅ Randomly apply a normal mutation
+    if (Math.random() < mutationChance) {
+        let randomMutation = fishMutations[Math.floor(Math.random() * fishMutations.length)];
+        mutations.push(randomMutation);
+        randomMutation.effect(currentFish);
+    }
 
-    let mutationName = mutation ? `${mutation.name} ` : "";
-    let fishKey = `${currentFish.rarity}_${mutationName}${currentFish.name}`;
+    // ✅ Apply Cyber Mutation every 50th catch when using Cybernetic Rod
+    if (selectedRod.name === "🛠️Cybernetic Rod[2025]" && fishCaughtCount % 50 === 0) {
+        let cyberMutation = { name: "Cyber", effect: (fish) => {
+            fish.cashValue *= 2;  // Double value
+            fish.power += 5;  // Increase difficulty
+        }};
+        mutations.push(cyberMutation);
+        cyberMutation.effect(currentFish);
+        console.log("Cyber Mutation Applied: " + currentFish.name);
+    }
 
+    // Construct fish key with all mutations
+    let mutationNames = mutations.map(m => m.name).join(" ");
+    let fishKey = `${currentFish.rarity}_${mutationNames} ${currentFish.name}`;
+
+    // Ensure fishData is found
+    let fishData = fishList["Creek"].find(f => f.name === currentFish.name);
+    let cashValue = fishData ? fishData.cashValue : 0;
+
+    // ✅ Ensure the fish is stored properly in inventory
     if (!ownedFish[fishKey]) {
-        ownedFish[fishKey] = { name: currentFish.name, rarity: currentFish.rarity, mutation: mutation ? mutation.name : null, count: 0, totalPower: 0, power: 0, weight: 0 };
+        ownedFish[fishKey] = {
+            name: currentFish.name,
+            rarity: currentFish.rarity,
+            mutations: mutations.map(m => m.name), // Store all mutations
+            count: 0,
+            totalPower: 0,
+            power: currentFish.power,
+            weight: 0,
+            cashValue: cashValue
+        };
     }
 
     ownedFish[fishKey].count++;
@@ -1020,10 +1296,13 @@ function fishCaught() {
     ownedFish[fishKey].power += currentFish.power;
     ownedFish[fishKey].weight += parseFloat(randomWeight);
 
+    // ✅ Save updated inventory
+    localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
+
+    // Show notifications
     showExpNotification(`+${expGained} EXP`);
     checkLevelUp();
-    showCatchNotification(`${mutationName}${currentFish.name}`, randomWeight, currentFish.rarity);
-    showMoneyNotification(`+${moneyGained.toFixed(2)} Coins`);
+    showCatchNotification(`${mutationNames} ${currentFish.name}`, randomWeight, currentFish.rarity);
 
     document.getElementById("StartButtonFish").disabled = false;
     Reelerio.pause();
@@ -1039,11 +1318,49 @@ function fishCaught() {
     triggerInventoryItemAnimation(fishKey);
     spawnJumpingFishStats(fishKey, ownedFish[fishKey]);
 
-    // ✅ Spawn particles at the center of the screen (adjust as needed)
+    // Spawn particles at the center of the screen
     let centerX = window.innerWidth / 2;
     let centerY = window.innerHeight / 2;
     spawnCaughtParticles(centerX, centerY);
 }
+
+// Function to reset streak if the player loses
+function resetCaughtStreak() {
+    if (caughtStreak > 0) {
+        let username = localStorage.getItem("username") || "Unknown Player";
+        showEvent(`${username} lost their caught streak to ${currentFish.name}!`);
+    }
+
+    caughtStreak = 0;
+    localStorage.setItem("caughtStreak", caughtStreak);
+    updateCaughtStreakUI();
+}
+
+// Call `resetCaughtStreak()` if the player **loses** the event
+function updateCaughtStreakUI() {
+    document.getElementById("caughtStreakDisplay").textContent = `Caught Streak: ${caughtStreak}`;
+}
+
+
+
+function applyCyberMutation() {
+    let fishKeys = Object.keys(ownedFish); // Get all caught fish keys
+    if (fishKeys.length === 0) return; // Safety check
+
+    let mutatedFishKey = fishKeys[Math.floor(Math.random() * fishKeys.length)];
+    let mutatedFish = ownedFish[mutatedFishKey];
+
+    // Apply Cyber Mutation
+    mutatedFish.name = "Cyber " + mutatedFish.name;
+    mutatedFish.cashValue *= 2; // Double its sell value
+    mutatedFish.power += 5; // Make it harder to catch if caught again
+
+    console.log("Cyber Mutation Activated! " + mutatedFish.name + " is now a Cyber fish!");
+
+    // Save updated inventory
+    localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
+}
+
 
 function spawnJumpingFishStats(fishKey, fishData) {
     let jumpingStats = document.createElement("div");
@@ -1208,8 +1525,6 @@ function updateUI() {
     localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
     updateInventoryUI();
 }
-
-
 function updateInventoryUI() {
     let inventoryElement = document.getElementById("inventory");
     let searchQuery = document.getElementById("inventorySearch").value.toLowerCase();
@@ -1233,89 +1548,82 @@ function updateInventoryUI() {
             continue;
         }
 
-        let mutationText = fish.mutation ? `(${fish.mutation})` : "";
+        // ✅ Join multiple mutations (if any)
+        let mutationText = fish.mutations && fish.mutations.length > 0 ? `(${fish.mutations.join(", ")})` : "";
+
         let mutationEffect = "";
         let mutationClass = "";
-        let rarityColor = ""; // Color for rarity
+        let rarityColor = "";
 
-        // ✅ Assign colors based on rarity
         switch (fish.rarity) {
-            case "Common":
-                rarityColor = "blue";
-                break;
-            case "Uncommon":
-                rarityColor = "lightblue";
-                break;
-            case "Unusual":
-                rarityColor = "mediumslateblue";
-                break;
-            case "Rare":
-                rarityColor = "lightgreen";
-                break;
-            case "Limited":
-                rarityColor = "limited-text";
-                break;
-            case "Legendary":
-                rarityColor = "legendary";
-                break;
-            case "Mythical":
-                rarityColor = "mythical";
-                break;
-            case "Exotic":
-                rarityColor = "rainbow-text"; // Special CSS for rainbow effect
-                break;
-            case "Secret":
-                rarityColor = "black-white-text"; // Special CSS for black & white effect
-                break;
-            default:
-                rarityColor = "white"; // Default color
+            case "Common": rarityColor = "blue"; break;
+            case "Uncommon": rarityColor = "lightblue"; break;
+            case "Unusual": rarityColor = "mediumslateblue"; break;
+            case "Rare": rarityColor = "lightgreen"; break;
+            case "Limited": rarityColor = "limited-text"; break;
+            case "Legendary": rarityColor = "legendary"; break;
+            case "Mythical": rarityColor = "mythical"; break;
+            case "Exotic": rarityColor = "rainbow-text"; break;
+            case "Secret": rarityColor = "black-white-text"; break;
+            default: rarityColor = "white";
         }
 
-        let mutation = fishMutations.find(m => m.name === fish.mutation);
-        if (mutation) {
-            let effectMatch = mutation.effect.toString().match(/[\d.]+/);
-            let effectValue = effectMatch ? effectMatch[0] : "";
+        // ✅ Loop through multiple mutations
+        if (fish.mutations && fish.mutations.length > 0) {
+            let effects = [];
+            let mutationClasses = [];
 
-            if (mutation.name === "Big" || mutation.name === "Giant") {
-                mutationEffect = `Weight x${effectValue}`;
-            } else {
-                mutationEffect = `Cash +${effectValue}`;
-            }
+            fish.mutations.forEach(mutationName => {
+                let mutation = fishMutations.find(m => m.name === mutationName);
+                if (mutation) {
+                    let effectMatch = mutation.effect.toString().match(/[\d.]+/);
+                    let effectValue = effectMatch ? effectMatch[0] : "";
 
-            if (["Shiny", "Sparkling", "Glossy"].includes(mutation.name)) {
-                mutationClass = "sparkle-effect";
-            } else if (["Lunar", "Solarblaze", "Electric"].includes(mutation.name)) {
-                mutationClass = "glow-effect";
-            } else if (["Darkened", "Abyssal"].includes(mutation.name)) {
-                mutationClass = "dark-aura";
-            } else if (["Hexed"].includes(mutation.name)) {
-                mutationClass = "hexer";
-            } else if (mutation.name === "Translucent") {
-                mutationClass = "translucent-effect";
-            } else if (mutation.name === "Electric") {
-                mutationClass = "electric-effect";
-            } else if (mutation.name === "Fossilized") {
-                mutationClass = "fossilized-effect";
-            } else if (mutation.name === "Abyssal") {
-                mutationClass = "abyssal-effect";
-            } else if (mutation.name === "Silver") {
-                mutationClass = "silver-effect";
-            } else if (mutation.name === "Ambered") {
-                mutationClass = "ambered-effect";
-            } else if (mutation.name === "Albino") {
-                mutationClass = "Albino-Color";
-            } else if (mutation.name === "Negative") {
-                mutationClass = "minusFishhahaha";
-            }
+                    if (mutation.name === "Big" || mutation.name === "Giant") {
+                        effects.push(`Weight x${effectValue}`);
+                    } else {
+                        effects.push(`Cash +${effectValue}`);
+                    }
+
+                    let classMap = {
+                        "Shiny": "sparkle-effect",
+                        "Sparkling": "sparkle-effect",
+                        "Glossy": "sparkle-effect",
+                        "Lunar": "glow-effect",
+                        "Solarblaze": "glow-effect",
+                        "Electric": "electric-effect",
+                        "Darkened": "dark-aura",
+                        "Abyssal": "abyssal-effect",
+                        "Hexed": "hexer",
+                        "Translucent": "translucent-effect",
+                        "Fossilized": "fossilized-effect",
+                        "Silver": "silver-effect",
+                        "Ambered": "ambered-effect",
+                        "Albino": "Albino-Color",
+                        "Negative": "minusFishhahaha",
+                        "Cyber": "cyber-design-mutstion" // ✅ Added Cyber Mutation class
+                    };
+
+                    if (classMap[mutation.name]) {
+                        mutationClasses.push(classMap[mutation.name]);
+                    }
+                }
+            });
+
+            mutationEffect = effects.length > 0 ? `<br><b>Effects:</b> ${effects.join(", ")}` : "";
+            mutationClass = mutationClasses.join(" ");
         }
 
         inventoryHTML += `
-            <div id="fish-${key}" class="inventory-item ${mutationClass}">
+<div id="fish-${key}" class="inventory-item ${mutationClass}">
                 <strong class="${rarityColor}">${fish.rarity} ${mutationText} ${fish.name}</strong>
                 <br>Count: ${fish.count}
                 <br>Weight: ${fish.weight.toFixed(2)} KG
                 <br>Power: ${fish.power}
                 ${mutationEffect ? `<br><b>Effect:</b> ${mutationEffect}` : ""}
+                <br>
+                <button class="sell-button" onclick="sellFish('${key}')">Sell</button>
+                <button class="sell-all-button" onclick="sellAllOfType('${key}')">Sell All</button>
             </div>
         `;
     }
@@ -1323,5 +1631,107 @@ function updateInventoryUI() {
     inventoryElement.innerHTML = inventoryHTML || "<p>No fish found.</p>";
 }
 
+function getFishData(fishName) {
+    for (let location in fishList) {
+        let foundFish = fishList[location].find(f => f.name === fishName);
+        if (foundFish) return foundFish;
+    }
+    return null;
+}
+function sellAllOfType(key) {
+    if (!ownedFish[key]) return;
+
+    let fish = ownedFish[key];
+    let fishData = getFishData(fish.name);
+
+    if (!fishData) {
+        console.warn(`Warning: Fish data for ${fish.name} not found!`);
+        return;
+    }
+
+    let weight = parseFloat(fish.weight) || 0;
+    let cashValue = parseFloat(fishData.cashValue) || 0;
+    let totalSellPrice = weight * cashValue * fish.count; // Calculate total value
+
+    if (isNaN(totalSellPrice)) {
+        console.error("Error: sellPrice is NaN!");
+        return;
+    }
+
+    // Confirmation popup
+    let confirmSell = confirm(
+        `Are you sure you want to sell ALL ${fish.count}x "${fish.name}" for ${totalSellPrice.toFixed(2)} Coins?`
+    );
+
+    if (!confirmSell) {
+        return; // Cancelled by user
+    }
+
+    let cash = parseFloat(localStorage.getItem("cash")) || 0;
+    cash += totalSellPrice;
+    localStorage.setItem("cash", cash.toFixed(2));
+
+    delete ownedFish[key]; // Remove all of that fish type
+
+    localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
+    updateInventoryUI();
+    updateUI();
+    showMoneyNotification(`Selled ${fish.name} ${fish.count} +${totalSellPrice.toFixed(2)} Coins`);
+
+    let Seee = new Audio("Sounds/CASHSDSSS.mp3");
+    Seee.play();
+}
+
+function sellFish(key) {
+    if (!ownedFish[key]) return;
+
+    let fish = ownedFish[key];
+    let fishData = getFishData(fish.name);
+
+    if (!fishData) {
+        console.warn(`Warning: Fish data for ${fish.name} not found in fishList!`);
+        return;
+    }
+
+    let weight = parseFloat(fish.weight) || 0;
+    let cashValue = parseFloat(fishData.cashValue) || 0;
+    let sellPrice = weight * cashValue;
+
+    if (isNaN(sellPrice)) {
+        console.error("Error: sellPrice is NaN!");
+        return;
+    }
+
+    // Confirmation popup
+    let confirmSell = confirm(
+        `Are you sure you want to sell "${fish.name}" for ${sellPrice.toFixed(2)} Coins?`
+    );
+
+    if (!confirmSell) {
+        return; // Cancelled by user
+    }
+
+    let cash = parseFloat(localStorage.getItem("cash")) || 0;
+    cash += sellPrice;
+    localStorage.setItem("cash", cash.toFixed(2));
+
+    if (fish.count > 1) {
+        fish.count--;
+    } else {
+        delete ownedFish[key];
+    }
+
+    localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
+    updateInventoryUI();
+    updateUI();
+    showMoneyNotification(`Sold ${fish.name} for +${sellPrice.toFixed(2)} Coins`);
+    let Seee = new Audio("Sounds/CASHSDSSS.mp3");
+    Seee.play();
+}
+
+
+
+document.addEventListener("DOMContentLoaded", checkDailyLogin);
+updateCaughtStreakUI();
 updateUI();
 updateExpUI();
