@@ -36,15 +36,17 @@ let cash = parseFloat(localStorage.getItem("cash")) || 0;
 console.log("Loaded Cash:", cash);
 
 let ownedFish = JSON.parse(localStorage.getItem("ownedFish")) || {};
-let exp = parseFloat(localStorage.getItem("exp")) || 0;
 let level = parseInt(localStorage.getItem("level")) || 1;
+let exp = parseInt(localStorage.getItem("exp")) || 0;
+let maxExp = parseInt(localStorage.getItem("maxExp")) || 10; 
+console.log("Loaded Level:", level);
+console.log("Loaded Level:", exp);
 let fishPosition = 130;
 let currentFish = null;
 let miniGameInterval;
 let lastClickTimes = [];
 const maxClicksPerSecond = 10; // Adjust based on tolerance
 const maxLevel = 300;
-const maxExp = 200;
 const mutationChance = 0.1;
 let fishCaughtCount = 0; // Track total fish caught
 let caughtStreak = parseInt(localStorage.getItem("caughtStreak")) || 0;
@@ -1132,6 +1134,7 @@ function miniGameLoop() {
             clearInterval(miniGameInterval);
 failureBro.play();
             document.getElementById("miniGame").style.display = "none";
+            resetCaughtStreak();
             showFailedCatchNotification("The fish escaped!");
         document.body.style.overflow = "auto";
 fishsail.play();
@@ -1301,6 +1304,7 @@ function fishCaught() {
 
     // Show notifications
     showExpNotification(`+${expGained} EXP`);
+    gainExp(expGained);
     checkLevelUp();
     showCatchNotification(`${mutationNames} ${currentFish.name}`, randomWeight, currentFish.rarity);
 
@@ -1476,47 +1480,58 @@ function triggerInventoryItemAnimation(fishKey) {
     }
 }
 
-
-// ✅ Move updateInventoryUI() outside of fishCaught()
-
+// Initialize variables (load from localStorage if available)
 
 
-// Function to Handle Leveling Up
+// Function to calculate required EXP per level
+function expRequiredForLevel(level) {
+    return 10 + (level * 5); // Increase requirement per level
+}
+
+// Function to handle EXP gain and leveling up
+function gainExp(amount) {
+    exp += amount; 
+    console.log(`Gained ${amount} EXP, Total EXP: ${exp}/${maxExp}`);
+
+    checkLevelUp(); // Check if player levels up
+
+    // Save EXP progress
+    localStorage.setItem("exp", exp);
+    updateExpUI();
+}
+
+// Function to check and handle leveling up
 function checkLevelUp() {
-    while (exp >= expRequiredForLevel(level) && level < maxLevel) {
-        exp -= expRequiredForLevel(level);
+    console.log(`Checking Level Up: EXP = ${exp}, Required = ${maxExp}, Level = ${level}`);
+
+    while (exp >= maxExp && level < maxLevel) {
+        exp -= maxExp; // Carry over excess EXP
         level++;
-        showLevelUpNotification(`🎉 Level Up! You are now Level ${level}!`);
+        maxExp += 5; // Increase EXP cap per level
+        console.log(`🎉 Level Up! New Level: ${level}, New Max EXP: ${maxExp}`);
+
+        showExpNotification(`🎉 Level Up! You are now Level ${level}!`);
     }
 
-    // Save to localStorage
+    // Save updated EXP and Level
     localStorage.setItem("exp", exp);
     localStorage.setItem("level", level);
-
-    updateUI();
-}
-
-
-
-function updateExpUI() {
-    document.getElementById("levelText").innerHTML = `Level ${level}`;
-}
-
-function gainExp(amount) {
-    exp += amount;
-
-    if (exp >= maxExp) {
-        levelUp();
-    }
+    localStorage.setItem("maxExp", maxExp);
 
     updateExpUI();
 }
 
-function levelUp() {
-    exp = 0;
-    level++;
-    maxExp += 50; // Increase EXP cap per level (adjust as needed)
+// Function to update UI
+function updateExpUI() {
+    document.getElementById("levelText").innerHTML = `Level ${level} (EXP: ${exp}/${maxExp})`;
 }
+
+
+// Function to Update UI
+function updateExpUI() {
+    document.getElementById("levelText").innerHTML = `Level ${level}`;
+}
+
 
 
 function updateUI() {
