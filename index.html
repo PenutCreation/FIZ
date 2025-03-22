@@ -651,5 +651,25 @@ footer {
 }
 
     </style>
+<script>
+function detectBrowser() {
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    // Detect Facebook Messenger's in-app browser
+    const isMessenger = userAgent.includes("fbav") || userAgent.includes("messenger");
+
+    // Detect Google Chrome
+    const isChrome = userAgent.includes("chrome") && !userAgent.includes("edg") && !userAgent.includes("opr");
+
+    if (isMessenger || !isChrome) {
+        alert("This site is only supported in Google Chrome. Please open it in Chrome.");
+        window.location.href = "https://www.google.com/chrome/"; // Redirect to Chrome download page
+    }
+}
+
+// Run detection when the page loads
+window.onload = detectBrowser;
+
+</script>
 </body>
 </html>
