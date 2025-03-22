@@ -28,7 +28,7 @@ const rods = [
   lureSpeed: 12, passive: "50+ Resilience Per 5 seconds", limited: false,  
   available: true },
 { name: "🛠️Cybernetic Rod[2025]", price: 15_000_000, lucky: 200, power: 22, resilience: 850,  
-  lureSpeed: 10, passive: "Cyber Mutation (Every 50 Catches)", limited: false,  available: true },
+  lureSpeed: 10, passive: "Cyber Mutation (Every 50 Catches)", limited: true,  available: true },
 
   { name: "Meg Master Rod", price: 1961885978781, lucky: 500, power: 21, resilience:
   1000, lureSpeed: 9, passive: "Plus Power Meg Catching", limited: false,
