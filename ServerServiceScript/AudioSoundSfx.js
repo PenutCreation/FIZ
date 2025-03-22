@@ -14,7 +14,8 @@ let musicTracks = [
     "./Sounds/BGM2.mp3",
     "./Sounds/BGM3.mp3",
     "./Sounds/BGM4.mp3",
-    "./Sounds/BGM5.mp3"
+    "./Sounds/BGM5.mp3",
+    "./Sounds/BGM6.mp3"
 ];
 
 let currentTrackIndex = Math.floor(Math.random() * musicTracks.length);
