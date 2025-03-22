@@ -7,13 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 <meta name="description" content="Play Fiz🎣, a fun online fishing game where you catch fish, upgrade your rods, and earn cash! Free to play.">
 <meta name="keywords" content="fishing game, online fishing, free fishing game, fish catching game, fishing simulator, virtual fishing game, best fishing game, realistic fishing game, fun fishing game, play fishing game online, Fiz fishing game, Fiz online fishing, play Fiz game, Fiz🎣 game, Fiz OnisaPenut, Fizer game, Fizz game, Fizz fishing, fishing adventure game, fish lure mechanics, deep sea fishing game, freshwater fishing game, retro fishing game, indie fishing game, casual fishing game, idle fishing game, browser fishing simulator, tap to reel fishing game, fish rarity system, rod collection game, dynamic fish AI, bait shop game, ocean survival fishing, stylized fishing game, fish weight mechanics, precision fishing game, fishing game with physics, experimental fishing game, unknown fishing game, hidden gem fishing game, underground fishing simulator, gamedev fishing project, next-gen fishing mechanics, custom lure fishing, immersive fishing experience, hyper-realistic fish behavior, relaxing fishing simulator, challenging fishing arcade, physics-based fish battles">
-
 <meta name="author" content="OniwaPenut">
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="V9bOURLuDISiymPR5pt0aVCuL4fOsYTu6y1LDoawxhE" />
-<meta name="google-site-verification" content="mfL7X8QV4uvLoRzVLHX_bXLtEiLdTanYXOCpEotxO7Q" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4004537826473039"
-     crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -49,9 +45,9 @@
     <section id="play">
         <center>
             <img src="img/logo.png" style="width:50%; border-radius:10px;">
-            <h2>🌾Fiz</h2>
-            <kbd>5.2K Visits • (<span id="activePlayers"></span> Active)</kbd>
-            <p>Server Ping: Meduim</p>
+            <h2>(🫧Update)Fiz</h2>
+            <kbd>10.4K Visits • (<span id="activePlayers"></span> Active)</kbd>
+            <p>Server Ping: Slow</p>
             
             <button class="fizzplay" onclick="play()">Play</button>
         </center>
@@ -61,6 +57,7 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <h1>Joining...</h1>
+        
         <kbd>Server Redirecting</kbd>
         <button onclick="skipLoading()">Skip</button>
     </div>
@@ -70,16 +67,52 @@
 
     <!-- About Section -->
     <section id="about">
-        <h3>New Update (UPDATE 1) 🌾:</h3>
-        <strong>🦈 Megalodon Event</strong>
-        <p>The Megalodon event has arrived! Catch it if you dare.</p>
-        <strong>🌻 Season Event</strong>
-        <p>6 New Limited fishes, limited-time rods, and a new island: Hay Island!</p>
-        <strong>🎣 New Events</strong>
-        <p>Amberjack Abundance and other seasonal events.</p>
-        <strong>🐋Whale Shark Hunt</strong>
-        <p>Whale Shark a Commom Event Gives the best money ever</p>
-        <p>whale shark dispawn:10min</p>
+<div class="changelog">
+    <h3>🫧 Changelog</h3>
+
+    <section>
+        <h4>🍀 Luck Event</h4>
+        <p>The <strong>Luck Event</strong> occurs when a <em>Blessed Tide</em> spawns, increasing your chances of catching rare fish.</p>
+    </section>
+
+    <section>
+        <h4>🚩 The Deep</h4>
+        <p>Explore <strong>The Deep</strong>, a mysterious new area where <em>Leviathans</em> may appear!</p>
+        <ul>
+            <li>Features <strong>3 unique deep-sea areas</strong> with immersive underwater ambiance.</li>
+            <li>Deep-sea creatures are now more challenging to catch.</li>
+            <li>Uncover hidden secrets and untold stories of the unknown.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h4>🎣 Limited-Time Rods</h4>
+        <p>New <strong>Limited Edition Fishing Rods</strong> are now available—get them before they're gone!</p>
+    </section>
+
+    <section>
+        <h4>🛠️Revamped & Added Items</h4>
+        <p>Items That had <strong>Revamped</strong> are available</p>
+        <ul>
+         <li>Skull Rod had been Revamped <strong>(Magic Effects with 50% boost
+         click)</strong></li>
+         <li>All Rods had been Nerfed Power to <strong>-10%</strong></li>
+         <li>Rods Balanced and nerfed</li>
+         <li>Fixed Rod Bugs</li>
+        </ul>
+    </section>
+    <section>
+      <h4>Anti Cheat Upgrade to G2(Strict)</h4>
+      <p>Strictly Follow The Rules <a>Community Rules</a> as you may leading
+      your account to <strong>Banned</strong></p>
+      <ul>
+        <li>3 Warning can result of Banned 1 Day. but if you got 3 warning again
+        you be banned 2 as go on when it reach <strong>30 Banneds</strong> You
+        be <strong>Pernament Banned</strong></li>
+      </ul>
+    </section>
+</div>
+
 <div class="slider">
     <button class="sbutton"id="prev" onclick="prevSlide()">&#10094;</button>
     <img id="sliderImage" src="img/fishin.png" alt="Slide">
@@ -92,7 +125,8 @@
 
     </section>
     <section id="leaderboard">
-        <h2>🏆 Leaderboard 🏆 (Most Fish Caught)</h2>
+        <h2>🏆 Leaderboard 🏆</h2>
+        <p>Most Caughted Fiz</p>
         <ul id="leaderboard-list"></ul>
     </section>
     <!-- Footer -->
@@ -155,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fake Active Players Count
 function updateActivePlayers() {
-    let active = Math.floor(Math.random() * 199) + 1;
+    let active = Math.floor(Math.random() * 5999) + 1;
     localStorage.setItem("activePlayers", active);
     document.getElementById("activePlayers").textContent = active;
 }
@@ -174,11 +208,13 @@ setInterval(updateActivePlayers, 18000); // Update every 30 minutes
 
 // Fake Leaderboard Data
 const leaderboard = [
-    { name: "Bababoy", fish: 6371302 },
-    { name: "ShellyMASTA", fish: 1586378 },
-    { name: "ShedForm", fish: 818280 },
-    { name: "AngelOfDarkness", fish: 493274 },
-    { name: "PDDR", fish: 22620 }
+    { name: "INDRA", fish: "638,499,700,229" },
+    { name: "ShellyMASTA", fish: "958,637,342" },
+    { name: "Bababoy", fish: "824,130,232" },
+
+    { name: "Sharo", fish: "262,288,980" },
+    { name: "AngelOfDarkness", fish: "628,747" },
+    { name: "PDDR", fish: "283,938" }
 ];
 
 
@@ -211,7 +247,7 @@ function play() {
 
     // Simulate loading
     setTimeout(() => {
-        console.log("✅ Connected to server!");
+        confirm("✅ Connected to server!");
         document.getElementById("loadingScreen").style.display = "none";
         window.location.href = "Game.html";
     }, 500);
@@ -237,7 +273,7 @@ function skipLoading() {
 body {
     background-color: lightblue;
     color: white;
-    text-align: center;
+    
     padding-top: 70px; /* Adjusted for header spacing */
 }
 
@@ -531,6 +567,86 @@ footer {
 
     .forminput {
         width: 95%;
+    }
+}
+/* Changelog Container */
+.changelog {
+    background: #f8fbff;
+    border: 2px solid #b8d8ff;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Title */
+.changelog h3 {
+    font-size: 24px;
+    color: #0077cc;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 119, 204, 0.2);
+}
+
+/* Section Titles */
+.changelog h4 {
+    font-size: 18px;
+    color: #005a9e;
+    margin-top: 15px;
+    border-bottom: 2px solid #b8d8ff;
+    padding-bottom: 5px;
+}
+
+/* Paragraph Styling */
+.changelog p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* List Styling */
+.changelog ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.changelog ul li {
+    font-size: 15px;
+    color: #444;
+    padding: 5px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Custom Bullet Point */
+.changelog ul li::before {
+    content: "•";
+    color: #0077cc;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .changelog {
+        padding: 15px;
+    }
+
+    .changelog h3 {
+        font-size: 22px;
+    }
+
+    .changelog h4 {
+        font-size: 16px;
+    }
+
+    .changelog p,
+    .changelog ul li {
+        font-size: 14px;
     }
 }
 
