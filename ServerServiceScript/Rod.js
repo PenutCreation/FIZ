@@ -11,29 +11,36 @@ const rods = [
   { name: "Rock Rod", price: 20000, lucky: -1, power: 15, resilience: 35, lureSpeed: 19, passive: "3x Chance Mutations", limited: false, available: true },
   { name: "🦑Squid‘s Fang Rod", price: 50000, lucky: 120, power: 14, resilience: 400, lureSpeed: 19, passive: "Per 10 Catches Double Power", limited: false, available: true },
   { name: "ProsTem Rod", price: 65000, lucky: 23, power: 13, resilience: 60, lureSpeed: 19, passive: "2x Exp Per Mythical", limited: false, available: true },
-  { name: "Darkness Rod", price: 6000, lucky: 10, power: 10, resilience: 0, lureSpeed: 19, passive: "2x Exp Per Mythical", limited: false, available: true },
-  { name: "▪️Zero Rod", price: 500000, lucky: 100, power: 15, resilience: 10,
+  { name: "Darkness Rod", price: 6000, lucky: 10, power: 11, resilience: 0, lureSpeed: 19, passive: "2x Exp Per Mythical", limited: false, available: true },
+  { name: "▪️Zero Rod", price: 500000, lucky: 100, power: 13, resilience: 10,
   lureSpeed: 19, passive: "Mutation Chances Improvement", limited: false,
   available: true },
-  { name: "☠️Skull Rod", price: 59000, lucky: 250, power: 16, resilience: 10,
+  { name: "☠️Skull Rod", price: 59000, lucky: 250, power: 14, resilience: 10,
   lureSpeed: 19, passive: "Mutation Chances Improvement", limited: false,
   available: true },
-  { name: "🪙Treasure Rod", price: 700000, lucky: 180, power: 17, resilience: 200,
+  { name: "🪙Treasure Rod", price: 700000, lucky: 180, power: 16, resilience: 200,
   lureSpeed: 19, passive: "Double Cash", limited: false,
   available: true },
-  { name: "🦈Great White‘s Fang Rod🎣", price: 1600000, lucky: 300, power: 20,  resilience: 253,
+  { name: "🦈Great White‘s Fang Rod🎣", price: 1600000, lucky: 300, power: 14,  resilience: 253,
   lureSpeed: 19, passive: "2.5x Rate Meg Chance", limited: false,
   available: true },
-  { name: "Meg Master Rod", price: 1961885978781, lucky: 500, power: 26, resilience:
+{ name: "Trident", price: 4400000, lucky: 150, power: 14, resilience: 750,  
+  lureSpeed: 12, passive: "50+ Resilience Per 5 seconds", limited: false,  
+  available: true },
+{ name: "🛠️Cybernetic Rod[2025]", price: 15_000_000, lucky: 200, power: 22, resilience: 850,  
+  lureSpeed: 10, passive: "Cyber Mutation (Every 50 Catches)", limited: false,  available: true },
+
+  { name: "Meg Master Rod", price: 1961885978781, lucky: 500, power: 21, resilience:
   1000, lureSpeed: 9, passive: "Plus Power Meg Catching", limited: false,
   available: true },
-  { name: "(🌻)Season‘s Rod [2025]", price: 50999999, lucky: 300, power: 25, resilience:
+  { name: "(🌻)Season‘s Rod [2025]", price: 50999999, lucky: 300, power: 15, resilience:
   600, lureSpeed: 9, passive: "5x Amber Mutation Rate", limited: true,
   available: false },
-  { name: "(💫)Lily Heavens Luck Rod[2025]", price: 700000000, lucky: 300, power: 25, resilience:
+  { name: "(💫)Lily Heavens Luck Rod[2025]", price: 700000000, lucky: 9000,
+  power: 15, resilience:
   600, lureSpeed: 9, passive: "5x Giant Mutation Rate", limited: true,
   available: false },
-  { name: "Pickle Rick Rod", price: 2514199109, lucky: 300, power: 25, resilience:
+  { name: "Pickle Rick Rod", price: 2514199109, lucky: 300, power: 15, resilience:
   600, lureSpeed: 9, passive: "Pickle Rick!", limited: false,
   available: false }
 ];
