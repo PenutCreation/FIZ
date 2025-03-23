@@ -107,7 +107,7 @@ Creek: [
         progress: 10, minusProgress: 3, power: 3 },
         { name: "Trumpetfish", rarity: "Uncommon", baseWeight: 1.8, cashValue:
         6, progress: 10, minusProgress: 3, power: 3 },
-        { name: "Barrel's of Fish", rarity: "Rare", baseWeight: 5, cashValue:
+        { name: "Barrel‘s of Fish", rarity: "Rare", baseWeight: 5, cashValue:
         2, progress: 10, minusProgress: 0, power: 1 },
         { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1, progress: 8, minusProgress: 0, power: 1 },
         { name: "Blue Fin Tuna", rarity: "Legendary", baseWeight: 100, cashValue: 10, progress: 29, minusProgress: 20, power: 14 },
@@ -151,7 +151,7 @@ HaystackislePound: [
     { name: "Scylla Serrata (Crab)", rarity: "Legendary", baseWeight: 15, cashValue: 5, progress: 1, minusProgress: 5, power: 1 },
     { name: "Slippers", rarity: "Legendary", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 20, power: 1 },
     
-    { name: "Greg's Snail", rarity: "Mythical", baseWeight: 5, cashValue: 10, progress: 1, minusProgress: 15, power: 1 },
+    { name: "Greg’s Snail", rarity: "Mythical", baseWeight: 5, cashValue: 10, progress: 1, minusProgress: 15, power: 1 },
     { name: "Low Tapered Bass", rarity: "Mythical", baseWeight: 5, cashValue: 10, progress: 1, minusProgress: 15, power: 1 }
 ],
 SNOWISLES: [
