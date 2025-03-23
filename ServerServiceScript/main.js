@@ -342,7 +342,7 @@ SHARKLAND: [
     { name: "Membraned Angler", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
     progress: 1, minusProgress: 0, power: 0 }
     ],
-TWILIGJS: [
+TWILIGHTTRENCH: [
     { name: "Infant Lanternfish", rarity: "Common", baseWeight: 7, cashValue: 1,
     progress: 1, minusProgress: 0, power: 0 },
     { name: "Hatchetfish", rarity: "Uncommon", baseWeight: 7, cashValue: 1,
@@ -368,7 +368,7 @@ TWILIGJS: [
     cashValue: 20,
     progress: 1, minusProgress: 65, power: 0 }
   ],
-  PHERISTORICLSLDJFSIJ: [
+  PHERISTORICSHIFTTRENCH: [
   { name: "Dunkleosteus", rarity: "Common", baseWeight: 1000, cashValue: 1, progress: 1, minusProgress: 5, power: 1 },  
   { name: "Ammonite", rarity: "Common", baseWeight: 500, cashValue: 1, progress: 1, minusProgress: 4, power: 1 },  
   { name: "Elasmosaurus", rarity: "Common", baseWeight: 2000, cashValue: 1, progress: 1, minusProgress: 6, power: 1 },  
@@ -881,7 +881,9 @@ function updateFishList(searchTerm) {
 
     const inventory = document.getElementById("inventory").textContent; // Get inventory content
     const allowedLocations = ["Creek", "ShallowOcean", "HaystackBeach",
-        "HaystackislePound", "SNOWISLES", "HayBay", "SkullLands", "SunkenCity", " THEOCEAN", "Event"]; // ✅ Only show these locations
+        "HaystackislePound", "SNOWISLES", "HayBay", "SkullLands", "SunkenCity",
+        "THEOCEAN", "DEEPSEACANYON", "MIDNIGHTTRENCH", "TWILIGHTTRENCH",
+        "PHERISTORICSHIFTTRENCH", "Event"]; // ✅ Only show these locations
 
     allowedLocations.forEach(location => {
         if (fishList[location]) {
