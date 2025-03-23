@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiz🎣</title>
     <link rel="stylesheet" href="styles.css">
+<meta name="description" content="Fiz🎣">
 <script type='text/javascript' src='//pl26191905.effectiveratecpm.com/69/f8/7f/69f87f3e02cdba487d8a045d7117ce7d.js'></script>
-<meta name="description" content="Play Fiz🎣, a fun online fishing game where you catch fish, upgrade your rods, and earn cash! Free to play.">
 <meta name="keywords" content="fishing game, online fishing, free fishing game, fish catching game, fishing simulator, virtual fishing game, best fishing game, realistic fishing game, fun fishing game, play fishing game online, Fiz fishing game, Fiz online fishing, play Fiz game, Fiz🎣 game, Fiz OnisaPenut, Fizer game, Fizz game, Fizz fishing, fishing adventure game, fish lure mechanics, deep sea fishing game, freshwater fishing game, retro fishing game, indie fishing game, casual fishing game, idle fishing game, browser fishing simulator, tap to reel fishing game, fish rarity system, rod collection game, dynamic fish AI, bait shop game, ocean survival fishing, stylized fishing game, fish weight mechanics, precision fishing game, fishing game with physics, experimental fishing game, unknown fishing game, hidden gem fishing game, underground fishing simulator, gamedev fishing project, next-gen fishing mechanics, custom lure fishing, immersive fishing experience, hyper-realistic fish behavior, relaxing fishing simulator, challenging fishing arcade, physics-based fish battles">
 <meta name="author" content="OniwaPenut">
 <meta name="robots" content="index, follow">
@@ -47,7 +47,7 @@
         <center>
             <img src="img/logo.png" style="width:50%; border-radius:10px;">
             <h2>(🫧Update)Fiz</h2>
-            <kbd>11.7K Visits • (<span id="activePlayers"></span> Active)</kbd>
+            <kbd>10.4K Visits • (<span id="activePlayers"></span> Active)</kbd>
             <p>Server Ping: Slow</p>
             
             <button class="fizzplay" onclick="play()">Play</button>
@@ -63,10 +63,9 @@
         <button onclick="skipLoading()">Skip</button>
     </div>
 
-    <!-- Leaderboard Section -->
+<div id="adContainer"></div>
 
 
-    <!-- About Section -->
     <section id="about">
 <div class="changelog">
     <h3>🫧 Changelog</h3>
@@ -138,9 +137,23 @@
     </footer>
 
     <script>
+     
 const images = ["img/dl.png", "img/ke.png", "img/dl.png"]; // Add your image paths here
 let currentIndex = 0;
 const sliderImage = document.getElementById("sliderImage");
+function loadBannerAd() {
+    let adContainer = document.getElementById("adContainer");
+    if (adContainer) {
+        let adScript = document.createElement("script");
+        adScript.async = true;
+        adScript.dataset.cfasync = "false";
+        adScript.src = "//pl26191995.effectiveratecpm.com/e2e6659ffab80f2b3fb052f7b1f50cdd/invoke.js";
+        adContainer.appendChild(adScript);
+        console.log("✅ Banner Ad Loaded!");
+    } else {
+        console.warn("⚠️ Ad container not found!");
+    }
+}
 
 function showSlide(index) {
     if (index < 0) {
@@ -232,7 +245,6 @@ function loadLeaderboard() {
 }
 
 loadLeaderboard();
-
 // Play Button Function
 function play() {
     console.log("🎣 Searching for a server...");
@@ -246,18 +258,33 @@ function play() {
     // Show Loading Screen
     document.getElementById("loadingScreen").style.display = "flex";
 
-    // Simulate loading
+    // Open Adsterra ad in a new tab (small delay)
     setTimeout(() => {
-        confirm("✅ Connected to server!");
-        document.getElementById("loadingScreen").style.display = "none";
-        window.location.href = "Game.html";
-    }, 500);
+        let adWindow = window.open("https://www.effectiveratecpm.com/mb3prdha1m?key=726191ab470a089d7f1b0f18c3e14b8f", "_blank");
+        
+        // If the ad was blocked, proceed to the game
+        if (!adWindow) {
+            console.warn("⚠️ Ad blocked! Redirecting to game...");
+            goToGame();
+        } else {
+            console.log("✅ Ad opened, waiting...");
+            setTimeout(goToGame, 2000); // Wait 2 sec after ad opens
+        }
+    }, 1000); // Delay before opening ad
+}
+
+// Function to go to the game
+function goToGame() {
+    document.getElementById("loadingScreen").style.display = "none";
+    confirm("✅ Connected to server!");
+    window.location.href = "Game.html";
 }
 
 // Skip Loading
 function skipLoading() {
     document.getElementById("loadingScreen").style.display = "none";
 }
+
 
 
 
@@ -652,25 +679,5 @@ footer {
 }
 
     </style>
-<script>
-function detectBrowser() {
-    const userAgent = navigator.userAgent.toLowerCase();
-
-    // Detect Facebook Messenger's in-app browser
-    const isMessenger = userAgent.includes("fbav") || userAgent.includes("messenger");
-
-    // Detect Google Chrome
-    const isChrome = userAgent.includes("chrome") && !userAgent.includes("edg") && !userAgent.includes("opr");
-
-    if (isMessenger || !isChrome) {
-        alert("This site is only supported in Google Chrome. Please open it in Chrome.");
-        window.location.href = "https://www.google.com/chrome/"; // Redirect to Chrome download page
-    }
-}
-
-// Run detection when the page loads
-window.onload = detectBrowser;
-
-</script>
 </body>
 </html>
