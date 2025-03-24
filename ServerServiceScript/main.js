@@ -496,7 +496,7 @@ THEOCEAN: [
     { name: "🐊Salt Crocodile", rarity: "Secret", baseWeight: 100, cashValue: 55000, progress:
     1, minusProgress: 65, power: 0 },
     { name: "🍀Lucki Megalodon", rarity: "Secret", baseWeight: 777777, cashValue:
-    777777, progress:
+    777777777777, progress:
     1, minusProgress: 77, power: 0 },
     { name: "🍀Green Fish", rarity: "Secret", baseWeight: 7000, cashValue:
     5000000, progress:
