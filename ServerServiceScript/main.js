@@ -107,7 +107,7 @@ Creek: [
         progress: 10, minusProgress: 3, power: 3 },
         { name: "Trumpetfish", rarity: "Uncommon", baseWeight: 1.8, cashValue:
         6, progress: 10, minusProgress: 3, power: 3 },
-        { name: "Barrel‘s of Fish", rarity: "Rare", baseWeight: 5, cashValue:
+        { name: "Barrel's of Fish", rarity: "Rare", baseWeight: 5, cashValue:
         2, progress: 10, minusProgress: 0, power: 1 },
         { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 1, progress: 8, minusProgress: 0, power: 1 },
         { name: "Blue Fin Tuna", rarity: "Legendary", baseWeight: 100, cashValue: 10, progress: 29, minusProgress: 20, power: 14 },
@@ -151,7 +151,7 @@ HaystackislePound: [
     { name: "Scylla Serrata (Crab)", rarity: "Legendary", baseWeight: 15, cashValue: 5, progress: 1, minusProgress: 5, power: 1 },
     { name: "Slippers", rarity: "Legendary", baseWeight: 1, cashValue: 1, progress: 1, minusProgress: 20, power: 1 },
     
-    { name: "Greg’s Snail", rarity: "Mythical", baseWeight: 5, cashValue: 10, progress: 1, minusProgress: 15, power: 1 },
+    { name: "Greg's Snail", rarity: "Mythical", baseWeight: 5, cashValue: 10, progress: 1, minusProgress: 15, power: 1 },
     { name: "Low Tapered Bass", rarity: "Mythical", baseWeight: 5, cashValue: 10, progress: 1, minusProgress: 15, power: 1 }
 ],
 SNOWISLES: [
@@ -404,6 +404,14 @@ TWILIGHTTRENCH: [
   { name: "Infant Gargantuan", rarity: "Secret", baseWeight: 10, cashValue: 2, progress: 1, minusProgress: 80, power: 1 },  
   { name: "🗝️The Lost Key", rarity: "Secret", baseWeight: 0, cashValue: 500, progress: 1, minusProgress: 100, power: 1 }
     ],
+    
+SWAMPY: [
+  { name: "Lice Fish", rarity: "Common", baseWeight: 3, cashValue: 1,
+  progress: 1, minusProgress: 0, power: 1 },
+  { name: "Crocodile", rarity: "Common", baseWeight: 1, cashValue: 1,
+  progress: 1, minusProgress: 0, power: 1 },
+    ],
+  
 //DEFUALT FISHON
 THEOCEAN: [
     { name: "Haddock", rarity: "Common", baseWeight: 4, cashValue: 1, progress:
@@ -1655,6 +1663,63 @@ function getFishData(fishName) {
     }
     return null;
 }
+
+function sellAllExceptRare() {
+    let excludedRarities = ["Legendary", "Limited", "Mythical", "Exotic", "Secret"];
+    let totalSellPrice = 0;
+    let fishSold = 0;
+
+    // Loop through all owned fish
+    for (let key in ownedFish) {
+        let fish = ownedFish[key];
+        let fishData = getFishData(fish.name);
+
+        if (!fishData) {
+            console.warn(`Warning: Fish data for ${fish.name} not found!`);
+            continue;
+        }
+
+        // Skip fish if its rarity is in the excluded list
+        if (excludedRarities.includes(fishData.rarity)) {
+            continue;
+        }
+
+        let cashValue = parseFloat(fishData.cashValue) || 0;
+        totalSellPrice += cashValue * fish.count;
+        fishSold += fish.count;
+
+        // Remove the fish from inventory
+        delete ownedFish[key];
+    }
+
+    if (fishSold === 0) {
+        alert("No eligible fish to sell!");
+        return;
+    }
+
+    // Confirmation popup
+    let confirmSell = confirm(
+        `Are you sure you want to sell ${fishSold} fishes for ${totalSellPrice.toFixed(2)} Coins?`
+    );
+
+    if (!confirmSell) {
+        return; // Cancelled by user
+    }
+
+    let cash = parseFloat(localStorage.getItem("cash")) || 0;
+    cash += totalSellPrice;
+    localStorage.setItem("cash", cash.toFixed(2));
+
+    // Save updated inventory
+    localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
+    updateInventoryUI();
+    updateUI();
+    showMoneyNotification(`Sold ${fishSold} fishes for +${totalSellPrice.toFixed(2)} Coins`);
+
+    let Seee = new Audio("Sounds/CASHSDSSS.mp3");
+    Seee.play();
+}
+
 function sellAllOfType(key) {
     if (!ownedFish[key]) return;
 
@@ -1666,12 +1731,11 @@ function sellAllOfType(key) {
         return;
     }
 
-    let weight = parseFloat(fish.weight) || 0;
     let cashValue = parseFloat(fishData.cashValue) || 0;
-    let totalSellPrice = weight * cashValue * fish.count; // Calculate total value
+    let totalSellPrice = cashValue * fish.count; // Only multiply by count, not weight
 
     if (isNaN(totalSellPrice)) {
-        console.error("Error: sellPrice is NaN!");
+        console.error("Error: totalSellPrice is NaN!");
         return;
     }
 
@@ -1693,7 +1757,7 @@ function sellAllOfType(key) {
     localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
     updateInventoryUI();
     updateUI();
-    showMoneyNotification(`Selled ${fish.name} ${fish.count} +${totalSellPrice.toFixed(2)} Coins`);
+    showMoneyNotification(`Sold ${fish.name} (${fish.count}) for +${totalSellPrice.toFixed(2)} Coins`);
 
     let Seee = new Audio("Sounds/CASHSDSSS.mp3");
     Seee.play();
@@ -1710,9 +1774,8 @@ function sellFish(key) {
         return;
     }
 
-    let weight = parseFloat(fish.weight) || 0;
     let cashValue = parseFloat(fishData.cashValue) || 0;
-    let sellPrice = weight * cashValue;
+    let sellPrice = cashValue; // No weight, just base value
 
     if (isNaN(sellPrice)) {
         console.error("Error: sellPrice is NaN!");
@@ -1742,6 +1805,7 @@ function sellFish(key) {
     updateInventoryUI();
     updateUI();
     showMoneyNotification(`Sold ${fish.name} for +${sellPrice.toFixed(2)} Coins`);
+    
     let Seee = new Audio("Sounds/CASHSDSSS.mp3");
     Seee.play();
 }
