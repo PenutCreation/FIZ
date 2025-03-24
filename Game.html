@@ -1577,6 +1577,19 @@ linear-gradient(135deg, darkblue, #80D0C7);margin-top:800px;">
   </center>
 </fieldset>
 </div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:500px; background:
+linear-gradient(135deg, blue, #80D0C7);">
+  <h3>🐸SWAMPY🐸</h3>
+  <p>a swamp island full of sloppy islands</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('SWAMPY')">🎣 Fish
+        on SWAMPY</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
 <fieldset class="area" style="margin-top:800px;">
   <h3>🌊THE OCEAN🪸</h3>
   <p>The Species living here is big and small a abalanced ecosystem but is there
@@ -1595,7 +1608,9 @@ linear-gradient(135deg, darkblue, #80D0C7);margin-top:800px;">
 <div id="inventoryPopup">
     <div id="inventoryContent">
 
-        <h3>🎣 Fish Inventory</h3>
+        <h3 style="color:white;">🎣 Fish Inventory</h3>
+        <button onclick="sellAllExceptRare()">Sell All (Except Rare)</button>
+
 <input type="text" id="inventorySearch" placeholder="Search for a fish..." oninput="updateInventoryUI()">
 <div id="inventory"></div>
    </div>
@@ -1884,7 +1899,7 @@ showEvent("A <span style='color:Pink;'>Great White Shark</span> Spotted in the O
     }
 
     function startRandomTimer() {
-let randomTime = Math.floor(Math.random() * (86400000 - 3600000 + 1)) + 3600000; // 1-24 hours
+let randomTime = Math.floor(Math.random() * (864000 - 36000 + 1)) + 36000; // 1-24 hours
 
 
         setTimeout(() => {
@@ -1893,7 +1908,21 @@ let randomTime = Math.floor(Math.random() * (86400000 - 3600000 + 1)) + 3600000;
     }
 
     startRandomTimer(); // Start the first timer on page load
+//ADMIN PANEL:
+function triggerMegTest() {
+    if (!MegPool) return;
+    showEvent("A <span style='color:red;'>Megalodon</span> Spotted in the Ocean");
+
+    MegPool.style.display = "block"; // Show fieldset
+
+    setTimeout(() => {
+        MegPool.style.display = "none"; // Hide after 15s
+        startRandomTimer(); // Restart loop
+    }, 15000); // Use 15s for testing instead of 600s
 }
+triggerMegTest()
+}
+
 
 
 
