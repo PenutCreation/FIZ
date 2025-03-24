@@ -490,9 +490,7 @@ THEOCEAN: [
         progress: 1, minusProgress: 35, power: 0 },
         { name: "Colossal Squid", rarity: "Mythical", baseWeight: 34500,
         cashValue: 3400500,
-        progress: 1, minusProgress: 70, power: 0 },
-    { name: "Patrick Star", rarity: "Secret", baseWeight: 1, cashValue: 30000, progress:
-    1, minusProgress: 45, power: 0 }
+        progress: 1, minusProgress: 70, power: 0 }
   ],
   
 
