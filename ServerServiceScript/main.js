@@ -283,7 +283,7 @@ HayBay: [
     cashValue: 1,
     progress: 1, minusProgress: 40, power: 0 },
     { name: "Sloppy Colossal Squid", rarity: "Mythical", baseWeight: 1001,
-    cashValue: 2,
+    cashValue: 3400500,
     progress: 1, minusProgress: 50, power: 0 },
       ],
 
@@ -619,7 +619,7 @@ MEGPOOLAES: [
         { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 999,
         progress: 1, minusProgress: 35, power: 0 },
         { name: "Colossal Squid", rarity: "Mythical", baseWeight: 34500,
-        cashValue: 15,
+        cashValue: 3400500,
         progress: 1, minusProgress: 70, power: 0 },
     { name: "Megalodon", rarity: "Exotic", baseWeight: 120000 , cashValue: 534000,
     progress: 1, minusProgress: 80, power: 250 },
@@ -688,7 +688,7 @@ MEGPOOLAESOANHAY: [
         { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 999,
         progress: 1, minusProgress: 35, power: 0 },
         { name: "Colossal Squid", rarity: "Mythical", baseWeight: 34500,
-        cashValue: 15,
+        cashValue: 3400500,
         progress: 1, minusProgress: 70, power: 0 },
     { name: "Seasonal Megalodon", rarity: "Exotic", baseWeight: 1200000
     , cashValue: 9000,
@@ -758,7 +758,7 @@ GreatWhiteShark: [
         { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 999,
         progress: 1, minusProgress: 35, power: 0 },
         { name: "Colossal Squid", rarity: "Mythical", baseWeight: 34500,
-        cashValue: 15,
+        cashValue: 3400500,
         progress: 1, minusProgress: 70, power: 0 },
     { name: "Great White Shark", rarity: "Mythical", baseWeight: 1400, cashValue: 580, progress: 1, minusProgress: 45, power: 250 }
     ],
@@ -826,7 +826,7 @@ GreatHammerHead: [
         { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 999,
         progress: 1, minusProgress: 35, power: 0 },
         { name: "Colossal Squid", rarity: "Mythical", baseWeight: 34500,
-        cashValue: 15,
+        cashValue: 3400500,
         progress: 1, minusProgress: 70, power: 0 },
     { name: "Great HammerHead Shark", rarity: "Mythical", baseWeight: 1012,
     cashValue: 420, progress: 1, minusProgress: 35, power: 250 }
@@ -895,7 +895,7 @@ WhaleShark: [
         { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 999,
         progress: 1, minusProgress: 35, power: 0 },
         { name: "Colossal Squid", rarity: "Mythical", baseWeight: 34500,
-        cashValue: 15,
+        cashValue: 3400500,
         progress: 1, minusProgress: 70, power: 0 },
     { name: "Whale Shark", rarity: "Mythical", baseWeight: 21000,
     cashValue: 23400, progress: 1, minusProgress: 75, power: 250 }
