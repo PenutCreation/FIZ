@@ -49,6 +49,8 @@ const maxClicksPerSecond = 10; // Adjust based on tolerance
 const maxLevel = 300;
 const mutationChance = 0.1;
 let fishCaughtCount = 0; // Track total fish caught
+let isBlocked = false;
+let blockDuration = 3000;
 let caughtStreak = parseInt(localStorage.getItem("caughtStreak")) || 0;
 console.log(`🔄 Loaded caught streak: ${caughtStreak}`);
 
@@ -283,7 +285,7 @@ HayBay: [
     cashValue: 1,
     progress: 1, minusProgress: 40, power: 0 },
     { name: "Sloppy Colossal Squid", rarity: "Mythical", baseWeight: 1001,
-    cashValue: 3400500,
+    cashValue: 2,
     progress: 1, minusProgress: 50, power: 0 },
       ],
 
@@ -488,8 +490,8 @@ THEOCEAN: [
         progress: 1, minusProgress: 42, power: 0 },
         { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 999,
         progress: 1, minusProgress: 35, power: 0 },
-        { name: "Colossal Squid", rarity: "Mythical", baseWeight: 34500,
-        cashValue: 3400500,
+        { name: "Colossal Squid", rarity: "Mythical", baseWeight: 3400500,
+        cashValue: 15,
         progress: 1, minusProgress: 70, power: 0 }
   ],
   
@@ -907,18 +909,7 @@ Event: [
     progress: 1, minusProgress: 85, power: 509 },
     { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000, cashValue:
     273238800, progress: 1, minusProgress: 90, power: 250 }
- ],
-
-SECRET: [
-{ name: "🐊Salt Crocodile", rarity: "Secret", baseWeight: 100, cashValue: 55000, progress:
-    1, minusProgress: 65, power: 0 },
-    { name: "🍀Lucki Megalodon", rarity: "Secret", baseWeight: 777777, cashValue:
-    777777777777, progress:
-    1, minusProgress: 77, power: 0 },
-    { name: "🍀Green Fish", rarity: "Secret", baseWeight: 7000, cashValue:
-    5000000, progress:
-    1, minusProgress: 70, power: 0 }
-]
+ ]
 };
 
 // ✅ Open Fish Index (ONLY Creek & Ocean)
@@ -1035,6 +1026,7 @@ const fishMutations = [
     { name: "Abbysal", effect: (fish) => fish.cashValue += 3 },
     { name: "Giant", effect: (fish) => fish.baseWeight *= 60 },
 ];
+
 function tapButton() {
     if (!currentFish) return;
 
@@ -1045,13 +1037,13 @@ function tapButton() {
     if (lastClickTimes.length >= maxClicksPerSecond) {
         if (!isBlocked) {
             isBlocked = true;
-            alert("☝️🤓: Your rod has overheated due to excessive clicking! Please wait.");
+            showEvent("☝️🤓: Your rod has overheated due to excessive clicking! Please wait.");
             
             document.getElementById("tapButton").disabled = true;
             setTimeout(() => {
                 isBlocked = false;
                 document.getElementById("tapButton").disabled = false;
-                alert("✅ Your rod has cooled down. You can fish again!");
+                showEvent("✅ Your rod has cooled down. You can fish again!");
             }, blockDuration);
         }
         return;
@@ -1157,6 +1149,8 @@ function TRIDEMTEFFECT() {
         
     }, 150);
 }
+
+
 //EFFECTEXPLODED
 function triggerExplosion() {
     let fishIcon = document.getElementById("fishIcon");
@@ -1372,7 +1366,8 @@ function fishCaught() {
     document.getElementById("StartButtonFish").disabled = false;
     Reelerio.pause();
     fishslpash.play();
-    Succesor.play();
+    let FLASHER = new Audio("./Sounds/success-68578.mp3");
+    FLASHER.play();
     document.body.style.overflow = "auto";
     stopFishing();
 
@@ -1572,6 +1567,8 @@ function checkLevelUp() {
         console.log(`🎉 Level Up! New Level: ${level}, New Max EXP: ${maxExp}`);
 
         showExpNotification(`🎉 Level Up! You are now Level ${level}!`);
+    let LEVELUPFIZJCHSH = new Audio("./Sounds/LEVEL.mp3");
+    LEVELUPFIZJCHSH.play();
     }
 
     // Save updated EXP and Level
