@@ -909,7 +909,14 @@ Event: [
     progress: 1, minusProgress: 85, power: 509 },
     { name: "Cursed Megalodon", rarity: "Exotic", baseWeight: 120000, cashValue:
     273238800, progress: 1, minusProgress: 90, power: 250 }
- ]
+ ],
+SECRETANDLIMITED: [
+{ name: "Patrick Star", rarity: "Secret", baseWeight: 1, cashValue: 30000,
+progress:1, minusProgress: 45, power: 0 },
+{ name: "🐊Salt Crocodile", rarity : "Secret", baseWeight: 100, cashValue:55000, progress: 1, minusProgress: 65, power: 0 },
+{ name: "🍀Lucki Megalodon", rarity: "Secret", baseWeight: 777777, cashValue: 777777777777, progress:1, minusProgress: 77, power: 0 },
+{ name: "🍀Green Fish", rarity: "Secret", baseWeight: 7000, cashValue: 5000000, progress: 1, minusProgress: 70, power: 0 }
+   ]
 };
 
 // ✅ Open Fish Index (ONLY Creek & Ocean)
