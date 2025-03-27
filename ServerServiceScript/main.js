@@ -175,12 +175,12 @@ SNOWISLES: [
     progress: 1, minusProgress: 0, power: 0 },
     { name: "Polar Lobster", rarity: "Rare", baseWeight: 10, cashValue: 5,
     progress: 1, minusProgress: 0, power: 0 },
-    { name: "Polar Oyster", rarity: "Unusual", baseWeight: 10, cashValue: 5,
+    { name: "Polar Oyster", rarity: "Unusual", baseWeight: 10, cashValue: 45,
     progress: 1, minusProgress: 0, power: 0 },
-    { name: "Polar Shark", rarity: "Legendary", baseWeight: 35, cashValue: 3,
+    { name: "Polar Shark", rarity: "Legendary", baseWeight: 35, cashValue: 350,
     progress: 1, minusProgress: 5, power: 0 },
     { name: "Polar Smetch Shark", rarity: "Mythical", baseWeight: 80,
-    cashValue: 5,
+    cashValue: 5000,
     progress: 1, minusProgress: 16, power: 0 }
   ],
 HayBay: [
@@ -285,7 +285,7 @@ HayBay: [
     cashValue: 1,
     progress: 1, minusProgress: 40, power: 0 },
     { name: "Sloppy Colossal Squid", rarity: "Mythical", baseWeight: 1001,
-    cashValue: 2,
+    cashValue: 500000,
     progress: 1, minusProgress: 50, power: 0 },
       ],
 
@@ -490,8 +490,8 @@ THEOCEAN: [
         progress: 1, minusProgress: 42, power: 0 },
         { name: "OarFish", rarity: "Mythical", baseWeight: 10, cashValue: 999,
         progress: 1, minusProgress: 35, power: 0 },
-        { name: "Colossal Squid", rarity: "Mythical", baseWeight: 3400500,
-        cashValue: 15,
+       { name: "Colossal Squid", rarity: "Mythical", baseWeight: 3400500,
+        cashValue: 3400500,
         progress: 1, minusProgress: 70, power: 0 }
   ],
   
