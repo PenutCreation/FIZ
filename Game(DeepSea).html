@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initia-scale=1.0">
     <title>Fiz🎣 - The Deep🫧</title>
-
+<link rel="stylesheet" href="Style/global.css">
 </head>
 <div id="sky">
 <div class="ban-overlay" id="banOverlay"></div>
@@ -21,1258 +21,21 @@
         <button class="ban-btn"
         onclick="window.location.href='https://google.com'">Leave</button>
     </div>
-
-    <style>
-    
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 200vh; /* Allows scrolling */
-    background: black; /* Deep dark abyss */
-    overflow-x: hidden; /* Prevents horizontal scroll */
-    position: relative;
-}
-
-/* Container for floating elements (keeps them separate from UI) */
-.floating-background {
-    position: fixed; /* Stays in place while scrolling */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Behind everything */
-    pointer-events: none; /* No interaction */
-}
-
-/* Falling Particles */
-@keyframes fall {
-    0% { transform: translateY(-10px) scale(1); opacity: 0.8; }
-    100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-}
-
-@keyframes floatLoop {
-    0% { transform: translateY(0px) scale(1); opacity: 0.2; }
-    100% { transform: translateY(100vh) scale(1.2); opacity: 0; }
-}
-
-.particle {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-}
-
-
-/* Randomize animation speed */
-.particle:nth-child(odd) { animation-duration: 7s; }
-.particle:nth-child(even) { animation-duration: 10s; }
-
-/* Scary Fish Shadows */
-@keyframes fish-move {
-    0% { transform: translateX(-50px) scale(1); opacity: 0.3; }
-    50% { transform: translateX(50px) scale(1.2); opacity: 0.1; }
-    100% { transform: translateX(-50px) scale(1); opacity: 0.3; }
-}
-
-.fish-shadow {
-    position: absolute;
-    width: 150px;
-    height: 80px;
-    background: rgba(0, 0, 0, 0.4);
-    filter: blur(8px);
-    border-radius: 50%;
-    animation: fish-move 6s ease-in-out infinite alternate;
-}
-
-@keyframes scratchEffect {
-    0% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
-    50% { clip-path: polygon(10% 10%, 90% 20%, 80% 80%, 20% 90%); }
-    100% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
-}
-
-.BONER-EFFECT-active {
-    animation: scratchEffect 0.15s linear;
-}
-.BONER-EFFECT {
-    position: absolute;
-    width: 100px; /* Adjust scratch size */
-    height: 100px;
-    background: grey;
-    box-shadow: 0px 0px 10px grey;
-    opacity: 1;
-    animation: scratchFade 0.15s ease-in-out;
-    pointer-events: none;
-}
-.scratch-active {
-    animation: scratchEffect 0.15s linear;
-}
-.scratch-effect {
-    position: absolute;
-    width: 100px; /* Adjust scratch size */
-    height: 10px;
-    background: yellow;
-    box-shadow: 0px 0px 10px yellow;
-    opacity: 1;
-    animation: scratchFade 0.15s ease-in-out;
-    pointer-events: none;
-}
-
-@keyframes scratchFade {
-    0% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.1); }
-    100% { opacity: 0; transform: scale(1.2); }
-}
-
-
-        #gameScreen {
-            padding: 20px;
-        }
-
-        #miniGame {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 400px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            z-index: 10;
-        }
-
-        #catchBar {
-            width: 50px;
-            height: 300px;
-            border: 2px solid white;
-            margin: 20px auto;
-            position: relative;
-            overflow: hidden;
-            background: black;
-        }
-
-
-#fishIcon {
-    width: 40px;
-    height: 40px;
-    background-color: red;
-    position: relative; /* Ensures children are positioned relative to this */
-    left: 50%;
-    transform: translateX(-50%);
-    overflow: hidden; /* Prevents anything from overflowing */
-}
-
-
-
-
-        .fish-card {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 5px;
-            display: inline-block;
-            width: 200px;
-            background: #f4f4f4;
-        }
-#rodStats {
-            margin-top: 10px;
-            border: 1px solid #000;
-            padding: 10px;
-            display: inline-block;
-            background: #f9f9f9;
-        }
-.area-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.area {
-    margin-top: 10px;
-    border: 1px solid #000;
-    padding: 10px;
-    background: #f9f9f9;
-    width: 100%;
-    max-width: 90%;
-}
-
-/* Center `.area` on larger screens */
-@media (min-width: 768px) { 
-    .area {
-        max-width: 50%; /* Adjust as needed */
-    }
-}
-
-    /* Shop Styles */
-/* Shop Popup Styling */
-#shopPopup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 400px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-}
-#shopPopupq {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 400px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    color:black;
-}
-#baitShopPopup {
-display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 400px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    color:black;
-}
-
-/* Shop Items Grid */
-#shopItems {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-/* Individual Shop Item */
-.shop-item {
-    background: #089;
-    padding: 10px;
-    border-radius: 8px;
-    color: white;
-}
-.shop-item p {
-  color:white;
-}
-
-/* Close Button */
-#closeShop {
-    display: block;
-    margin: 10px auto 0;
-    padding: 8px 15px;
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Custom Alert */
-#customAlert {
-    display: none;
-    position: fixed;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: red;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    z-index: 1001;
-}
-
-/* Mobile Optimization */
-@media (max-width: 600px) {
-    #shopPopup {
-        width: 95%;
-        max-width: 90%;
-        padding: 10px;
-    }
-    .shop-item {
-        font-size: 14px;
-    }
-}
-/* 🔹 Floating Inventory Button (Bottom Right) */
-#inventoryButton {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    background-color: rgba(30, 30, 30, 0.9);
-    color: white;
-    border: none;
-    padding: 12px 16px;
-    border-radius: 50px;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    transition: 0.3s;
-    z-index: 1000;
-}
-
-/* 🔹 Pop-Up Inventory (Now Positioned Higher) */
-#inventoryPopup {
-    display: none;
-    position: fixed;
-    top: 5%; /* Moved slightly higher */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 400px;
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1001;
-    max-height: 80vh; /* Prevents it from covering too much space */
-    overflow-y: auto;
-background:#2a2a2a;
-}
-
-/* 🔹 Add Space Below to Prevent Overlap */
-#inventoryPopup::after {
-    content: "";
-    display: block;
-    height: 50px; /* Creates space so the button is not covered */
-}
-
-/* 🔹 Responsive for Mobile */
-@media (max-width: 600px) {
-    #inventoryPopup {
-        width: 95%;
-        max-width: 350px;
-        top: 50%; /* Adjusted for better visibility */
-    }
-
-    #inventoryButton {
-        padding: 14px;
-        font-size: 14px;
-        bottom: 10px;
-        right: 10px;
-    }
-    
-     .inventory-container {
-            width: 100%;
-            max-width: 400px; /* Limits max width for better readability */
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            
-        }
-
-        /* Inventory slot */
-        .inventory-item {
-          color: white;
-            background: #2a2a2a;
-            border: 2px solid #444;
-            border-radius: 8px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left;
-            width: 97%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: 0.2s;
-        }
-
-        /* Highlight on hover */
-        .inventory-item:hover {
-            border-color: #66c2ff;
-            transform: scale(1.02);
-        }
-
-        /* Name styling with auto text sizing */
-        .inventory-item strong {
-            font-size: 1.2em;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-            ;
-        }
-
-        /* Details styling */
-        .inventory-item span {
-            font-size: 1em;
-            display: block;
-            color: #ddd;
-        }
-
-        /* Responsive: Adjust font size for smaller screens */
-        @media (max-width: 500px) {
-.inventory-item strong {
-    display: block;
-    font-size: 1.2em;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-}
-.inventory-item strong,  
-.inventory-item span {
-    text-shadow: none;
-}
-
-            .inventory-item span {
-                font-size: 0.9em;
-            }
-        }
-}
-@media (max-width: 500px) {
-    .inventory-container {
-        gap: 15px; /* More spacing between items */
-    }
-
-    .inventory-item {
-        padding: 12px;
-    }
-}
-
-.area {
-    background: linear-gradient(135deg, #002b5e, #003366); /* Deep Dark Ocean */
-    border: 3px solid #005080; /* Darker Blue Border */
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5); /* Deeper Shadow */
-    color: white;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    margin: 15px 10px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* 🌊 Subtle Wavy Effect */
-.area::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent);
-    opacity: 0.1;
-    animation: wave 4s infinite alternate ease-in-out;
-    pointer-events: none;
-}
-
-/* 💦 Wavy Distortion */
-@keyframes wave {
-    0% { transform: translateX(-5%) skewY(-1deg); }
-    50% { transform: translateX(5%) skewY(1deg); }
-    100% { transform: translateX(-5%) skewY(-1deg); }
-}
-
-/* 🌟 Soft Light Rays */
-.area::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100%;
-    height: 120%;
-    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15), transparent);
-    opacity: 0.1;
-    transform: translateX(-50%);
-    pointer-events: none;
-}
-
-/* 🌊 Floating Dust Particles */
-@keyframes floatParticles {
-    0% { transform: translateY(0px) scale(1); opacity: 0.2; }
-    50% { transform: translateY(-10px) scale(1.1); opacity: 0.4; }
-    100% { transform: translateY(0px) scale(1); opacity: 0.2; }
-}
-
-.particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    animation: floatParticles 6s infinite ease-in-out;
-}
-
-.particle:nth-child(odd) { animation-duration: 7s; }
-.particle:nth-child(even) { animation-duration: 9s; }
-
-/* 🌟 Header Styling */
-.area h3 {
-    font-size: 22px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-}
-
-/* 📜 Paragraph Styling */
-.area p {
-    font-size: 16px;
-    opacity: 0.9;
-}
-
-/* 🎣 Fishing Button */
-.area button {
-    background: #ffcc00; /* Deep Gold */
-    color: #333;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.area button:hover {
-    background: #ff9900;
-    transform: scale(1.1);
-}
-
-/* 📱 Mobile Responsive */
-@media (max-width: 600px) {
-    .area {
-        padding: 15px;
-        font-size: 14px;
-    }
-
-    .area h3 {
-        font-size: 18px;
-    }
-}
-
-/* EXP Bar Container */
-/* EXP Container */
-.exp-container {
-    position: fixed;
-    top: 77%; /* Adjust for visibility */
-    left: 85%;
-    transform: translateX(-50%);
-    background: rgba(30, 30, 30, 0.9); /* Darker background for contrast */
-    color: white;
-    padding: 10px 20px;
-    font-size: 4px;
-    font-weight: bold;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-
-/* Level Text */
-#levelText {
-    display: block;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* EXP Text */
-#expText {
-    display: block;
-    font-size: 16px;
-    color: #ffd700; /* Gold color for better visibility */
-}
-
-/* Centered Floating EXP Notification */
-.exp-notification {
-    position: fixed;
-    top: 30%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Exact center */
-    background: rgba(255, 215, 0, 0.95); /* Gold background */
-    color: #1b2838; /* Dark text */
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 6px;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-    opacity: 0;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1000;
-}
-
-/* Inner text styling */
-.exp-notification span {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-}
-.totemshop {
-background: rgba(15, 15, 15, 0.95); /* Dark semi-transparent */
-    border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
-    border-radius: 12px;
-    padding: 20px;
-    width: 300px; /* Adjustable */
-    max-width: 90%;
-    margin: 20px auto; /* Center it */
-    color: white;
-    font-size: 18px;
-    
-    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5); /* Soft cyan glow */
-    transition: 0.3s ease-in-out;
-}
-.totemshop p {
-  color:white;
-} 
-.FullMenuio {
-    background: rgba(15, 15, 15, 0.95); /* Dark semi-transparent */
-    border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
-    border-radius: 12px;
-    padding: 20px;
-    width: 300px; /* Adjustable */
-    max-width: 90%;
-    margin: 20px auto; /* Center it */
-    color: white;
-    font-size: 18px;
-    
-    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5); /* Soft cyan glow */
-    transition: 0.3s ease-in-out;
-}
-
-/* Hover Effect */
-
-
-/* Full Menu Items */
-.FullMenuio p {
-    color: white;
-    font-size: 16px;
-    margin: 8px 0;
-}
-/* Ban Popup Styles */
-.ban-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.5);
-    max-width: auto;
-    display: none; /* Hidden by default */
-    z-index: 1000;
-}
-
-.ban-popup h2 {
-    color: #ff4d4d;
-}
-
-.ban-popup p {
-    font-size: 16px;
-    margin: 10px 0;
-}
-
-/* Ban Button */
-.ban-btn {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s;
-    margin-top: 10px;
-}
-
-.ban-btn:hover {
-    background-color: #cc0000;
-}
-
-/* Dark Overlay */
-.ban-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    display: none;
-    z-index: 999;
-}
-
-/* General particle effect */
-@keyframes sparkle {
-    0% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 0.2; transform: scale(1); }
-}
-
-/* Effect for 'Shiny', 'Sparkling', 'Glossy' mutations */
-.sparkle-effect {
-    position: relative;
-    overflow: hidden;
-}
-
-.sparkle-effect::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 255, 100, 1) 10%, rgba(255,255,255,0) 80%);
-    top: 0;
-    left: 0;
-    opacity: 0;
-    animation: sparkle 1.5s infinite;
-}
-
-/* Glow effect for 'Lunar', 'Solarblaze', 'Electric' */
-.glow-effect {
-    animation: glow 1.5s infinite alternate;
-}
-
-@keyframes glow {
-    from { box-shadow: 0 0 5px rgba(255, 255, 100, 0.7); }
-    to { box-shadow: 0 0 15px white; }
-}
-.hexer {
-background-color: maroon;
-position: relative;
-    overflow: hidden;
-animation: Hexed 1.5s infinite alternate;
-}
-.hexer:before {
-content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, red 10%, rgba(255,255,255,0) 80%);
-    top: 0;
-    left: 0;
-    opacity: 0;
-    animation: Hexerc 1.5s infinite;
-}
-@keyframes Hexed {
-q    0% { box-shadow: 0 0 5px red, inset 0 0 10px darkred; }
-    50% { box-shadow: 0 0 15px red, inset 0 0 20px darkred; }
-    100% { box-shadow: 0 0 5px red, inset 0 0 10px darkred; }
-}
-
-@keyframes Hexerc {
-    0% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 0.2; transform: scale(1); }
-}
-/* Ensure the sell button is clickable */
-.sell-button {
-  padding:10px;
-    position: relative; /* Ensures it follows z-index */
-    z-index: 10; /* Puts it above the sparkle effects */
-    pointer-events: auto; /* Ensures it can be clicked */
-    background-color:#59e997;
-    border-radius:20px;
-}
-.sell-all-button {
-  padding:10px;
-    position: relative; /* Ensures it follows z-index */
-    z-index: 10; /* Puts it above the sparkle effects */
-    pointer-events: auto; /* Ensures it can be clicked */
-    background-color:#59e997;
-    border-radius:20px;
-}
-/* Prevent the effect layers from blocking clicks */
-.sparkle-effect::before,
-.hexer::before {
-    pointer-events: none; /* Make sure the effect doesn't block clicks */
-}
-
-.dark-aura {
-    position: relative;
-}
-
-.dark-aura::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    top: 0;
-    left: 0;
-}
-.translucent-effect {
-    opacity: 0.5; /* Makes the div 50% transparent */
-}
-/* Translucent Effect */
-
-/* Electric Effect (Glowing Blue & Yellow) */
-.electric-effect {
-    box-shadow: 0 0 60px #00f, 0 0 60px #ff0;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, blue 10%, rgba(255,255,255,0) 80%);
-    opacity: 0.7;
-    animation: sparkle 1.5s infinite;
-}
-
-/* Fossilized Effect (Brown Background & Dark Brown Text) */
-.fossilized-effect {
-    background-color: #8B4513; /* SaddleBrown */
-    color: #5C3317; /* Darker Brown */
-}
-
-.Albino-Color {
-  background-color: white;
-  color: black;
-}
-
-.abyssal-effect {
-    box-shadow: 0 0 40px #00f, 0 0 20px #ff0;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, blue 10%, rgba(255,255,255,0) 80%);
-    opacity: 0.7;
-    animation: sparkle 1.5s infinite;
-}
-
-.minusFishhahaha {
-  background-color: white;
-  color:lightblue;
-  border: 3px solid lightblue;
-}
-.sunkenK {
-  background-color: #0082;
-  color:darkcyan;
-  border: 3px solid darkcyan;
-}
-/* Silver Effect (Grey Background) */
-.silver-effect {
-    background-color: #C0C0C0; /* Silver */
-    color: #333; /* Darker text for contrast */
-}
-
-/* Ambered Effect (Orange Border) */
-.ambered-effect {
-    border: 3px solid orange;
-}
-/* ✅ Apply text color and shadow for better visibility */
-.blue { color: lightblue; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
-.lightblue { color: lightgreen; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
-.mediumslateblue { color: mediumslateblue; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
-.lightgreen { color: skyblue; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
-.legendary { color: yellow; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
-.mythical { color: pink; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
-
-/* ✅ Exotic (Rainbow Effect) */
-.rainbow-text {
-    background-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-.limited-text {
-    background-image: linear-gradient(45deg, blue, indigo);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-.cyber-design-mutstion {
-    color: cyan; /* Cyber blue color */
-    text-shadow: 0 0 5px cyan, 0 0 10px #00ffee, 0 0 20px #00ffee;
-    animation: glitch 0.8s infinite alternate;
-    font-weight: bold;
-    background-color:black;
-}
-
-/* Glitch Effect Animation */
-@keyframes glitch {
-    0% { transform: skewX(0deg); }
-    25% { transform: skewX(5deg); filter: hue-rotate(20deg); }
-    50% { transform: skewX(-5deg); filter: hue-rotate(-20deg); }
-    75% { transform: skewX(3deg); filter: brightness(1.2); }
-    100% { transform: skewX(0deg); }
-}
-.black-white-text {
-    background: linear-gradient(90deg, black, white, black, white);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: secretText 3s infinite linear;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes secretText {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-@keyframes jumpAndFall {
-    0% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-    50% {
-        transform: translateY(-30px); /* Jump up */
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0); /* Fall back down */
-    }
-}
-
-.inventory-item.jump {
-    animation: jumpAndFall 1s ease-out;
-}
-.jumping-fish-stats {
-    position: fixed;
-    bottom: 0;
-    width: 200px;
-    background: #2a2a2a;
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    animation: fishFling 1.5s cubic-bezier(0.25, 1, 0.5, 1), fishFall 3s ease-in 1.5s;
-    transform-origin: center;
-    color:white;
-}
-
-@keyframes fishFling {
-    0% { bottom: 0; transform: rotate(0deg) scale(1); opacity: 1; }
-    20% { bottom: 300px; transform: rotate(-30deg) scale(1.2); } /* Flings Up */
-    40% { bottom: 400px; transform: rotate(50deg) scale(1.15); } /* Tilts */
-    60% { bottom: 320px; transform: rotate(-40deg) scale(1); } /* Starts Dropping */
-    80% { bottom: 180px; transform: rotate(30deg) scale(0.9); } /* Mid-Fall */
-    100% { bottom: -100px; transform: rotate(180deg) scale(0.8); opacity: 0; } /* Ragdoll Spin */
-}
-@keyframes particleBurst {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0.8; }
-    100% { transform: translate(var(--x2), var(--y2)) scale(0.5); opacity: 0; }
-}
-
-.particle {
-    position: fixed; /* Fixed so it appears on all screens */
-    width: 10px;
-    height: 10px;
-    background-color: gold;
-    border-radius: 50%;
-    opacity: 0;
-    animation: particleBurst 1s ease-out forwards;
-    pointer-events: none; /* So it doesn’t interfere with UI */
-    z-index: 9999; /* Make sure it's on top */
-}
-/* General overlay styling */
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    overflow-y: auto; /* Allows scrolling on mobile */
-    padding: 10px;
-    color:black;
-}
-.overlay strong {
-  color: black;
-}
-.overlay p {
-  color: black;
-}
-/* Responsive overlay content */
-.overlay-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    position: relative;
-    max-height: 80vh; /* Prevents content from overflowing screen */
-    overflow-y: auto; /* Enables scrolling if needed */
-}
-
-/* Close button styling */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-/* Fish card styling */
-.fish-card {
-    border: 1px solid #ccc;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    background: #f9f9f9;
-    text-align: left;
-    color:black;
-}
-
-/* Mobile-friendly adjustments */
-@media (max-width: 600px) {
-    .overlay-content {
-        width: 95%; /* Use more width for smaller screens */
-        max-height: 85vh; /* Allow more height */
-        padding: 15px; /* Reduce padding slightly */
-    }
-
-    .fish-card {
-        font-size: 14px; /* Reduce font size for mobile */
-        padding: 8px;
-    }
-
-    .close-btn {
-        font-size: 16px;
-        padding: 4px 8px;
-    }
-}
-.weather-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-/* RAIN EFFECT */
-.rain-container .rain-drop {
-    position: absolute;
-    width: 2px;
-    height: 15px;
-    background: rgba(0, 0, 255, 0.6);
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    from { transform: translateY(-100vh); }
-    to { transform: translateY(100vh); }
-}
-
-/* SNOW EFFECT */
-.snow-container .snowflake {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background: white;
-    border-radius: 50%;
-    animation: snow-fall linear infinite;
-}
-
-@keyframes snow-fall {
-    from { transform: translateY(-100vh); }
-    to { transform: translateY(100vh); }
-}
-
-
-  @keyframes tapPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
-
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-3px); }
-    50% { transform: translateX(3px); }
-    75% { transform: translateX(-3px); }
-    100% { transform: translateX(0); }
-  }
-
-  #rodWheelContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    position: relative;
-  }
-
-  #tapbutton {
-    width: 90px;
-    height: 90px;
-    background: radial-gradient(circle, gold 20%, orange 80%);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    font-weight: bold;
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    transition: box-shadow 0.2s, background 0.2s, transform 0.1s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  #tapbutton:active {
-    animation: tapPulse 0.2s ease-out;
-  }
-
-  .shake {
-    animation: shake 0.2s ease-in-out;
-  }
-
-  .particle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: rgba(0, 255, 255, 0.7);
-    border-radius: 50%;
-    opacity: 1;
-    pointer-events: none;
-    animation: particleEffect 0.6s ease-out forwards;
-  }
-
-  @keyframes particleEffect {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-50px) scale(0.5); opacity: 0; }
-  }
-#progressContainer {
-    width: 50px;
-    height: 250px;
-    background: #444;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    margin: auto;
-    box-shadow: inset 0 0 10px black;
-}
-
-#progressBar {
-    width: 100%;
-    height: 0%;
-    background: green;
-    position: absolute;
-    bottom: 0;
-    transition: height 0.3s ease-in-out, background 0.3s;
-}
-
-#fishIcon {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    font-size: 30px;
-    transition: bottom 0.3s ease-in-out;
-}
-
-#tapButton {
-    font-size: 30px;
-    padding: 10px 20px;
-    border: none;
-    background: #0a7fba;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-#tapButton:hover {
-    background: #066896;
-}
-
-/* Exclamation Mark Styling */
-.exclamation-mark {
-    position: absolute;
-    font-size: 40px;
-    font-weight: bold;
-    color: yellow;
-    text-shadow: 0px 0px 10px yellow;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: exclamationBlink 0.8s infinite;
-}
-
-@keyframes exclamationBlink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-@keyframes explode {
-    0% { transform: scale(0.5); opacity: 1; }
-    100% { transform: scale(1.5) translate(var(--x), var(--y)); opacity: 0; }
-}
-
-.explosion-particle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    opacity: 1;
-    animation: explode 1s ease-out;
-    pointer-events: none;
-}
-
-/* **Shake Animation** */
-@keyframes shake {
-    0% { transform: translateX(0px); }
-    25% { transform: translateX(-2px); }
-    50% { transform: translateX(2px); }
-    75% { transform: translateX(-2px); }
-    100% { transform: translateX(0px); }
-}
-
-/* **Flash Effect (on tap)** */
-/* **Flash Effect Inside Mini-Game Only** */
-.flash-effect {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.3);
-    z-index: 10;
-    pointer-events: none;
-    animation: flash 0.15s ease-out;
-}
-
-@keyframes flash {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-
-    </style>
-
 <body>
 
     <div id="gameScreen">
       
+<nav id="stickyNav">
+    <h2>Fiz🎣</h2>
+<small id="caughtStreakDisplay">Caught Streak: 0</small>
+<small>Cash: ₱<span id="cashCount">0</span></small>
+</nav>
+
       <div class="FullMenuio">
 <div class="exp-container">
-    <span id="levelText">Level 1</span> <!-- Level display -->
+    <span id="levelText">Level 1</span> 
+
 </div>
-<div id="caughtStreakDisplay">Caught Streak: 0</div>
 
         <h3><span>Username</span>'s Kit</h3>
         <script>
@@ -1306,6 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <h4>🎣Rod Equipment</h4>
 <select id="rodSelect"></select>
+<figure></figure>
+<div id="rodStats"></div>
+
 
 
 
@@ -1432,11 +198,11 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 
 
-
 <div id="miniGame" style="display: none; text-align: center; background: #222; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); color: white;">
-    <h2 style="color: cyan; text-shadow: 0px 0px 5px cyan;">Catch the Fish!</h2>
-
-    <p id="minusProgressText" style="color: red; font-size: 18px; font-weight: bold; text-shadow: 0px 0px 10px red;"></p> 
+    <p style="color: cyan; text-shadow: 0px 0px 5px cyan;">Catch the Fish!</p>
+<figure></figure>
+    <small id="minusProgressText" style="color: red; font-size: 18px; font-weight:
+    bold; text-shadow: 0px 0px 10px red;"></small> 
 
     <!-- Exclamation Mark for Rarity -->
     <div id="exclamationMark" class="exclamation-mark" style="display: none;">!</div>
@@ -1447,20 +213,91 @@ document.addEventListener("DOMContentLoaded", function() {
         <div id="fishIcon">🐟</div>
     </div>
 
-    <!-- Fishing Button -->
+<div id="comboMessage" style="position: absolute; font-size: 24px; font-weight: bold; color: gold; 
+    text-shadow: 0px 0px 10px gold; display: none; pointer-events: none;">
+</div>
+
     <div id="rodWheelContainer">
         <button id="tapButton" onclick="tapButton()">🎣</button>
     </div>
 </div>
-
-<div id="shakeMiniGame">
-  
-</div>
-
+<figure style="color:#111111;">
+The abyss whispers secrets only the drowned can hear. Beneath the waves, where light dares not reach, it waits—its form shifting, its tendrils reaching beyond time. The stars are not misaligned… yet. But when they are, the deep one will rise, and the dreamers will awaken.
+</figure>
 </div>
 
     <script>//NOTIFICATIONS
+function showCombo(message) {
+    let tapButton = document.getElementById("tapButton");
 
+    // Create a new combo message element
+    let comboElement = document.createElement("div");
+    comboElement.innerText = message;
+    comboElement.style.position = "fixed"; // Fixed position to overlay everything
+    comboElement.style.fontSize = "10px";
+    comboElement.style.fontWeight = "bold";
+    comboElement.style.color = "gold";
+    comboElement.style.textShadow = "0px 0px 10px gold";
+    comboElement.style.pointerEvents = "none";
+    comboElement.style.opacity = "1";
+    comboElement.style.transition = "transform 1s ease-out, opacity 1s ease-out";
+    comboElement.style.zIndex = "9999"; // Ensures it overlays everything
+
+    // Append to the document
+    document.body.appendChild(comboElement);
+
+    // Get tap button position
+    let rect = tapButton.getBoundingClientRect();
+    let offsetX = Math.random() * 40 - 20; // Randomize X position
+    let offsetY = -50; // Appear above the button
+
+    // Position it near the tap button
+    comboElement.style.left = `${rect.left + rect.width / 2 + offsetX}px`;
+    comboElement.style.top = `${rect.top + offsetY}px`;
+
+    // Animate upward and fade out
+    setTimeout(() => {
+        comboElement.style.transform = "translateY(-100px)";
+        comboElement.style.opacity = "0";
+    }, 10);
+
+    // Remove from DOM after animation
+    setTimeout(() => {
+        comboElement.remove();
+    }, 1000);
+}
+function RodMessage(reason) {
+let fisj = new Audio("./Sounds/fishts.mp3");
+    fisj.play();
+
+    let notification = document.createElement("div");
+    notification.style.position = "fixed";
+    notification.style.top = "50%";
+    notification.style.left = "50%";
+    notification.style.transform = "translate(-50%, -50%)";
+    notification.style.padding = "15px 20px";
+    notification.style.background = "rgba(0, 0, 0, 0.8)";
+    notification.style.borderRadius = "10px";
+    notification.style.color = "white";
+    notification.style.fontSize = "18px";
+    notification.style.fontWeight = "bold";
+    notification.style.textAlign = "center";
+    notification.style.zIndex = "9999";
+    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
+    notification.style.animation = "fadeOut 3s forwards";
+
+    // Notification text
+    notification.innerHTML = `
+        <span style="color: gray;">${reason}</span>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Remove after animation
+    setTimeout(() => {
+        notification.remove();
+    }, 300);
+}
 function showExpNotification(expGained) {
     // Create notification element
     let notification = document.createElement("div");
@@ -1891,15 +728,83 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 200); // 2-second delay before checking
 });
 
-
 </script>
 
+<style>
+ body {
+    margin: 0;
+    padding: 0;
+    min-height: 200vh; /* Allows scrolling */
+    background: black; /* Deep dark abyss */
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    position: relative;
+}
 
-<script>
-// SERVER TIME OUT!
-setTimeout(() => {
-  alert("Server Refreshing - Rejoining"); // Show alert
-  location.reload(); // Refresh the page
-}, 3600000); // 1 hour (60 min * 60 sec * 1000 ms)
+.area {
+    margin-top: 10px;
+    border: 1px solid #000;
+    padding: 10px;
+    background: #f9f9f9;
+    width: 100%;
+    max-width: 90%;
+    margin: 10px auto; /* ✅ Fix: Center the area */
+}
 
-</script>
+/* Center `.area` on larger screens */
+@media (min-width: 768px) { 
+    .area {
+        max-width: 50%;
+    }
+}
+
+/* Container for floating elements (keeps them separate from UI) */
+.floating-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; 
+    pointer-events: none;
+}
+
+/* Falling Particles */
+@keyframes fall {
+    0% { transform: translateY(-10px) scale(1); opacity: 0.8; }
+    100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+}
+
+@keyframes floatLoop {
+    0% { transform: translateY(0px) scale(1); opacity: 0.2; }
+    100% { transform: translateY(100vh) scale(1.2); opacity: 0; }
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: fall 10s linear infinite; /* ✅ Fix: Apply animation */
+}
+
+/* Randomize animation speed */
+.particle:nth-child(odd) { animation-duration: 7s; }
+.particle:nth-child(even) { animation-duration: 10s; }
+
+/* Scary Fish Shadows */
+@keyframes fish-move {
+    0% { transform: translateX(-50px) scale(1); opacity: 0.3; }
+    50% { transform: translateX(50px) scale(1.2); opacity: 0.1; }
+    100% { transform: translateX(-50px) scale(1); opacity: 0.3; }
+}
+
+.fish-shadow {
+    position: absolute;
+    width: 150px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.4);
+    filter: blur(5px); /* ✅ Fix: Reduce blur for clarity */
+    border-radius: 50%;
+    animation: fish-move 6s ease-in-out infinite alternate;
+}
+
+</style>
