@@ -1,6 +1,8 @@
 const rods = [
   { name: "Wooden Rod", price: 0, lucky: 1, power: 3, resilience: 0, lureSpeed: 25, passive: "None", limited: false, available: true },
   { name: "Steel Rod", price: 1000, lucky: 2, power: 3, resilience: 10, lureSpeed: 24, passive: "None", limited: false, available: true },
+  { name: "Lews Rod", price: 1000, lucky: 2, power: 3, resilience: 12, lureSpeed: 24, passive: "None", limited: false, available: true },
+  { name: "Steady Rod", price: 1000, lucky: 2, power: 3, resilience: 50, lureSpeed: 24, passive: "None", limited: false, available: true },
   { name: "Carbon Rod", price: 1500, lucky: 3, power: 9, resilience: 15, lureSpeed: 23, passive: "None", limited: false, available: true },
   { name: "Lucky Rod", price: 2000, lucky: 5, power: 5, resilience: 20, lureSpeed: 22, passive: "None", limited: false, available: true },
   { name: "Plant Rod", price: 2500, lucky: 6, power: 6, resilience: 25, lureSpeed: 21, passive: "None", limited: false, available: true },
@@ -27,12 +29,15 @@ const rods = [
 { name: "Trident", price: 4400000, lucky: 150, power: 14, resilience: 750,  
   lureSpeed: 12, passive: "50+ Resilience Per 5 seconds", limited: false,  
   available: true },
-{ name: "🛠️Cybernetic Rod[2025]", price: 15_000_000, lucky: 200, power: 22, resilience: 850,  
-  lureSpeed: 10, passive: "Cyber Mutation (Every 50 Catches)", limited: true,  available: true },
-
-  { name: "Meg Master Rod", price: 1961885978781, lucky: 500, power: 21, resilience:
+  { name: "Meg Master Rod", price: 5000000000, lucky: 500, power: 21, resilience:
   1000, lureSpeed: 9, passive: "Plus Power Meg Catching", limited: false,
   available: true },
+  { name: "💎Crystalized Rod", price: 160, lucky: 600, power: 14,  resilience:
+  0,  lureSpeed: 19, passive: "💎Crystalized Mutations Per 100 Catch", limited: true,
+  available: true },
+{ name: "🛠️Cybernetic Rod[2025]", price: 15000000, lucky: 200, power: 22, resilience: 850,  
+  lureSpeed: 10, passive: "Cyber Mutation (Every 50 Catches)", limited: true,
+  available: false },
   { name: "(🌻)Season‘s Rod [2025]", price: 50999999, lucky: 300, power: 15, resilience:
   600, lureSpeed: 9, passive: "5x Amber Mutation Rate", limited: true,
   available: false },
@@ -87,29 +92,29 @@ function createShopItems() {
     let shopContainer = document.getElementById("shopItems");
     shopContainer.innerHTML = ""; // Clear previous shop items
 
-    rods.forEach(rod => {
+    // Filter rods to exclude unavailable ones
+    let availableRods = rods.filter(rod => rod.available);
+
+    availableRods.forEach(rod => {
         let rodDiv = document.createElement("div");
         rodDiv.classList.add("shop-item");
 
         // Show (LIMITED) if the rod is limited
         let limitedTag = rod.limited ? `<span style="color: red; font-weight: bold;">(LIMITED)</span>` : "";
-        
-        // If the rod is unavailable, gray it out and disable purchase
-        let unavailableText = !rod.available ? `<span style="color: gray;">(Unavailable)</span>` : "";
-        let buttonState = !rod.available ? "disabled style='background: gray; cursor: not-allowed;'" : `onclick="buyRod('${rod.name}', ${rod.price})"`;
 
         rodDiv.innerHTML = `
-            <h3>${rod.name} ${limitedTag} ${unavailableText}</h3>
+            <h3>${rod.name} ${limitedTag}</h3>
             <p><b>Lucky:</b> ${rod.lucky}</p>
             <p><b>Resilience:</b> ${rod.resilience}</p>
             <p><b>Power:</b> ${rod.power}</p>
             <p><b>Price:</b> $${rod.price}</p>
-            <p><b>Passive:</b> ${rod.passive}</p> <!-- ✅ Displays Passive Ability -->
-            <button ${buttonState}>${rod.available ? "Buy" : "Unavailable"}</button>
+            <p><b>Passive:</b> ${rod.passive}</p>
+            <button onclick="buyRod('${rod.name}', ${rod.price})">Buy</button>
         `;
         shopContainer.appendChild(rodDiv);
     });
 }
+
 
 
 // Handle rod purchases
@@ -145,6 +150,7 @@ function buyRod(rodName, price) {
 // Update the rod selection dropdown to only show purchased rods
 function updateRodDropdown() {
     let rodSelect = document.getElementById("rodSelect");
+    let rodStats = document.getElementById("rodStats"); // Rod stats display
     rodSelect.innerHTML = ""; // Clear old options
 
     let ownedRods = JSON.parse(localStorage.getItem("ownedRods")) || ["Wooden Rod"];
@@ -156,12 +162,28 @@ function updateRodDropdown() {
         rodSelect.appendChild(option);
     });
 
+    // Function to update rod stats display
+    function updateRodStats(selectedRod) {
+        if (selectedRod) {
+            let limitedTag = selectedRod.limited ? "(Limited)" : "";
+            rodStats.innerHTML = `
+                <h3>${selectedRod.name} ${limitedTag}</h3>
+                <p><b>Lucky:</b> ${selectedRod.lucky}</p>
+                <p><b>Resilience:</b> ${selectedRod.resilience} KG</p>
+                <p><b>Power:</b> ${selectedRod.power}</p>
+                <p><b>Price:</b> $${selectedRod.price}</p>
+                <p><b>Passive:</b> ${selectedRod.passive || "None"}</p>
+            `;
+        }
+    }
+
     // Update selected rod when dropdown changes
     rodSelect.addEventListener("change", () => {
         let chosenRod = rods.find(rod => rod.name === rodSelect.value);
         if (chosenRod) {
             selectedRod = chosenRod;
             localStorage.setItem("selectedRod", JSON.stringify(selectedRod));
+            updateRodStats(selectedRod);
         }
     });
 
@@ -169,8 +191,10 @@ function updateRodDropdown() {
     let savedRod = JSON.parse(localStorage.getItem("selectedRod"));
     if (savedRod) {
         rodSelect.value = savedRod.name;
+        updateRodStats(savedRod);
     }
 }
+
 
 // Custom alert popup
 function showAlert(message) {
