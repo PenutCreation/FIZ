@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="Style/main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initia-scale=1.0">
-    <title>Fiz🎣 - The Deep🫧</title>
+    <title>Fiz🎣</title>
 <link rel="stylesheet" href="Style/global.css">
 </head>
 <div id="sky">
@@ -21,10 +21,104 @@
         <button class="ban-btn"
         onclick="window.location.href='https://google.com'">Leave</button>
     </div>
+
+    <style>
+    
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensures full height */
+    background: linear-gradient(to bottom, #87CEEB, #1E90FF); 
+    transition: background 5s ease-in-out; /* Smooth transition */
+align-content: center;
+    
+}
+
+.area {
+    background: radial-gradient(circle at center, #0093E9 30%, #80D0C7 80%); /* Water Gradient */
+    border: 3px solid #0077B6; /* Deep Blue Border */
+    border-radius: 15px; /* Normal Rounded Corners */
+    padding: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Soft Shadow */
+    color: white; /* White Text */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 20px auto;
+    position: relative; 
+    overflow: hidden;
+    max-width: 300px;
+    transition: 0.4s;
+}
+
+/* 🌊 Animated Water Ripple Effect */
+.area::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 10%, transparent 70%);
+    animation: ripple 5s infinite linear;
+    pointer-events: none;
+    opacity: 0.6;
+    border-radius: 50%;
+}
+
+/* 🌊 Wave Animation */
+@keyframes ripple {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+/* 🌟 Header Styling */
+.area h3 {
+    font-size: 22px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 📜 Paragraph Styling */
+.area p {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* 🎣 Fishing Button */
+.area button {
+    background: #ffdd57; /* Gold Button */
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.area button:hover {
+    background: #ffd700;
+    transform: scale(1.05);
+}
+
+/* 🌊 Mobile Responsive */
+@media (max-width: 600px) {
+    .area {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .area h3 {
+        font-size: 18px;
+    }
+}
+
+
+    </style>
+
 <body>
 
     <div id="gameScreen">
-      
 <nav id="stickyNav">
     <h2>Fiz🎣</h2>
 <small id="caughtStreakDisplay">Caught Streak: 0</small>
@@ -34,8 +128,8 @@
       <div class="FullMenuio">
 <div class="exp-container">
     <span id="levelText">Level 1</span> 
-
 </div>
+
 
         <h3><span>Username</span>'s Kit</h3>
         <script>
@@ -45,8 +139,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
         </script>
-
-<p>Cash: ₱<span id="cashCount">0</span></p>
 <div id="weather-info">
     <h2>🌤️ Weather Info</h2>
     <p><strong>Time of Day:</strong> <span id="timeOfDay">Day</span></p>
@@ -62,6 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="overlay-content">
         <button class="close-btn" onclick="closeFishIndex()">X</button>
         <h2>Fish Index</h2>
+<div id="areaButtons"></div>
         <input type="text" id="fishSearch" oninput="searchFish()" placeholder="Search Fish..." />
         <div id="fishListContainer"></div>
     </div>
@@ -80,50 +173,40 @@ document.addEventListener("DOMContentLoaded", function() {
     <div id="shopItems"></div>
     <button id="closeShop">Close</button>
 </div>
-</div>
+
 <div id="customAlert" style="display: none;">
     <p id="alertMessage"></p>
     <button id="closeAlert">OK</button>
 </div>
+
+</div>
+
+
+<div class="area-container">
+  <fieldset class="area">
+    <img src="">
+    <h3>Creek💦</h3>
+    <p>A creek full of water motion, with a beautiful sunset spot and a bench.
+      The smooth flowing water makes a good fishing start here!</p>
+    <center>
+      <button id="StartButtonFish" onclick="startFishing('Creek')">🎣 Fish on Creek</button>
+    </center>
+  </fieldset>
+</div>
+
 <div class="area-container">
 <fieldset class="area">
-  <img src="">
-  <h3>🪸Deep Sea Canyon🫧</h3>
-  <p>a dark of abys of canyon👀🫧</p>
-  <p>Rumbling sounds are been heard along of the coast⚠️</p>
-  <center>
-        <button id="StartButtonFish" onclick="startFishing('DEEPSEACANYON')">🎣
-        Fish on
-        here</button>
-  </center>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" style="margin-top:1000px;">
-  <h3>Bill Board</h3>
-<p> Ads:</p>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'e8ba9bd749df815e35f948cc1889b85b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/e8ba9bd749df815e35f948cc1889b85b/invoke.js"></script>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" style="margin-top:9000px;">
-  <h3>🌌Twilight Depths (1,000m)</h3>
-  <p>Dimly lit, home to strange deep-sea fish.</p>
+  <h3>Dock⚓</h3>
+  <p>Dock Full of Amazing Fishes</p>
  
   <center>
-        <button id="StartButtonFish" onclick="startFishing('TWILIGHTTRENCH')">🎣 Fish
+        <button id="StartButtonFish" onclick="startFishing('ShallowOcean')">🎣 Fish
         on Ocean</button>
   </center>
 </fieldset>
+</div>
+<div class="area-container">
+  <small style="color:#74d3ff;">the Unknown is waiting—</small>
 </div>
 <div class="area-container">
 <fieldset class="area" style="margin-top:1000px;">
@@ -142,11 +225,72 @@ document.addEventListener("DOMContentLoaded", function() {
 </fieldset>
 </div>
 <div class="area-container">
-<fieldset class="area" style="margin-top: 5000px;">
-  <h3>🫧Midnight Trench (3,000m)️</h3>
-  <p>No sunlight, mysterious and dangerous creatures lurk.</p>
+<fieldset class="area" style="margin-top:600px;">
+  <h3>Haystack Beach🏖️</h3>
+  <p>Amazing Haystack Beach with amazing Species Lived Together in a major
+  ecosystem🌅</p>
+ <p>Lies Covered Under the sands.</p>
   <center>
-        <button id="StartButtonFish" onclick="startFishing('MIDNIGHTTRENCH')">🎣 Fish
+        <button id="StartButtonFish" onclick="startFishing('HaystackBeach')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="background: linear-gradient(135deg, Green, #80D0C7);">
+  <h3>Haystack Isle ( Pond )</h3>
+  <p>Massive Pond, but did you know else massive? LOOOOOOOOOOOOOOOOOOOW
+  TAPER</p>
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('HaystackislePound')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area">
+  <h3>Haystack Beach🏖️</h3>
+  <p>Amazing Haystack Beach with amazing Species Lived Together in a major
+  ecosystem🌅</p>
+ <p>Lies Covered Under the sands.</p>
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('HaystackBeach')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+</div>
+
+<div class="area-container">
+<fieldset class="area">
+  <h3>Shallow Ocean🌊</h3>
+  <p>Shallow Ocean a place where life live to its Glory. Thousands of fishes
+  swimming in the waters</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('ShallowOcean')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" id="Tunas"style="margin-top:800px; display:none;">
+  <h3>🐟 Abundance</h3>
+  <p>Abundance AmberJack, Jumping in the ocean. and in a mass of numbers</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🌊THE OCEAN🪸</h3>
+  <p>The Species living here is big and small a abalanced ecosystem but is there
+  someone more bigger under us or.... something is predatoring us </p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
         on Ocean</button>
   </center>
 </fieldset>
@@ -168,17 +312,325 @@ document.addEventListener("DOMContentLoaded", function() {
 </fieldset>
 </div>
 <div class="area-container">
-<fieldset class="area" style="margin-top: 50000px;">
-  <h3>🫧Thermocline Layer</h3>
-  <p>A Huge Sand Layer which covers the unknown parts of the ocean👀</p>
+<fieldset class="area" id="GreatWhiteShark-pool" style="display:none;
+margin-top:900px; background: linear-gradient(135deg, pink, #80D0C7);">
+  <h3>🚩Great White Shark Spot</h3>
+  <p>a Fisherman Spotted a Great White Shark here!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('GreatWhiteShark')">🎣
+        Fish Here?</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🌊THE OCEAN🪸</h3>
+  <p>The Species living here is big and small a abalanced ecosystem but is there
+  someone more bigger under us or.... something is predatoring us </p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" id="GreatHammerHead-pool" style="display:;
+margin-top:900px; background: linear-gradient(135deg, pink, #80D0C7);
+display:none;">
+  <h3>🚩Great HammerHead Shark Spot</h3>
+  <p>GREAT HAMMERHEAD SHARK SPOTTED BY A FISHERMAN!!!!!</p>
+ 
+  <center>
+<button id="StartButtonFish" onclick="startFishing(this)">🎣 Fish Here?</button>
+
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:800px;">
+  <h3>❄️Snow Isles❄️</h3>
+  <p>Ver~ Very- Cold🥶❄️</p>
+ <p>ther- theres a saying the colder the enviroment the larger the species</p>
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('SNOWISLES')">🎣 Fish
+        on Snow Isles</button>
+  </center>
+  <h3>Snow Isles Shop:</h3>
+<div class="totemshop">
+    <div class="shop-content">
+        <h4>🎣 Totem Shop</h4>
+
+        <fieldset>
+            <h3>C³ Totem</h3>
+            <p style="color:white;">Attracts Huge Fishes</p>
+            <button onclick="buyTotem('C³ Totem', 500)">C³ Totem - $500</button>
+        </fieldset>
+
+        <fieldset>
+            <h3>Aaoura Totem</h3>
+            <p style="color:white;">Boosts Mythical Fish chances (Lasts 15 min)</p>
+            <button onclick="buyTotem('Aaoura Totem', 1000)">Aaoura Totem - $1000</button>
+        </fieldset>
+
+        <fieldset>
+            <h3>Eclipse Totem</h3>
+            <p style="color:white;">Mysterious Effects</p>
+            <button onclick="buyTotem('Eclipse Totem', 750)">Eclipse Totem - $750</button>
+        </fieldset>
+    </div>
+</div>
 </fieldset>
 </div>
 <div class="area-container">
 <fieldset class="area" >
-  <h3>🫧🐟Pheristoric Shift Area (50,000m)</h3>
-  <p>A Huge Sand Layer which covers the unknown parts of the ocean👀</p>
+  <h3>Shallow Ocean🌊</h3>
+  <p>Shallow Ocean a place where life live to its Glory. Thousands of fishes
+  swimming in the waters</p>
+ 
   <center>
-        <button id="StartButtonFish" onclick="startFishing('PHERISTORICSHIFTTRENCH')">🎣 Fish
+        <button id="StartButtonFish" onclick="startFishing('ShallowOcean')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" id="Tunas"style="margin-top:800px; display:none;">
+  <h3>🐟Tuna Abundance</h3>
+  <p>Abundance AmberJack, Jumping in the ocean. and in a mass of numbers</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area"id="Meg-pool" style="margin-top:300px; background:
+linear-gradient(135deg, Red, #80D0C7); display:none;">
+  <h3>🚩Megalodon Spotted</h3>
+  <p>A Huge Body Of Fish moves faster than a car Spotted by a Fisherman. Radar
+  spotted most look like a megalodon!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('MEGPOOLAES')">🎣 Fish
+        here</button>
+        </fieldset>
+  </div>
+<div class="area-container" id="CursedMrgMegalodon">
+<fieldset class="area"style="margin-top:300px; background:
+linear-gradient(135deg, Red, #80D0C7); display:none;">
+  <h3>🚩Cursed Megalodon Spotted</h3>
+  <p>BLOOD MOON RISES AND THE TIDE HAS RISED A BEAST!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('CURSEDMEG')">🎣 Fish
+        here</button>
+        </fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" id="BlessedTide"
+style="background:linear-gradient(135deg, lightgreen, #80D0C7);
+margin-top:800px; display:none;">
+  <h3>🍀Blessed Tides🌊</h3>
+  <p>A Secret of blessed waves, the lore of it disturbs you, through your spine</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area"id="Meg-pool-season" style="margin-top:800px; background:
+linear-gradient(135deg, orange, #80D0C7); ">
+  <h3>🚩Seasonal Megalodon Spotted</h3>
+  <p>A Huge Body Of Fish moves faster than a car Spotted by a Fisherman. Radar
+  spotted most look like a megalodon!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('MEGPOOLAESOANHAY')">🎣 Fish
+        here</button>
+        </fieldset>
+        </div>
+<div class="area-container">
+<fieldset class="area" id="Halibut"style="margin-top:800px; display:none;">
+  <h3>🐟Halibut Abundance</h3>
+  <p>Abundance AmberJack, Jumping in the ocean. and in a mass of numbers</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style=" background:
+linear-gradient(135deg, orange, #80D0C7);">
+  <h3>🌾Hay Isle (Bay)</h3>
+  <p>Full of Agriculture and pure nature</p>
+ <p></p>
+ <center>
+        <button id="StartButtonFish" onclick="startFishing('HayBay')">🎣 Fish
+        here</button>
+ </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:1000px;">
+  <h3>Bill Board</h3>
+<p> Ads:</p>
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'e8ba9bd749df815e35f948cc1889b85b',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/e8ba9bd749df815e35f948cc1889b85b/invoke.js"></script>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:500px; background:
+linear-gradient(135deg, purple, #80D0C7);">
+  <h3>🏝️SkullLands☠️</h3>
+  <p>a island full of fogs and darkness. you should be be careful as fishes has
+  cursed that may end you up☠️</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('SkullLands')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:500px; background:
+linear-gradient(135deg, blue, #80D0C7);">
+  <h3>🌊Sunken City🫧</h3>
+  <p>Sunken City is located down deep in the ocean. fresh weird fishes live down
+  there🦑</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('SunkenCity')">🎣 Fish
+        on Sunken City</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" id="WhaleSharkPOOL"style="margin-top:800px; display:none;">
+  <h3>🦈Whale Shark Group</h3>
+  <p>Whale Shark Spotted Here, a group of them!</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('WhaleShark')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+<div class="area-container">
+<fieldset class="area" id="BullShark"style="margin-top:800px; display:none;">
+  <h3>🦈Bull Shark Abundance</h3>
+  <p>Abundance AmberJack, Jumping in the ocean. and in a mass of numbers</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+</div>
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🌊THE OCEAN🪸</h3>
+  <p>The Species living here is big and small a abalanced ecosystem but is there
+  someone more bigger under us or.... something is predatoring us </p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on Ocean</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" id="AmberJacks"style="margin-top:800px; display:none;">
+  <h3>🐟AmberJack Abundance</h3>
+  <p>Abundance AmberJack, Jumping in the ocean. and in a mass of numbers</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+</div>
+
+<div class="area-container">
+<fieldset class="area" id="AmberJacks"style="margin-top:800px;">
+  <h3>🦈SharkLand🏝️</h3>
+  <p>Shark land infested by Sharks!</p>
+
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('SHARKLAND')">🎣 Fish
+        on here</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:1000px;">
+  <h3>Bill Board</h3>
+<p> Ads:</p>
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'e8ba9bd749df815e35f948cc1889b85b',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/e8ba9bd749df815e35f948cc1889b85b/invoke.js"></script>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style=" background:
+linear-gradient(135deg, darkblue, #80D0C7);margin-top:800px;">
+  <h3>☠️Deep Water🫧</h3>
+  <p>Beneath the surface of Fiz🎣 lies The Deep, a place where light fades, and only the bravest dare to descend. The water here is thick with an eerie silence, broken only by the distant groans of unseen creatures. The deeper you go, the more unnatural it feels—like something is watching… waiting.</p>
+ <p>Area Level:35</p>
+  <center>
+        <button id="deepSeaBtn">Enter</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:500px; background:
+linear-gradient(135deg, blue, #80D0C7);">
+  <h3>🐸SWAMPY🐸</h3>
+  <p>a swamp island full of sloppy islands</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('SWAMPY')">🎣 Fish
+        on SWAMPY</button>
+  </center>
+</fieldset>
+
+</div>
+<div class="area-container">
+<small style="color:#004160;">
+Date Unknown... My hands tremble as I carve these words into the damp wood of this wreckage. The sea is wrong. It moves like a living thing, writhing, pulsing with something that should not be. We saw it rise—towering, impossible, its eyes like twin abysses that drank the very light from the world. The ship split like a child's toy. My crew... my friends... they screamed, but the waves swallowed their voices. I hear them still, beneath the water.
+
+I should not have looked. It saw me. It knows me. The sky itself has darkened, though the sun still burns. I feel it, its presence pressing against my mind, filling my thoughts with whispers of drowned cities and a name that should never be spoken.
+
+It is not a god. It is older than gods. And it is awake.
+</small>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🌊THE OCEAN🪸</h3>
+  <p>The Species living here is big and small a abalanced ecosystem but is there
+  someone more bigger under us or.... something is predatoring us </p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
         on Ocean</button>
   </center>
 </fieldset>
@@ -192,10 +644,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         <h3 style="color:white;">🎣 Fish Inventory</h3>
         <button onclick="sellAllExceptRare()">Sell All (Except Rare)</button>
+
 <input type="text" id="inventorySearch" placeholder="Search for a fish..." oninput="updateInventoryUI()">
 <div id="inventory"></div>
    </div>
 </div>
+
 
 
 <div id="miniGame" style="display: none; text-align: center; background: #222; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); color: white;">
@@ -221,9 +675,9 @@ document.addEventListener("DOMContentLoaded", function() {
         <button id="tapButton" onclick="tapButton()">🎣</button>
     </div>
 </div>
-<figure style="color:#111111;">
-The abyss whispers secrets only the drowned can hear. Beneath the waves, where light dares not reach, it waits—its form shifting, its tendrils reaching beyond time. The stars are not misaligned… yet. But when they are, the deep one will rise, and the dreamers will awaken.
-</figure>
+
+
+
 </div>
 
     <script>//NOTIFICATIONS
@@ -266,38 +720,8 @@ function showCombo(message) {
         comboElement.remove();
     }, 1000);
 }
-function RodMessage(reason) {
-let fisj = new Audio("./Sounds/fishts.mp3");
-    fisj.play();
 
-    let notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.top = "50%";
-    notification.style.left = "50%";
-    notification.style.transform = "translate(-50%, -50%)";
-    notification.style.padding = "15px 20px";
-    notification.style.background = "rgba(0, 0, 0, 0.8)";
-    notification.style.borderRadius = "10px";
-    notification.style.color = "white";
-    notification.style.fontSize = "18px";
-    notification.style.fontWeight = "bold";
-    notification.style.textAlign = "center";
-    notification.style.zIndex = "9999";
-    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
-    notification.style.animation = "fadeOut 3s forwards";
 
-    // Notification text
-    notification.innerHTML = `
-        <span style="color: gray;">${reason}</span>
-    `;
-
-    document.body.appendChild(notification);
-
-    // Remove after animation
-    setTimeout(() => {
-        notification.remove();
-    }, 300);
-}
 function showExpNotification(expGained) {
     // Create notification element
     let notification = document.createElement("div");
@@ -389,7 +813,38 @@ Reelerio.pause();
         notification.remove();
     }, 3000);
 }
+function RodMessage(reason) {
+let fisj = new Audio("./Sounds/fishts.mp3");
+    fisj.play();
 
+    let notification = document.createElement("div");
+    notification.style.position = "fixed";
+    notification.style.top = "50%";
+    notification.style.left = "50%";
+    notification.style.transform = "translate(-50%, -50%)";
+    notification.style.padding = "15px 20px";
+    notification.style.background = "rgba(0, 0, 0, 0.8)";
+    notification.style.borderRadius = "10px";
+    notification.style.color = "white";
+    notification.style.fontSize = "18px";
+    notification.style.fontWeight = "bold";
+    notification.style.textAlign = "center";
+    notification.style.zIndex = "9999";
+    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
+    notification.style.animation = "fadeOut 3s forwards";
+
+    // Notification text
+    notification.innerHTML = `
+        <span style="color: gray;">${reason}</span>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Remove after animation
+    setTimeout(() => {
+        notification.remove();
+    }, 300);
+}
 function showMoneyNotification(amount) {
     let notification = document.createElement("div");
     notification.style.position = "fixed";
@@ -428,7 +883,7 @@ function showMoneyNotification(amount) {
 function showEvent(message) {
     let notification = document.createElement("div");
     notification.style.position = "fixed";
-    notification.style.top = "10px"; // Appears at the top
+    notification.style.top = "120px"; // Appears at the top
     notification.style.left = "50%";
     notification.style.transform = "translateX(-50%)";
     notification.style.padding = "10px 20px";
@@ -491,101 +946,24 @@ function showSeason(message) {
     }, 3000);
 }
 
-function startEventLoop() {
-    function showFieldset() {
-        let GreatWhiteSharkPOOL = document.getElementById("GreatWhiteShark-pool");
-        let GreatHammerHeadPOOL = document.getElementById("GreatHammerHead-pool");
-        let MegPool = document.getElementById("Meg-pool");
-        let MegPoolSeason = document.getElementById("Meg-pool-season");
-        let WhaleSharKSDG = document.getElementById("WhaleSharkPOOL");
-
-if (!WhaleSharKSDG) return;
-showEvent("A <span style='color:pink;'>Whale Shark</span> Spotted in the Ocean")
-
-        MegPool.style.display = "block"; // Show fieldset
-
-        setTimeout(() => {
-            MegPool.style.display = "none"; // Hide after 15s
-            startRandomTimer(); // Restart loop
-        }, 600000);
-if (!MegPoolSeason) return;
-showEvent("A <span style='color:orange;'>Seasonal Megalodon</span> Spotted in the Ocean")
-
-        MegPool.style.display = "block"; // Show fieldset
-
-        setTimeout(() => {
-            MegPool.style.display = "none"; // Hide after 15s
-            startRandomTimer(); // Restart loop
-        }, 600000);
-        
-if (!MegPool) return;
-showEvent("A <span style='color:red;'>Megalodon</span> Spotted in the Ocean")
-
-        MegPool.style.display = "block"; // Show fieldset
-
-        setTimeout(() => {
-            MegPool.style.display = "none"; // Hide after 15s
-            startRandomTimer(); // Restart loop
-        }, 600000);
-        
-        if (!GreatHammerHeadPOOL) return;
-showEvent("A <span style='color:Pink;'>Great HammerHead Shark</span> Spotted in the Ocean")
-
-        GreatHammerHeadPOOL.style.display = "block"; // Show fieldset
-
-        setTimeout(() => {
-            GreatHammerHeadPOOL.style.display = "none"; // Hide after 15s
-            startRandomTimer(); // Restart loop
-        }, 300000);
-        
-        if (!GreatWhiteSharkPOOL) return;
-showEvent("A <span style='color:Pink;'>Great White Shark</span> Spotted in the Ocean")
-
-        GreatWhiteSharkPOOL.style.display = "block"; 
-        GreatHammerHeadPOOL.style.display = "block";
-        setTimeout(() => {
-            GreatWhiteSharkPOOL.style.display = "none";
-            GreatHammerHeadPOOL.style.display = "none";
-            startRandomTimer(); // Restart loop
-        }, 300000);
-    }
-
-    function startRandomTimer() {
-let randomTime = Math.floor(Math.random() * (86400000 - 3600000 + 1)) + 3600000; // 1-24 hours
-
-
-        setTimeout(() => {
-            showFieldset();
-        }, randomTime);
-    }
-
-    startRandomTimer(); // Start the first timer on page load
-}
-
-
-
-
-
 
     </script>
 
-<script defer src="ServerServiceScript/main.js"></script> <!-- Main after Rod -->
-<script defer src="ServerServiceScript/Rod.js"></script> <!-- Load Rod.js First -->
+<script defer src="ServerServiceScript/main.js"></script>
+<script defer src="ServerServiceScript/Bait.js"></script> <!-- Main after Rod -->
+<script defer src="ServerServiceScript/Rod.js"></script> 
 
+<script defer src="ServerServiceScript/surge.js"></script>
 <script defer src="ServerServiceScript/Shopitem.js"></script>
 <script defer src="ServerServiceScript/BannedChecker.js"></script>
-<script defer src="ServerServiceScript/DeepseaAudioSoundSfx.js"></script>
+<script defer src="ServerServiceScript/Weather.js"></script>
+<script defer src="ServerServiceScript/AudioSoundSfx.js"></script>
+<script defer src="ServerServiceScript/Abundance.js"></script>
+<script  src="ServerServiceScript/Fishsound.js"></script>
 
 
 </body>
 </html>
-
-<audio id="musicgameSFX" src="Sounds/sfx-bg.mp3" loop></audio>
-<audio id="Music-Background" src="Sounds/BGM.mp3" loop></audio>
-
-<script>// JUST SOUND MECHANICS DONT TOUCH IT OR I TOUCH YOU
-
-</script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const inventoryButton = document.getElementById("inventoryButton");
@@ -620,60 +998,16 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "index.html"; // Redirect to register page if not registered
     }
 });
-
-
 </script>
+<script>
+document.getElementById("deepSeaBtn").addEventListener("click", function() {
 
-<script>//EVENTS AND MORE
-const numParticles = 50;
-const numFish = 5;
-const floatingContainer = document.createElement("div");
-floatingContainer.classList.add("floating-background");
-document.body.appendChild(floatingContainer);
-
-// Generate floating particles
-for (let i = 0; i < numParticles; i++) {
-    let particle = document.createElement("div");
-    particle.classList.add("particle");
-    particle.style.left = Math.random() * 100 + "vw";
-    particle.style.animationDelay = Math.random() * 5 + "s";
-    particle.style.width = particle.style.height = Math.random() * 5 + 2 + "px";
-    floatingContainer.appendChild(particle);
-}
-
-// Generate scary fish shadows
-for (let i = 0; i < numFish; i++) {
-    let fish = document.createElement("div");
-    fish.classList.add("fish-shadow");
-    fish.style.left = Math.random() * 100 + "vw";
-    fish.style.top = Math.random() * 100 + "vh";
-    fish.style.animationDuration = Math.random() * 8 + 4 + "s";
-    fish.style.width = Math.random() * 200 + 50 + "px";
-    fish.style.height = Math.random() * 100 + 30 + "px";
-    floatingContainer.appendChild(fish);
-}
-const area = document.querySelector(".area");
-
-for (let i = 0; i < 20; i++) {
-    let particle = document.createElement("div");
-    particle.classList.add("particle");
-    resetParticle(particle); // Set initial position
-    area.appendChild(particle);
-    animateParticle(particle); // Start animation
-}
-
-function resetParticle(particle) {
-    particle.style.left = Math.random() * 100 + "%"; // Random horizontal position
-    particle.style.top = Math.random() * 100 + "%"; // Random vertical position
-    particle.style.width = particle.style.height = Math.random() * 6 + "px";
-}
-
-function animateParticle(particle) {
-    let duration = Math.random() * 5 + 5; // Random speed between 5-10s
-    particle.style.animation = `floatLoop ${duration}s linear infinite`;
-}
-
-
+    if (level >= 35) {
+        window.location.href = "Game(DeepSea).html"; // Change this to your deep-sea page
+    } else {
+        alert("You need to be at least Level 35 to enter the deep sea!"); 
+    }
+});
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -709,102 +1043,3 @@ function checkBanStatus() {
 }
 
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(function () {
-        let level = parseInt(localStorage.getItem("level")) || 0;
-        console.log("Player Level:", level); // Debugging
-
-        if (level >= 35) {
-            console.log("Player verified");
-        } else {
-            alert("You need to be at least Level 35 to enter the deep sea!"); 
-            console.log("Player Kicked");
-
-            setTimeout(() => {
-                window.location.href = "Game.html";
-            }, 50); // Short delay to let alert show
-        }
-    }, 200); // 2-second delay before checking
-});
-
-</script>
-
-<style>
- body {
-    margin: 0;
-    padding: 0;
-    min-height: 200vh; /* Allows scrolling */
-    background: black; /* Deep dark abyss */
-    overflow-x: hidden; /* Prevents horizontal scroll */
-    position: relative;
-}
-
-.area {
-    margin-top: 10px;
-    border: 1px solid #000;
-    padding: 10px;
-    background: #f9f9f9;
-    width: 100%;
-    max-width: 90%;
-    margin: 10px auto; /* ✅ Fix: Center the area */
-}
-
-/* Center `.area` on larger screens */
-@media (min-width: 768px) { 
-    .area {
-        max-width: 50%;
-    }
-}
-
-/* Container for floating elements (keeps them separate from UI) */
-.floating-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; 
-    pointer-events: none;
-}
-
-/* Falling Particles */
-@keyframes fall {
-    0% { transform: translateY(-10px) scale(1); opacity: 0.8; }
-    100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-}
-
-@keyframes floatLoop {
-    0% { transform: translateY(0px) scale(1); opacity: 0.2; }
-    100% { transform: translateY(100vh) scale(1.2); opacity: 0; }
-}
-
-.particle {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    animation: fall 10s linear infinite; /* ✅ Fix: Apply animation */
-}
-
-/* Randomize animation speed */
-.particle:nth-child(odd) { animation-duration: 7s; }
-.particle:nth-child(even) { animation-duration: 10s; }
-
-/* Scary Fish Shadows */
-@keyframes fish-move {
-    0% { transform: translateX(-50px) scale(1); opacity: 0.3; }
-    50% { transform: translateX(50px) scale(1.2); opacity: 0.1; }
-    100% { transform: translateX(-50px) scale(1); opacity: 0.3; }
-}
-
-.fish-shadow {
-    position: absolute;
-    width: 150px;
-    height: 80px;
-    background: rgba(0, 0, 0, 0.4);
-    filter: blur(5px); /* ✅ Fix: Reduce blur for clarity */
-    border-radius: 50%;
-    animation: fish-move 6s ease-in-out infinite alternate;
-}
-
-</style>
