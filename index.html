@@ -39,16 +39,16 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>Welcome to Fiz🎣</h1>
-        <p>100+ Different Types of Fish! Hope you catch something rare!</p>
+        <p>1000+ Different Types of Fish! Hope you catch something rare!</p>
     </section>
 
     <!-- Play Section -->
     <section id="play">
         <center>
             <img src="img/logo.png" style="width:50%; border-radius:10px;">
-            <h2>(🫧Update)Fiz</h2>
-            <kbd>18.3K Visits • (<span id="activePlayers"></span> Active)</kbd>
-            <p>Server Ping: Slow</p>
+            <h2>Fiz🦈</h2>
+            <kbd>32.6K Visits • (<span id="activePlayers"></span> Active)</kbd>
+            <p>Server Ping: Fast</p>
             
             <button class="fizzplay" onclick="play()">Play</button>
         </center>
@@ -67,51 +67,60 @@
 
 
     <section id="about">
-<div class="changelog">
+   <div class="changelog">
     <h3>🫧 Changelog</h3>
 
     <section>
-        <h4>🍀 Luck Event</h4>
-        <p>The <strong>Luck Event</strong> occurs when a <em>Blessed Tide</em> spawns, increasing your chances of catching rare fish.</p>
-    </section>
-
-    <section>
-        <h4>🚩 The Deep</h4>
-        <p>Explore <strong>The Deep</strong>, a mysterious new area where <em>Leviathans</em> may appear!</p>
+        <h4>🚀 New Features & Improvements</h4>
         <ul>
-            <li>Features <strong>3 unique deep-sea areas</strong> with immersive underwater ambiance.</li>
-            <li>Deep-sea creatures are now more challenging to catch.</li>
-            <li>Uncover hidden secrets and untold stories of the unknown.</li>
+            <li>✨ **Luring System Overhaul** – Fish now take time to bite before the mini-game starts.</li>
+            <li>🎣 **Fishing Mini-Game Revamp** – Keep the white bar on the fish icon while filling the progress bar.</li>
+            <li>⚖️ **Fishing Rod Balancing** – Power of all rods reduced by **10%** for better game balance.</li>
+            <li>💾 **Auto-Save System** – Your selected fishing rod and cash are now automatically saved.</li>
+            <li>🔄 **Shop UI Rework** – Now opens as a pop-up with better item descriptions.</li>
+            <li>🛒 **New Shop Alert System** – Get a custom alert when you don’t have enough cash.</li>
+            <li>🧲 **Fish Resilience System** – Stronger fish move faster, making them harder to catch.</li>
+            <li>🌑 **Night of the Fireflies Event** – Doubles chances for mutations at night.</li>
+            <li>🌕 **Moonlit Mirage Event** – If a fish with a Mutation is caught, you will get a Moonlit Bonus lasting until morning.</li>
+            <li>❇️ **Mutation Surge** – Doubles the mutation rate depending on the stage (1-5).</li>
+            <li>✨ **Shiny Surge** – Doubles chances for shiny fish to appear.</li>
+            <li>🍀 **Lucky Surge** – Doubles the chances for rare fish while keeping the balance.</li>
         </ul>
     </section>
 
     <section>
-        <h4>🎣 Limited-Time Rods</h4>
-        <p>New <strong>Limited Edition Fishing Rods</strong> are now available—get them before they're gone!</p>
+        <h4>🛠️ Revamped Items & Mechanics</h4>
+        <ul>
+            <li>🔥 **Skull Rod Revamp** – Now has **magic effects** with a **50% click boost**.</li>
+            <li>🐠 **Fish AI Upgrade** – Fish now fight back, making the game more interactive.</li>
+            <li>🎵 **New Sound Effects** – Added sounds for casting, catching, and missing a fish.</li>
+            <li>🕹️ **Better Controls** – Optimized button response for smoother gameplay.</li>
+        </ul>
     </section>
 
     <section>
-        <h4>🛠️Revamped & Added Items</h4>
-        <p>Items That had <strong>Revamped</strong> are available</p>
+        <h4>🔧 Bug Fixes & Optimizations</h4>
         <ul>
-         <li>Skull Rod had been Revamped <strong>(Magic Effects with 50% boost
-         click)</strong></li>
-         <li>All Rods had been Nerfed Power to <strong>-10%</strong></li>
-         <li>Rods Balanced and nerfed</li>
-         <li>Fixed Rod Bugs</li>
+            <li>✅ Fixed **rod selection bugs** where rods wouldn’t save properly.</li>
+            <li>✅ Fixed **negative cash bug** that allowed balances to drop below 0.</li>
+            <li>✅ Fixed **progress bar glitch** during the mini-game.</li>
+            <li>✅ Improved **performance** for smoother gameplay.</li>
         </ul>
     </section>
+
     <section>
-      <h4>Anti Cheat Upgrade to G2(Strict)</h4>
-      <p>Strictly Follow The Rules <a>Community Rules</a> as you may leading
-      your account to <strong>Banned</strong></p>
-      <ul>
-        <li>3 Warning can result of Banned 1 Day. but if you got 3 warning again
-        you be banned 2 as go on when it reach <strong>30 Banneds</strong> You
-        be <strong>Pernament Banned</strong></li>
-      </ul>
+        <h4>🛡️ Anti-Cheat System G2 (Strict)</h4>
+        <p>We’ve upgraded the **Anti-Cheat system** to **G2** for stricter rule enforcement.</p>
+        <ul>
+            <li>⚠️ **3 Warnings** → **1-Day Ban**.</li>
+            <li>🚫 **Repeat Offenses** → Ban time increases (2 days, 3 days, etc.).</li>
+            <li>🔒 **30 Bans** → **Permanent Ban**.</li>
+        </ul>
+        <p>Make sure to follow the <a href="#">Community Rules</a> to keep your account safe.</p>
     </section>
 </div>
+
+
 
 <div class="slider">
     <button class="sbutton"id="prev" onclick="prevSlide()">&#10094;</button>
@@ -203,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fake Active Players Count
 function updateActivePlayers() {
-    let active = Math.floor(Math.random() * 25) + 1;
+    let active = Math.floor(Math.random() * 5999) + 1;
     localStorage.setItem("activePlayers", active);
     document.getElementById("activePlayers").textContent = active;
 }
@@ -290,20 +299,16 @@ function skipLoading() {
 
     </script>
     <style>
-    /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 body {
     background-color: lightblue;
     color: white;
-    
+    font-family: 'Poppins', sans-serif;
     padding-top: 70px; /* Adjusted for header spacing */
 }
+
+
 
 /* Responsive Header */
 header {
