@@ -1583,7 +1583,20 @@ function updateInventoryUI() {
         `;
     }
 
-    inventoryElement.innerHTML = inventoryHTML || "<p>No fish found.</p>";
+inventoryElement.innerHTML = inventoryHTML || "<p>No fish found.</p>";
+
+// 🛠 Fix: Remove bugged fish
+document.querySelectorAll("[id^='fish-']").forEach(fish => {
+    let fishName = fish.getAttribute("data-fish-name");
+    let sellButton = fish.querySelector(".sell-button");
+    let sellAllButton = fish.querySelector(".sell-all-button");
+
+    // If the fish is missing a name or sell buttons, remove it
+    if (!fishName || fishName.trim() === "" || !sellButton || !sellAllButton) {
+        console.log("Removing bugged fish:", fish.id);
+        fish.remove();
+    }
+});
 }
 
 
