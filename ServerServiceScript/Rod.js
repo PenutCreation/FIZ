@@ -32,7 +32,7 @@ const rods = [
   { name: "Meg Master Rod", price: 5000000000, lucky: 500, power: 21, resilience:
   1000, lureSpeed: 9, passive: "Plus Power Meg Catching", limited: false,
   available: true },
-  { name: "💎Crystalized Rod", price: 160, lucky: 600, power: 14,  resilience:
+  { name: "💎Crystalized Rod", price: 160000000, lucky: 600, power: 14,  resilience:
   0,  lureSpeed: 19, passive: "💎Crystalized Mutations Per 100 Catch", limited: true,
   available: true },
 { name: "🛠️Cybernetic Rod[2025]", price: 15000000, lucky: 200, power: 22, resilience: 850,  
