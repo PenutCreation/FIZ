@@ -421,7 +421,11 @@ THEOCEAN:[
   { name: "Porgy", rarity: "Common", baseWeight: 6, cashValue: 12, progress: 1, minusProgress: 0, power: 0 },
   { name: "Sea Bass", rarity: "Common", baseWeight: 20, cashValue: 25, progress: 1, minusProgress: 1, power: 2 },
 
-  // UNCOMMON (Slightly harder)
+  { name: "Moon Fish", rarity: "Legendary", baseWeight: 10, cashValue: 1000, progress: 0.2, minusProgress: 50, power: 80 },
+  { name: "Crab", rarity: "Uncommon", baseWeight: 10, cashValue: 1000, progress: 0.2, minusProgress: 50, power: 80 },
+    { name: "Cookiecutter Shark", rarity: "Rare", baseWeight: 10, cashValue: 1000, progress: 0.2, minusProgress: 50, power: 80 },
+    { name: "Dolphin", rarity: "Legendary", baseWeight: 10, cashValue: 1000, progress: 0.2, minusProgress: 50, power: 80 },
+    { name: "Sea Urchin", rarity: "Rare", baseWeight: 10, cashValue: 1000, progress: 0.2, minusProgress: 50, power: 80 },
   { name: "Sardine", rarity: "Uncommon", baseWeight: 1.1, cashValue: 9, progress: 0.9, minusProgress: 2, power: 5 },
   { name: "Amberjack", rarity: "Uncommon", baseWeight: 20, cashValue: 15, progress: 0.8, minusProgress: 3, power: 7 },
   { name: "Cod", rarity: "Uncommon", baseWeight: 24, cashValue: 14, progress: 0.8, minusProgress: 3, power: 7 },
@@ -1630,6 +1634,7 @@ function calculateSellPrice(fish, fishData) {
 
     return ((basePrice * weightModifier) + mutationBonus) * rarityMultiplier;
 }
+
 function sellAllExceptRare() {
     let excludedRarities = ["Legendary", "Limited", "Mythical", "Exotic", "Secret"];
     let favoriteFish = JSON.parse(localStorage.getItem("favoriteFish")) || {};
@@ -1640,16 +1645,26 @@ function sellAllExceptRare() {
     for (let key in ownedFish) {
         let fish = ownedFish[key];
         let fishData = getFishData(fish.name);
-        if (!fishData) continue;
+        
+        if (!fishData) {
+            console.log(`Fish data not found for ${fish.name}`);
+            continue;
+        }
+
+        // Debug: Check fish rarity
+        console.log(`Checking fish: ${fish.name}, Rarity: ${fishData.rarity}`);
 
         // Skip excluded rarities and favorited fish
-        if (excludedRarities.includes(fishData.rarity) || favoriteFish[key]) continue;
+        if (excludedRarities.includes(fishData.rarity) || favoriteFish[key]) {
+            console.log(`Skipping ${fish.name} (Rarity: ${fishData.rarity}, Favorite: ${favoriteFish[key]})`);
+            continue;
+        }
 
         let sellPrice = calculateSellPrice(fish, fishData) * fish.count;
         totalSellPrice += sellPrice;
         fishSold += fish.count;
 
-        delete ownedFish[key];
+        delete ownedFish[key]; // Remove sold fish
     }
 
     if (fishSold === 0) {
@@ -1675,44 +1690,21 @@ function sellAllExceptRare() {
     new Audio("Sounds/CASHSDSSS.mp3").play();
 }
 
-function sellAllOfType(key) {
-    if (!ownedFish[key]) return;
-
-    let fish = ownedFish[key];
-    let fishData = getFishData(fish.name);
-    if (!fishData) return;
-
-    // Load favorite fish from localStorage
-
-
-    let totalSellPrice = calculateSellPrice(fish, fishData) * fish.count;
-
-    let confirmSell = confirm(
-        `Sell ALL ${fish.count}x "${fish.name}" for ${totalSellPrice.toFixed(2)} Coins?`
-    );
-
-    if (!confirmSell) return;
-
-    let cash = parseFloat(localStorage.getItem("cash")) || 0;
-    cash += totalSellPrice;
-    localStorage.setItem("cash", cash.toFixed(2));
-
-    delete ownedFish[key];
-
-    localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
-    updateInventoryUI();
-    updateUI();
-    showMoneyNotification(`Sold ${fish.name} (${fish.count}) for +${totalSellPrice.toFixed(2)} Coins`);
-
-    new Audio("Sounds/CASHSDSSS.mp3").play();
-}
-
 function sellFish(key) {
-    if (!ownedFish[key]) return;
+    if (!ownedFish[key]) {
+        console.log(`Fish not found: ${key}`);
+        return;
+    }
 
     let fish = ownedFish[key];
     let fishData = getFishData(fish.name);
-    if (!fishData) return;
+    if (!fishData) {
+        console.log(`Fish data not found for ${fish.name}`);
+        return;
+    }
+
+    // Debug: Check fish data and sell price
+    console.log(`Selling fish: ${fish.name}, Rarity: ${fishData.rarity}`);
 
     let sellPrice = calculateSellPrice(fish, fishData);
 
@@ -1736,7 +1728,57 @@ function sellFish(key) {
     updateInventoryUI();
     updateUI();
     showMoneyNotification(`Sold ${fish.name} for +${sellPrice.toFixed(2)} Coins`);
+
+    new Audio("Sounds/CASHSDSSS.mp3").play();
+}
+function sellAllOfType(key) {
+    // Check if the fish exists in the ownedFish object
+    if (!ownedFish[key]) {
+        console.log(`No fish found with key: ${key}`);
+        return;
+    }
+
+    let fish = ownedFish[key];
+    let fishData = getFishData(fish.name);
     
+    // If fish data is missing, return
+    if (!fishData) {
+        console.log(`Fish data not found for ${fish.name}`);
+        return;
+    }
+
+    // Debugging: Log fish details
+    console.log(`Selling fish: ${fish.name}, Count: ${fish.count}, Rarity: ${fishData.rarity}`);
+
+    // Calculate the total selling price
+    let totalSellPrice = calculateSellPrice(fish, fishData) * fish.count;
+
+    // Ask the user to confirm the sale
+    let confirmSell = confirm(
+        `Sell ALL ${fish.count}x "${fish.name}" for ${totalSellPrice.toFixed(2)} Coins?`
+    );
+
+    if (!confirmSell) return;
+
+    // Get current cash from localStorage
+    let cash = parseFloat(localStorage.getItem("cash")) || 0;
+    cash += totalSellPrice;
+
+    // Update cash in localStorage
+    localStorage.setItem("cash", cash.toFixed(2));
+
+    // Remove the sold fish from ownedFish
+    delete ownedFish[key];
+
+    // Save updated ownedFish to localStorage
+    localStorage.setItem("ownedFish", JSON.stringify(ownedFish));
+
+    // Update UI and inventory after selling
+    updateInventoryUI();
+    updateUI();
+    showMoneyNotification(`Sold ${fish.name} (${fish.count}) for +${totalSellPrice.toFixed(2)} Coins`);
+
+    // Play sound after the sale
     new Audio("Sounds/CASHSDSSS.mp3").play();
 }
 
