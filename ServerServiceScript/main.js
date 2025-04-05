@@ -15,7 +15,7 @@ let currentFish = null;
 let miniGameInterval;
 let lastClickTimes = [];
 const maxClicksPerSecond = 10; // Adjust based on tolerance
-const maxLevel = 300;
+const maxLevel = 500;
 const mutationChance = 0.1;
 let fishCaughtCount = 0; // Track total fish caught
 let isBlocked = false;
@@ -258,7 +258,7 @@ HayBay: [
     cashValue: 1,
     progress: 1, minusProgress: 40, power: 0 },
     { name: "Sloppy Colossal Squid", rarity: "Mythical", baseWeight: 1001,
-    cashValue: 2,
+    cashValue: 3562,
     progress: 1, minusProgress: 50, power: 0 },
       ],
 
@@ -408,10 +408,49 @@ TWILIGHTTRENCH: [
         { name: "Frog", rarity: "Rare", baseWeight: 0.8, cashValue: 30, progress: 8, minusProgress: 1.7, power: 5 },
         { name: "Leechfish", rarity: "Epic", baseWeight: 3.2, cashValue: 50, progress: 9, minusProgress: 2.0, power: 6 },
         { name: "Blackwater Croc", rarity: "Legendary", baseWeight: 9.0, cashValue: 150, progress: 12, minusProgress: 3.0, power: 8 },
+        { name: "Three Headed Croc", rarity: "Limited", baseWeight: 57.0,
+        cashValue: 1530, progress: 1, minusProgress: 30.99, power: 8 },
         { name: "Swamp Snapper", rarity: "Epic", baseWeight: 6.5, cashValue: 80, progress: 10, minusProgress: 2.5, power: 7 },
         { name: "Mossback Gator", rarity: "Mythical", baseWeight: 14.0, cashValue: 400, progress: 16, minusProgress: 4.5, power: 10 }
     ],
+LOGLAND: [
+  { name: "Twigfin", rarity: "Common", baseWeight: 0.2, cashValue: 6, progress: 2.5, minusProgress: 0.4, power: 1 },
+  { name: "Barkscale", rarity: "Common", baseWeight: 0.4, cashValue: 8, progress: 2.3, minusProgress: 0.5, power: 1.2 },
+  { name: "Mossgill", rarity: "Common", baseWeight: 0.5, cashValue: 9, progress: 2.2, minusProgress: 0.6, power: 1.3 },
+  { name: "Wooddrifter", rarity: "Common", baseWeight: 0.3, cashValue: 7, progress: 2.4, minusProgress: 0.5, power: 1.1 },
+  { name: "Fernflipper", rarity: "Common", baseWeight: 0.6, cashValue: 10, progress: 2.1, minusProgress: 0.7, power: 1.4 },
 
+  // UNCOMMON (5)
+  { name: "Knotfish", rarity: "Uncommon", baseWeight: 1.2, cashValue: 14, progress: 2.0, minusProgress: 0.8, power: 1.6 },
+  { name: "Holloweye", rarity: "Uncommon", baseWeight: 1.4, cashValue: 16, progress: 1.9, minusProgress: 0.9, power: 1.8 },
+  { name: "Sapspitter", rarity: "Uncommon", baseWeight: 1.1, cashValue: 13, progress: 2.1, minusProgress: 0.7, power: 1.5 },
+  { name: "Thornfin", rarity: "Uncommon", baseWeight: 1.3, cashValue: 15, progress: 2.0, minusProgress: 0.8, power: 1.7 },
+  { name: "Lognibbler", rarity: "Uncommon", baseWeight: 1.5, cashValue: 17, progress: 1.8, minusProgress: 1.0, power: 2.0 },
+
+  // RARE (5)
+  { name: "Rotbeard", rarity: "Rare", baseWeight: 2.4, cashValue: 25, progress: 1.6, minusProgress: 1.2, power: 2.4 },
+  { name: "Branchlurker", rarity: "Rare", baseWeight: 2.7, cashValue: 28, progress: 1.5, minusProgress: 1.3, power: 2.7 },
+  { name: "Darktwig", rarity: "Rare", baseWeight: 2.2, cashValue: 24, progress: 1.7, minusProgress: 1.1, power: 2.2 },
+  { name: "Knotfang", rarity: "Rare", baseWeight: 2.9, cashValue: 30, progress: 1.4, minusProgress: 1.4, power: 2.9 },
+  { name: "Timberfin", rarity: "Rare", baseWeight: 3.1, cashValue: 32, progress: 1.3, minusProgress: 1.5, power: 3.1 },
+
+  // UNUSUAL (5)
+  { name: "Barkmaw", rarity: "Unusual", baseWeight: 4.5, cashValue: 50, progress: 1.1, minusProgress: 1.7, power: 4.4 },
+  { name: "Shadelash", rarity: "Unusual", baseWeight: 4.8, cashValue: 55, progress: 1.0, minusProgress: 1.8, power: 4.8 },
+  { name: "Trunkjaw", rarity: "Unusual", baseWeight: 5.0, cashValue: 58, progress: 0.9, minusProgress: 2.0, power: 5.0 },
+  { name: "Mycofin", rarity: "Unusual", baseWeight: 4.2, cashValue: 48, progress: 1.2, minusProgress: 1.6, power: 4.2 },
+  { name: "Oakbane", rarity: "Unusual", baseWeight: 5.3, cashValue: 60, progress: 0.8, minusProgress: 2.1, power: 5.3 },
+
+  // LEGENDARY (5)
+  { name: "Entangler", rarity: "Legendary", baseWeight: 7.2, cashValue: 90, progress: 0.7, minusProgress: 2.3, power: 6.8 },
+  { name: "Ancientroot", rarity: "Legendary", baseWeight: 7.5, cashValue: 95, progress: 0.6, minusProgress: 2.5, power: 7.0 },
+  { name: "Lignosaur", rarity: "Legendary", baseWeight: 8.0, cashValue: 100, progress: 0.5, minusProgress: 2.7, power: 8.0 },
+  { name: "Wyrmbark", rarity: "Legendary", baseWeight: 7.8, cashValue: 98, progress: 0.5, minusProgress: 2.6, power: 7.9 },
+  { name: "Spinewillow", rarity: "Legendary", baseWeight: 8.3, cashValue: 105,
+  progress: 0.4, minusProgress: 2.8, power: 8.4 },
+  { name: "King Of Bass", rarity: "Mythical", baseWeight: 862.3, cashValue: 10475,
+  progress: 1, minusProgress: 60.999, power: 8.4 }
+  ],
 //DEFUALT FISHON
 THEOCEAN:[
   // COMMON (Easiest to catch)
@@ -468,7 +507,17 @@ THEOCEAN:[
 
 
     //EVENT FISHES
-
+BLOSSOMEVENT: [
+    { name: "🌸Blossomed Blue Crab", rarity: "Limited", baseWeight: 2, cashValue:
+    99, progress: 1, minusProgress: 0, power: 0 },
+    { name: "🌸Blossomed Mackerel", rarity: "Limited", baseWeight: 4, cashValue:
+    48, progress: 1, minusProgress: 0, power: 0 },
+    { name: "🌸Blossomed Squid", rarity: "Limited", baseWeight: 3.2, cashValue:
+    66, progress: 1, minusProgress: 2, power: 0 },
+    { name: "🌸Blossomed Starfish", rarity: "Limited", baseWeight: 4, cashValue: 666, progress: 1, minusProgress: 0, power: 0 },
+    { name: "🌸Blossomed Sea Serpent", rarity: "Exotic", baseWeight: 214.2,
+    cashValue: 792.4, progress: 1, minusProgress: 50, power: 0 }
+  ],
   CURSEDMEG: [
     { name: "Cursed Haddock", rarity: "Common", baseWeight: 4, cashValue: 666, progress: 1, minusProgress: 0, power: 0 },
     { name: "Cursed Mackerel", rarity: "Common", baseWeight: 4, cashValue: 666, progress: 1, minusProgress: 0, power: 0 },
@@ -540,6 +589,11 @@ WhaleShark: [
     cashValue: 23400, progress: 1, minusProgress: 75, power: 250 }
     ],
     
+ DanielCATFish: [
+    { name: "Daniel Cat Fish", rarity: "Exotic", baseWeight: 210,
+    cashValue: 234030, progress: 1, minusProgress: 70, power: 250 }
+    ],   
+    
 Event: [
 
     { name: "Great HammerHead Shark", rarity: "Mythical", baseWeight: 1012,
@@ -604,7 +658,7 @@ function updateFishList(searchTerm = "") {
     const allowedLocations = ["Creek", "ShallowOcean", "HaystackBeach",
         "HaystackislePound", "SNOWISLES", "HayBay", "SkullLands", "SunkenCity",
         "THEOCEAN", "DEEPSEACANYON", "MIDNIGHTTRENCH", "TWILIGHTTRENCH",
-        "PHERISTORICSHIFTTRENCH", "Event"];
+        "PHERISTORICSHIFTTRENCH", "SWAMPY", "Event"];
 
     allowedLocations.forEach(location => {
         if (fishList[location]) {
@@ -661,7 +715,7 @@ function createAreaButtons() {
     const allowedLocations = ["Creek", "ShallowOcean", "HaystackBeach",
         "HaystackislePound", "SNOWISLES", "HayBay", "SkullLands", "SunkenCity",
         "THEOCEAN", "DEEPSEACANYON", "MIDNIGHTTRENCH", "TWILIGHTTRENCH",
-        "PHERISTORICSHIFTTRENCH", "Event"];
+        "PHERISTORICSHIFTTRENCH", "SWAMPY","Event"];
 
     allowedLocations.forEach(location => {
         const btn = document.createElement("button");
@@ -693,38 +747,40 @@ function startFishing(source) {
     
     // Check if source is a button (element) or direct area name (string)
     if (typeof source === "string") {
-        area = source;  // Direct area name
+        area = source;
     } else if (source.closest) {
         let fieldset = source.closest("fieldset");
-        area = fieldset ? fieldset.id : null; // Get fieldset ID safely
+        area = fieldset ? fieldset.id : null;
     }
 
-    // If no area found, show an error
     if (!area) {
         console.warn("⚠️ No fishing location selected!");
         alert("Please select a fishing area first!");
         return;
     }
 
-    // Handle special case before setting default fishPool
     let fishPool;
-if (area === "GreatHammerHead-pool") {
-    fishPool = [...fishList.THEOCEAN, ...fishList.GreatHammerHead]; // Merge pools
-} else if (area === "Meg-pool") {
-    fishPool = [...fishList.THEOCEAN, ...fishList.MEGPOOLAES]; // Add Megalodon pool
-} else if (area === "SeasonalMeg-pool") {
-    fishPool = [...fishList.THEOCEAN, ...fishList.MEGPOOLAESOANHAY]; // Add Seasonal Meg
-} else if (area === "GreatWhite-pool") {
-    fishPool = [...fishList.THEOCEAN, ...fishList.GreatWhiteShark]; // Add Great White Shark
-} else {
-    fishPool = Array.isArray(fishList[area]) && fishList[area].length > 0 ? fishList[area] : fishList.THEOCEAN;
-}
-
+    if (area === "GreatHammerHead-pool") {
+        fishPool = [...fishList.THEOCEAN, ...fishList.GreatHammerHead];
+    } else if (area === "Meg-pool") {
+        fishPool = [...fishList.THEOCEAN, ...fishList.MEGPOOLAES];
+    } else if (area === "SeasonalMeg-pool") {
+        fishPool = [...fishList.THEOCEAN, ...fishList.MEGPOOLAESOANHAY];
+    } else if (area === "GreatWhite-pool") {
+        fishPool = [...fishList.THEOCEAN, ...fishList.GreatWhiteShark];
+    } else if (area === "WhaleSharkPOOL") {
+        fishPool = [...fishList.THEOCEAN, ...fishList.WhaleShark];
+    } else if (area === "dock-2848") {
+        fishPool = [...fishList.THEOCEAN, ...fishList.DanielCATFish];
+    } else if (area === "BlossomEventTag") {
+        fishPool = [...fishList.THEOCEAN, ...fishList.BLOSSOMEVENT];
+    } else {
+        fishPool = Array.isArray(fishList[area]) && fishList[area].length > 0 ? fishList[area] : fishList.THEOCEAN;
+    }
 
     // Select a random fish
-currentFish = applyMutation(getRandomFish(fishPool));
-currentFish = applyMutation(currentFish);
-
+    currentFish = applyMutation(getRandomFish(fishPool));
+    
     // Start the fishing mini-game
     fishPosition = 130;
     document.getElementById("miniGame").style.display = "block";
@@ -732,13 +788,14 @@ currentFish = applyMutation(currentFish);
     miniGameLoop();
     console.log(`🎣 Fishing in: ${area}`);
 
-    // Update UI elements
     document.getElementById("minusProgressText").innerText = ` -${currentFish.minusProgress}% Progress`;
     Reelerio.play();
     document.getElementById("StartButtonFish").disabled = true;
     document.body.style.overflow = "hidden";
 
-    // ✅ Prevent multiple Aurora effects
+    // Display "!" alert based on fish rarity
+    showAlertIcon(currentFish.rarity);
+    
     if (localStorage.getItem("mythicalBoost") === "active") {
         let existingAurora = document.getElementById("auroraEffect");
         if (existingAurora) existingAurora.remove();
@@ -747,12 +804,52 @@ currentFish = applyMutation(currentFish);
         aurora.id = "auroraEffect";
         document.body.appendChild(aurora);
     }
-
-    // Save location
+    
     currentLocation = area;
     localStorage.setItem("currentLocation", currentLocation);
 }
 
+// Function to display "!" alert based on fish rarity
+function showAlertIcon(rarity) {
+    let alertIcon = document.getElementById("exclamationMark");
+    if (!alertIcon) {
+        console.warn("⚠️ alertIcon element not found! Creating one...");
+        alertIcon = document.createElement("div");
+        alertIcon.id = "alertIcon";
+        alertIcon.style.position = "absolute";
+        alertIcon.style.top = "50px";
+        alertIcon.style.left = "50px";
+        alertIcon.style.fontSize = "40px";
+        alertIcon.style.fontWeight = "bold";
+        alertIcon.style.padding = "10px";
+        alertIcon.style.borderRadius = "5px";
+        document.body.appendChild(alertIcon);
+    }
+    let rarityColors = {
+        "Junk": "sign-red",
+        "Common": "sign-red",
+        "Uncommon": "sign-red",
+        "Rare": "sign-red",
+        "Unusual": "sign-red",
+        "Legendary": "sign-yellow ",
+        "Mythical": "mythical",
+        "Exotic": "rainbow-text",
+        "Limited": "limited-text",
+        "Secret": "black-white-text"
+    };
+    alertIcon.classList.remove(...alertIcon.classList); // Clear all existing classes
+alertIcon.classList.add(rarityColors[rarity] || "gray"); // Add the new class based on rarity
+alertIcon.innerText = "!";
+    
+    alertIcon.style.color = "white";
+    alertIcon.style.background = rarityColors[rarity] || "gray";
+    alertIcon.style.display = "block";
+    console.log(`✅ showAlertIcon() triggered for rarity: ${rarity}`);
+
+    setTimeout(() => {
+        alertIcon.style.display = "none";
+    }, 4000);
+}
 
 // ✅ Remove Aurora Effect when fishing ends
 function stopFishing() {
@@ -813,7 +910,7 @@ fishList.forEach(fish => {
         case "Legendary": chance = 4; break; // Balanced, still very rare
         case "Mythical": chance = mythicalBoost ? 8 : 4; break; // Nerfed base chance
         case "Exotic": chance = 0.5; break; // Almost impossible
-        case "Secret": chance = 0.05; break; // Extremely rare!
+        case "Secret": chance = 0.01; break; // Extremely rare!
     }
 
     for (let i = 0; i < chance; i++) {
@@ -842,6 +939,17 @@ const fishMutations = [
     { name: "Midas", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 7 }) },
     { name: "Glossy", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 3 }) },
     { name: "Abbysal", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 3 }) },
+    { name: "Long", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 50 }) },
+    { name: "Big Eyed", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 3 }) },
+    { name: "Non Fin", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 3 }) },
+    { name: "Fat", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 3 }) },
+    { name: "Bright", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 13 }) },
+    { name: "Vader", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 3 }) },
+    { name: "Spen", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 3 }) },
+    { name: "Giant Eyed", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 3 }) },
+    { name: "Ultrain", effect: (fish) => ({ ...fish, cashValue: fish.cashValue +
+    53 }) },
+    { name: "Mythic", effect: (fish) => ({ ...fish, cashValue: fish.cashValue + 300 }) },
     { name: "Giant", effect: (fish) => ({ ...fish, baseWeight: fish.baseWeight * 60 }) }
 ];
 
@@ -939,6 +1047,9 @@ function tapButton() {
     if (selectedRod.name === "☠️Skull Rod") {
         SKULLRODD();
     }
+    if (selectedRod.name === "Ghosty Rod👻") {
+        GHOSTEFECTEDDD();
+    }
 }
 
 
@@ -975,6 +1086,37 @@ function SKULLRODD() {
     fsk.play();
     triggerExplosion();
     }, 950);
+}
+
+function GHOSTEFECTEDDD() {
+    let fishIcon = document.getElementById("fishIcon");
+
+    if (!fishIcon) return;
+
+    // Create a scratch effect element
+    let scratchEffect = document.createElement("div");
+    scratchEffect.classList.add("ghost-effect-effect");
+
+    // Randomize the position slightly for variation
+    let randomX = Math.floor(Math.random() * 20) - 10; // Shift left/right
+    let randomY = Math.floor(Math.random() * 20) - 10; // Shift up/down
+    let randomRotation = Math.floor(Math.random() * 30) - 15; // Slight rotation
+
+    scratchEffect.style.left = `calc(50% + ${randomX}px)`;
+    scratchEffect.style.top = `calc(50% + ${randomY}px)`;
+    scratchEffect.style.transform = `translate(-50%, -50%) rotate(${randomRotation}deg)`;
+
+    fishIcon.appendChild(scratchEffect);
+
+    // Play slash sound
+    let slashSound = new Audio("./Sounds/Trident-soundSlash.mp3");
+    slashSound.play();
+
+    // Remove scratch effect after animation ends
+    setTimeout(() => {
+        scratchEffect.remove();
+        
+    }, 150);
 }
 
 function TRIDEMTEFFECT() {
@@ -1079,9 +1221,9 @@ const expRewards = {
     "Unusual": 10,
     "Rare": 15,
    "Legendary": 20,
-   "Mythical": 39,
-   "Exotic": 100,
-   "Secret": 180
+   "Mythical": 70,
+   "Exotic": 600,
+   "Secret": 1820
 };
 
 // Modify fishCaught() to include EXP & leveling
@@ -1236,7 +1378,7 @@ function fishCaught() {
     // Apply special rod-based mutations
     if (selectedRod.name === "🛠️Cybernetic Rod[2025]" && fishCaughtCount % 50 === 0) {
         let cyberMutation = { name: "Cyber", effect: (fish) => {
-            fish.cashValue *= 2;
+            fish.cashValue *= 222;
             fish.power += 5;
         }};
         mutations.push(cyberMutation.name);
@@ -1245,14 +1387,23 @@ function fishCaught() {
     }
     if (selectedRod.name === "💎Crystalized Rod" && fishCaughtCount % 50 === 0) {
         let crystalMutation = { name: "Crystalized", effect: (fish) => {
-            fish.cashValue *= 2;
+            fish.cashValue *= 225;
             fish.power += 5;
         }};
         mutations.push(crystalMutation.name);
         crystalMutation.effect(currentFish);
         console.log("Crystalized Mutation Applied: " + currentFish.name);
     }
-
+    if (selectedRod.name === "Ghosty Rod👻" && fishCaughtCount % 50 === 0) {
+        let crystalMutation = { name: "Phantom", effect: (fish) => {
+            fish.cashValue *= 552;
+            fish.power += 5;
+        }};
+        
+        mutations.push(crystalMutation.name);
+        crystalMutation.effect(currentFish);
+        console.log("Phantom Mutation Applied: " + currentFish.name);
+    }
     // Generate unique fish key
     let mutationNames = mutations.length > 0 ? mutations.join(" ") : "";
     let fishKey = `${currentFish.rarity}_${mutationNames}_${currentFish.name}`.trim();
@@ -1455,7 +1606,7 @@ function checkLevelUp() {
 // Function to update UI
 function updateExpUI() {
     document.getElementById("levelText").innerHTML = `
-    Level ${level}
+    [Level ${level}]
     EXP: ${exp}/${maxExp}
     `;
 
@@ -1547,7 +1698,7 @@ function updateInventoryUI() {
                         "Solarblaze": "glow-effect",
                         "Electric": "glow-effect",
                         "Darkened": "dark-aura",
-                        "Abyssal": "abyssal-effect",
+                        "Abyssal": "abbysal-effect",
                         "Hexed": "hexer",
                         "Translucent": "translucent-effect",
                         "Fossilized": "fossilized-effect",
@@ -1556,7 +1707,9 @@ function updateInventoryUI() {
                         "Albino": "Albino-Color",
                         "Negative": "minusFishhahaha",
                         "Cyber": "cyber-design-mutstion",
-                        "Crystalized": "crystalized-design"
+                        "Crystalized": "glow-effect",
+                        "Mythic": "Mythic-effect",
+                        "Bright": "Bright-effect"
                     };
 
                     if (classMap[mutation.name]) {
