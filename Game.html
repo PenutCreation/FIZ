@@ -30,8 +30,6 @@ body {
     min-height: 100vh; /* Ensures full height */
     background: linear-gradient(to bottom, #87CEEB, #1E90FF); 
     transition: background 5s ease-in-out; /* Smooth transition */
-align-content: center;
-    
 }
 
 .area {
@@ -123,14 +121,10 @@ align-content: center;
     <h2>Fiz🎣</h2>
 <small id="caughtStreakDisplay">Caught Streak: 0</small>
 <small>Cash: ₱<span id="cashCount">0</span></small>
+<small><span id="levelText">Level 1</span> </small>
 </nav>
 
-      <div class="FullMenuio">
-<div class="exp-container">
-    <span id="levelText">Level 1</span> 
-</div>
-
-
+      <div class="FullMenuio" style="margin-top:200px;">
         <h3><span>Username</span>'s Kit</h3>
         <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -223,6 +217,18 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 <script type="text/javascript" src="//www.highperformanceformat.com/e8ba9bd749df815e35f948cc1889b85b/invoke.js"></script>
 </fieldset>
+</div>
+<div class="area-container" >
+<fieldset id="BlossomEventTag" class="area"style=" background:
+linear-gradient(135deg, pink, #80D0C7); display:blobk;">
+  <h3>🌸Blossom Area</h3>
+  <p>Blossom spotted on the ocean that Rains Blossom. a rare phenomenome.
+  scientist are confused on the event💮</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('BLOSSOMAREA')">🎣 Fish
+        here</button>
+        </fieldset>
 </div>
 <div class="area-container">
 <fieldset class="area" style="margin-top:600px;">
@@ -365,19 +371,21 @@ display:none;">
         <fieldset>
             <h3>C³ Totem</h3>
             <p style="color:white;">Attracts Huge Fishes</p>
-            <button onclick="buyTotem('C³ Totem', 500)">C³ Totem - $500</button>
+            <button onclick="buyTotem('C³ Totem', 600000)">C³ Totem - 600,000</button>
         </fieldset>
 
         <fieldset>
             <h3>Aaoura Totem</h3>
             <p style="color:white;">Boosts Mythical Fish chances (Lasts 15 min)</p>
-            <button onclick="buyTotem('Aaoura Totem', 1000)">Aaoura Totem - $1000</button>
+            <button onclick="buyTotem('Aaoura Totem', 500000)">Aaoura Totem -
+            500,000</button>
         </fieldset>
 
         <fieldset>
             <h3>Eclipse Totem</h3>
             <p style="color:white;">Mysterious Effects</p>
-            <button onclick="buyTotem('Eclipse Totem', 750)">Eclipse Totem - $750</button>
+            <button onclick="buyTotem('Eclipse Totem', 75000)">Eclipse Totem -
+            75,000</button>
         </fieldset>
     </div>
 </div>
@@ -408,13 +416,13 @@ display:none;">
 </div>
 <div class="area-container">
 <fieldset class="area"id="Meg-pool" style="margin-top:300px; background:
-linear-gradient(135deg, Red, #80D0C7); display:none;">
+linear-gradient(135deg, Red, #80D0C7); display:;">
   <h3>🚩Megalodon Spotted</h3>
   <p>A Huge Body Of Fish moves faster than a car Spotted by a Fisherman. Radar
   spotted most look like a megalodon!</p>
  
   <center>
-        <button id="StartButtonFish" onclick="startFishing('MEGPOOLAES')">🎣 Fish
+        <button id="StartButtonFish" onclick="startFishing('this')">🎣 Fish
         here</button>
         </fieldset>
   </div>
@@ -432,7 +440,7 @@ linear-gradient(135deg, Red, #80D0C7); display:none;">
 <div class="area-container">
 <fieldset class="area" id="BlessedTide"
 style="background:linear-gradient(135deg, lightgreen, #80D0C7);
-margin-top:800px; display:block;">
+margin-top:800px; display:none;">
   <h3>🍀Blessed Tides🌊</h3>
   <p>A Secret of blessed waves, the lore of it disturbs you, through your spine</p>
  
@@ -444,7 +452,7 @@ margin-top:800px; display:block;">
 </div>
 <div class="area-container">
 <fieldset class="area"id="Meg-pool-season" style="margin-top:800px; background:
-linear-gradient(135deg, orange, #80D0C7); ">
+linear-gradient(135deg, orange, #80D0C7); display:none; ">
   <h3>🚩Seasonal Megalodon Spotted</h3>
   <p>A Huge Body Of Fish moves faster than a car Spotted by a Fisherman. Radar
   spotted most look like a megalodon!</p>
@@ -520,15 +528,16 @@ linear-gradient(135deg, blue, #80D0C7);">
 </fieldset>
 </div>
 <div class="area-container">
-<fieldset class="area" id="WhaleSharkPOOL"style="margin-top:800px; display:none;">
-  <h3>🦈Whale Shark Group</h3>
+<fieldset class="area" id="WhaleSharkPOOL"style="margin-top:800px; display:;">
+  <h3>🚩Whale Shark</h3>
   <p>Whale Shark Spotted Here, a group of them!</p>
  
   <center>
-        <button id="StartButtonFish" onclick="startFishing('WhaleShark')">🎣 Fish
+        <button id="StartButtonFish" onclick="startFishing('this')">🎣 Fish
         on here</button>
   </center>
 </fieldset>
+</div>
 <div class="area-container">
 <fieldset class="area" id="BullShark"style="margin-top:800px; display:none;">
   <h3>🦈Bull Shark Abundance</h3>
@@ -551,6 +560,7 @@ linear-gradient(135deg, blue, #80D0C7);">
   </center>
 </fieldset>
 </div>
+
 <div class="area-container">
 <fieldset class="area" id="AmberJacks"style="margin-top:800px; display:none;">
   <h3>🐟AmberJack Abundance</h3>
@@ -614,7 +624,7 @@ linear-gradient(135deg, grey, #80D0C7);">
 linear-gradient(135deg, blue, #80D0C7);">
   <h3>🐸SWAMPY🐸</h3>
   <p>a swamp island full of sloppy islands</p>
- 
+ <p>the Island Had Been Covered by a Radoactive Substance from the factory☢️</p>
   <center>
         <button id="StartButtonFish" onclick="startFishing('SWAMPY')">🎣 Fish
         on SWAMPY</button>
@@ -630,6 +640,39 @@ I should not have looked. It saw me. It knows me. The sky itself has darkened, t
 
 It is not a god. It is older than gods. And it is awake.
 </small>
+</div>
+<div class="area-container">
+<fieldset class="area" id="dock-2848" style="margin-top:800px;">
+  <h3>Dock⚓</h3>
+  <p>A Dock, boats Anchored here</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('this')">🎣 Fish
+        here</button>
+  </center>
+</fieldset>
+</div>
+<div class="area-container">
+  <fieldset class="area" id="dock-2848" >
+    <h3>LogLand🍂</h3>
+    <p>A peaceful, leaf-kissed island tucked away in the breeze🍁</p>
+    <p>The soft whistle of wind dances through towering logs and golden leaves—perfect for a quiet fishing retreat.</p>
+    <center>
+      <button id="StartButtonFish" onclick="startFishing('LOGLAND')">🎣 Fish here</button>
+    </center>
+  </fieldset>
+</div>
+<div class="area-container">
+<fieldset class="area" style="margin-top:800px;">
+  <h3>🐟Tuna's Territory</h3>
+  <p>Warning:Territory of Tuna. beware of Tunas Attacking you or a marlin jump
+  on you and ending your fishing life</p>
+ 
+  <center>
+        <button id="StartButtonFish" onclick="startFishing('THEOCEAN')">🎣 Fish
+        Here</button>
+  </center>
+</fieldset>
 </div>
 <div class="area-container">
 <fieldset class="area" style="margin-top:800px;">
@@ -667,7 +710,7 @@ It is not a god. It is older than gods. And it is awake.
     bold; text-shadow: 0px 0px 10px red;"></small> 
 
     <!-- Exclamation Mark for Rarity -->
-    <div id="exclamationMark" class="exclamation-mark" style="display: none;">!</div>
+    <div id="exclamationMark" class="" style="display: none;">!</div>
 
     <!-- Progress Bar & Fish -->
     <div id="progressContainer">
@@ -688,275 +731,7 @@ It is not a god. It is older than gods. And it is awake.
 
 </div>
 
-    <script>//NOTIFICATIONS
-function showCombo(message) {
-    let tapButton = document.getElementById("tapButton");
-
-    // Create a new combo message element
-    let comboElement = document.createElement("div");
-    comboElement.innerText = message;
-    comboElement.style.position = "fixed"; // Fixed position to overlay everything
-    comboElement.style.fontSize = "10px";
-    comboElement.style.fontWeight = "bold";
-    comboElement.style.color = "gold";
-    comboElement.style.textShadow = "0px 0px 10px gold";
-    comboElement.style.pointerEvents = "none";
-    comboElement.style.opacity = "1";
-    comboElement.style.transition = "transform 1s ease-out, opacity 1s ease-out";
-    comboElement.style.zIndex = "9999"; // Ensures it overlays everything
-
-    // Append to the document
-    document.body.appendChild(comboElement);
-
-    // Get tap button position
-    let rect = tapButton.getBoundingClientRect();
-    let offsetX = Math.random() * 40 - 20; // Randomize X position
-    let offsetY = -50; // Appear above the button
-
-    // Position it near the tap button
-    comboElement.style.left = `${rect.left + rect.width / 2 + offsetX}px`;
-    comboElement.style.top = `${rect.top + offsetY}px`;
-
-    // Animate upward and fade out
-    setTimeout(() => {
-        comboElement.style.transform = "translateY(-100px)";
-        comboElement.style.opacity = "0";
-    }, 10);
-
-    // Remove from DOM after animation
-    setTimeout(() => {
-        comboElement.remove();
-    }, 1000);
-}
-
-
-function showExpNotification(expGained) {
-    // Create notification element
-    let notification = document.createElement("div");
-    notification.classList.add("exp-notification");
-
-    // Create inner span for dynamic content
-    let span = document.createElement("span");
-    span.innerHTML = `+${expGained} EXP`; // ✅ Dynamic content
-    notification.appendChild(span);
-
-    // Append to body
-    document.body.appendChild(notification);
-
-    // Animate: Fade In → Stay → Fade Out
-    setTimeout(() => {
-        notification.style.opacity = "1";
-        notification.style.transform = "translate(-50%, -55%)"; 
-    }, 50);
-
-    setTimeout(() => {
-        notification.style.opacity = "0";
-        notification.style.transform = "translate(-50%, -70%)"; 
-    }, 1500);
-
-    setTimeout(() => {
-        notification.remove(); // Remove after animation
-    }, 2000);
-}
- 
-
-function showCatchNotification(fishName, fishWeight, fishRarity, mutationName = "") {
-    let notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.top = "90%";
-    notification.style.left = "50%";
-    notification.style.transform = "translate(-50%, -50%)";
-    notification.style.padding = "15px 20px";
-    notification.style.background = "rgba(0, 0, 0, 0.8)";
-    notification.style.borderRadius = "10px";
-    notification.style.color = "white";
-    notification.style.fontSize = "18px";
-    notification.style.fontWeight = "bold";
-    notification.style.textAlign = "center";
-    notification.style.zIndex = "9999";
-    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
-    notification.style.animation = "fadeOut 3s forwards";
-
-    // Notification text
-    notification.innerHTML = `
-        You caught a <span style="color: yellow;">${fishRarity} ${mutationName}${fishName}</span> weighing <span style="color: cyan;">${fishWeight}KG</span>!
-    `;
-
-    document.body.appendChild(notification);
-
-    // Remove after animation
-    setTimeout(() => {
-        notification.remove();
-    }, 5000);
-}
-
-function showFailedCatchNotification(reason) {
-Reelerio.pause();
-    let notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.top = "50%";
-    notification.style.left = "50%";
-    notification.style.transform = "translate(-50%, -50%)";
-    notification.style.padding = "15px 20px";
-    notification.style.background = "rgba(0, 0, 0, 0.8)";
-    notification.style.borderRadius = "10px";
-    notification.style.color = "white";
-    notification.style.fontSize = "18px";
-    notification.style.fontWeight = "bold";
-    notification.style.textAlign = "center";
-    notification.style.zIndex = "9999";
-    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
-    notification.style.animation = "fadeOut 3s forwards";
-
-    // Notification text
-    notification.innerHTML = `
-        <span style="color: red;">Failed to catch the fish!</span> <br> 
-        <span style="color: gray;">${reason}</span>
-    `;
-
-    document.body.appendChild(notification);
-
-    // Remove after animation
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-function RodMessage(reason) {
-let fisj = new Audio("./Sounds/fishts.mp3");
-    fisj.play();
-
-    let notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.top = "50%";
-    notification.style.left = "50%";
-    notification.style.transform = "translate(-50%, -50%)";
-    notification.style.padding = "15px 20px";
-    notification.style.background = "rgba(0, 0, 0, 0.8)";
-    notification.style.borderRadius = "10px";
-    notification.style.color = "white";
-    notification.style.fontSize = "18px";
-    notification.style.fontWeight = "bold";
-    notification.style.textAlign = "center";
-    notification.style.zIndex = "9999";
-    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
-    notification.style.animation = "fadeOut 3s forwards";
-
-    // Notification text
-    notification.innerHTML = `
-        <span style="color: gray;">${reason}</span>
-    `;
-
-    document.body.appendChild(notification);
-
-    // Remove after animation
-    setTimeout(() => {
-        notification.remove();
-    }, 300);
-}
-function showMoneyNotification(amount) {
-    let notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.top = "50px"; // Appears at the top
-    notification.style.left = "50%";
-    notification.style.transform = "translateX(-50%)";
-    notification.style.padding = "10px 20px";
-    notification.style.background = "rgba(0, 0, 0, 0.8)";
-    notification.style.borderRadius = "8px";
-    notification.style.color = "white";
-    notification.style.fontSize = "18px";
-    notification.style.fontWeight = "bold";
-    notification.style.textAlign = "center";
-    notification.style.zIndex = "9999"; 
-    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
-    notification.style.opacity = "1";
-    notification.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
-    
-    // Notification text with gold color for coins
-    notification.innerHTML = `<span style="color: gold;">+${amount} Coins!</span>`;
-
-    document.body.appendChild(notification);
-
-    // Fade out and move up after a delay
-    setTimeout(() => {
-        notification.style.opacity = "0";
-        notification.style.transform = "translateX(-50%) translateY(-20px)";
-    }, 2500);
-
-    // Remove after animation
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-
-function showEvent(message) {
-    let notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.top = "120px"; // Appears at the top
-    notification.style.left = "50%";
-    notification.style.transform = "translateX(-50%)";
-    notification.style.padding = "10px 20px";
-    notification.style.background = "rgba(0, 0, 0, 0.8)";
-    notification.style.borderRadius = "8px";
-    notification.style.color = "white";
-    notification.style.fontSize = "18px";
-    notification.style.fontWeight = "bold";
-    notification.style.textAlign = "center";
-    notification.style.zIndex = "9999";
-    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
-    notification.style.opacity = "1";
-    notification.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
-    
-    // Notification text with gold color for coins
-    notification.innerHTML = message;
-
-    document.body.appendChild(notification);
-
-    // Fade out and move up after a delay
-    setTimeout(() => {
-        notification.style.opacity = "0";
-        notification.style.transform = "translateX(-50%) translateY(-20px)";
-    }, 2500);
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-function showSeason(message) {
-    let notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.top = "90px"; // Appears at the top
-    notification.style.left = "50%";
-    notification.style.transform = "translateX(-50%)";
-    notification.style.padding = "10px 20px";
-    notification.style.background = "rgba(0, 0, 0, 0.8)";
-    notification.style.borderRadius = "8px";
-    notification.style.color = "white";
-    notification.style.fontSize = "18px";
-    notification.style.fontWeight = "bold";
-    notification.style.textAlign = "center";
-    notification.style.zIndex = "9999";
-    notification.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.5)";
-    notification.style.opacity = "1";
-    notification.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
-    
-    // Notification text with gold color for coins
-    notification.innerHTML = message;
-
-    document.body.appendChild(notification);
-
-    // Fade out and move up after a delay
-    setTimeout(() => {
-        notification.style.opacity = "0";
-        notification.style.transform = "translateX(-50%) translateY(-20px)";
-    }, 2500);
-    // Remove after animation
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-
-
-    </script>
-
+    <script defer src="ServerServiceScript/alertsSYSTEM.js"></script>
 <script defer src="ServerServiceScript/main.js"></script>
 <script defer src="ServerServiceScript/Bait.js"></script> <!-- Main after Rod -->
 <script defer src="ServerServiceScript/Rod.js"></script> 
@@ -1051,3 +826,24 @@ function checkBanStatus() {
 }
 
 </script>
+<script>
+  function checkTimeAndHideFieldset() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+
+    const fieldset = document.getElementById("BlossomEventTag");
+
+    // Hide only at exactly 12:00 AM
+    if (hours === 0 && minutes === 0) {
+      fieldset.style.display = "none";
+    } else {
+      fieldset.style.display = "block";
+    }
+  }
+
+  // Check every 10 seconds
+  setInterval(checkTimeAndHideFieldset, 10000);
+  checkTimeAndHideFieldset(); // Run immediately
+</script>
+
