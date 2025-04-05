@@ -32,8 +32,14 @@ const rods = [
   { name: "Meg Master Rod", price: 5000000000, lucky: 500, power: 21, resilience:
   1000, lureSpeed: 9, passive: "Plus Power Meg Catching", limited: false,
   available: true },
-  { name: "💎Crystalized Rod", price: 160000000, lucky: 600, power: 14,  resilience:
+  { name: "Ghosty Rod👻", price: 190814110, lucky: 50, power:18, resilience:
+  10, lureSpeed: 9, passive: "Phantom Mutations👻", limited:true,
+  available: true },
+  { name: "💎Crystalized Rod", price: 160, lucky: 600, power: 19,  resilience:
   0,  lureSpeed: 19, passive: "💎Crystalized Mutations Per 100 Catch", limited: true,
+  available: false },
+    { name: "🌕Moonlight Rod", price: 16000000, lucky: 60, power: 17.3,  resilience:
+  6000,  lureSpeed: 10, passive: "More Sparkling Mutations✨ if night time", limited: true,
   available: true },
 { name: "🛠️Cybernetic Rod[2025]", price: 15000000, lucky: 200, power: 22, resilience: 850,  
   lureSpeed: 10, passive: "Cyber Mutation (Every 50 Catches)", limited: true,
