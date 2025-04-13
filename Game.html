@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div class="area-container" >
 <fieldset id="BlossomEventTag" class="area"style=" background:
-linear-gradient(135deg, pink, #80D0C7); display:blobk;">
+linear-gradient(135deg, pink, #80D0C7); display:none;">
   <h3>🌸Blossom Area</h3>
   <p>Blossom spotted on the ocean that Rains Blossom. a rare phenomenome.
   scientist are confused on the event💮</p>
@@ -826,24 +826,5 @@ function checkBanStatus() {
 }
 
 </script>
-<script>
-  function checkTimeAndHideFieldset() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
 
-    const fieldset = document.getElementById("BlossomEventTag");
-
-    // Hide only at exactly 12:00 AM
-    if (hours === 0 && minutes === 0) {
-      fieldset.style.display = "none";
-    } else {
-      fieldset.style.display = "block";
-    }
-  }
-
-  // Check every 10 seconds
-  setInterval(checkTimeAndHideFieldset, 10000);
-  checkTimeAndHideFieldset(); // Run immediately
-</script>
 
