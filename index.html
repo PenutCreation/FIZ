@@ -45,9 +45,9 @@
     <!-- Play Section -->
     <section id="play">
         <center>
-            <img src="img/logo.png" style="width:50%; border-radius:10px;">
+            <img src="img/dl.png" style="width:50%; border-radius:10px;">
             <h2>(UPD‼️)Fiz</h2>
-            <kbd>42.4K Visits • (<span id="activePlayers"></span> Active)</kbd>
+            <kbd>87.4K Visits • (<span id="activePlayers">0</span> Active)</kbd>
             <p>Server Ping: Fast</p>
             
             <button class="fizzplay" onclick="play()">Play</button>
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fake Active Players Count
 function updateActivePlayers() {
-    let active = Math.floor(Math.random() * 5999) + 1;
+    let active = Math.floor(Math.random() * 0) + 0;
     localStorage.setItem("activePlayers", active);
     document.getElementById("activePlayers").textContent = active;
 }
