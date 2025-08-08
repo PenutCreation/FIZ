@@ -1,470 +1,1879 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="Style/main.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initia-scale=1.0">
-    <title>Fiz🎣 - The Deep🫧</title>
-<link rel="stylesheet" href="Style/global.css">
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/PenutCreation/FIZ/refs/heads/main/img/dl.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meko</title>
+  <style>
+    :root {
+      --primary-color: #6a00ff;
+      --secondary-color: #b100e8;
+      --accent-color: #6600ff;
+      --text-color: #333;
+      --light-text: #777;
+      --background: linear-gradient(to right, #f0f2f5, #e3e9f2);
+      --card-bg: white;
+      --warning-color: #ffc107;
+      --danger-color: #ff4444;
+    }
 
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--background);
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      overflow-x: hidden;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .dark-mode {
+      --text-color: #f0f0f0;
+      --light-text: #aaa;
+      --background: linear-gradient(to right, #121212, #1a1a1a);
+      --card-bg: #242424;
+      --warning-color: #ffaa00;
+    }
+
+    /* 🌌 Galaxy-Inspired Navbar */
+    .navbar {
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      background-size: 300% 300%;
+      animation: navbarGalaxy 10s ease infinite;
+      color: white;
+      padding: 10px 20px;
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes navbarGalaxy {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-icon {
+      cursor: pointer;
+      font-size: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .search-bar input {
+      padding: 7px 10px;
+      font-size: 16px;
+      width: 220px;
+      border-radius: 6px;
+      border: none;
+      transition: box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 0 0 6px var(--secondary-color);
+    }
+
+    .feed {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+
+    .post {
+      background: var(--card-bg);
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      position: relative;
+      animation: fadeIn 0.4s ease;
+      transition: transform 0.2s ease;
+    }
+
+    .post:hover {
+      transform: scale(1.01);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .post .header {
+      display: flex;
+      align-items: center;
+    }
+
+    .post .header img {
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      margin-right: 12px;
+      border: 2px solid var(--primary-color);
+      transition: transform 0.2s ease;
+      object-fit: cover;
+    }
+
+    .post .header img:hover {
+      transform: scale(1.1);
+    }
+
+    .post .header .info {
+      flex-grow: 1;
+    }
+
+    .post .header .info h4,
+    .post .header .info p {
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .post .header .info p {
+      color: var(--light-text);
+      font-size: 0.9em;
+    }
+
+    .post .content {
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .post .content iframe,
+    .post .content .raw-video,
+    .post .content video,
+    .post .content img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: block;
+      cursor: pointer;
+    }
+
+    .post .content iframe,
+    .post .content .raw-video,
+    .post .content video {
+      aspect-ratio: 16 / 9;
+      border: none;
+      background: #000;
+      max-height: 480px;
+    }
+
+    .post .content img {
+      transition: transform 0.3s ease;
+      max-height: 500px;
+      object-fit: contain;
+    }
+
+    .post .content img:hover {
+      transform: scale(1.02);
+    }
+
+    .post .footer {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .post .footer button {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    .post .footer button:hover {
+      color: var(--secondary-color);
+      transform: translateY(-2px);
+      background: rgba(106, 0, 255, 0.1);
+    }
+
+    .post .footer button.liked {
+      color: var(--secondary-color);
+      font-weight: bold;
+    }
+
+    .post .footer button.reported {
+      color: var(--danger-color);
+    }
+
+    .post .warning {
+      background: var(--warning-color);
+      color: black;
+      padding: 8px 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      animation: pulseWarning 1s infinite alternate;
+    }
+
+    @keyframes pulseWarning {
+      from { background-color: var(--warning-color); }
+      to { background-color: #ffe061; }
+    }
+
+    .profile-popup,
+    .hashtag-popup,
+    .settings-popup {
+      position: fixed;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.95);
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      z-index: 9999;
+      max-width: 400px;
+      width: 90%;
+      display: none;
+      animation: popupFade 0.3s ease forwards;
+      color: var(--text-color);
+    }
+
+    @keyframes popupFade {
+      from { opacity: 0; transform: translateX(-50%) scale(0.9); }
+      to { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+
+    .settings-option {
+      margin: 15px 0;
+    }
+
+    .settings-option label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .settings-option select, .settings-option input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary-color);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .fullscreen-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 99999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .fullscreen-content {
+      width: 90%;
+      height: 80%;
+      position: relative;
+    }
+
+    .fullscreen-content iframe,
+    .fullscreen-content video {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .fullscreen-title {
+      color: white;
+      margin-top: 15px;
+      font-size: 1.2em;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .exit-fullscreen {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2em;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .load-more {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      margin: 20px 0;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .load-more:hover {
+      background: var(--secondary-color);
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 20px 0;
+      color: var(--text-color);
+    }
+
+    .tab-bar {
+      display: flex;
+      justify-content: space-around;
+      background: var(--card-bg);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 0;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 998;
+    }
+
+    .tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      color: var(--light-text);
+      transition: color 0.2s ease;
+    }
+
+    .tab.active {
+      color: var(--primary-color);
+    }
+
+    .tab i {
+      font-size: 1.5em;
+      margin-bottom: 3px;
+    }
+
+    .tab span {
+      font-size: 0.8em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Report modal */
+    .report-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 10000;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .report-modal h3 {
+      margin-top: 0;
+    }
+
+    .report-reasons {
+      margin: 15px 0;
+    }
+
+    .report-reason {
+      margin: 10px 0;
+    }
+
+    .report-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .report-actions button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .report-cancel {
+      background: #ddd;
+    }
+
+    .report-submit {
+      background: var(--danger-color);
+      color: white;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      display: none;
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 640px) {
+      .feed {
+        padding: 0 5px;
+        margin-bottom: 60px;
+      }
+
+      .search-bar input {
+        width: 160px;
+      }
+
+      .post .header img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .navbar {
+        padding: 10px 15px;
+      }
+    }
+
+    @media (min-width: 641px) {
+      .tab-bar {
+        display: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<div id="sky">
-<div class="ban-overlay" id="banOverlay"></div>
-
-    <!-- Ban Popup -->
-    <div class="ban-popup" id="banPopup">
-        <h2>🚫 You are Banned!</h2>
-        <p>Dear, <span>Fisher</span> You Have Break one of my rules, </p>
-        <p><strong>Reason:</strong> <span id="banReason"></span></p>
-        <p><strong>Banned By:</strong> <span id="bannedBy"></span></p>
-        <p><strong>Time:</strong> <span id="banTime"></span></p>
-        <p><strong>Case ID:</strong> <span id="caseID"></span></p>
-        <button class="ban-btn"
-        onclick="window.location.href='https://google.com'">Leave</button>
-    </div>
 <body>
+  <div class="navbar">
+    <div>Meko</div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search posts...">
+    </div>
+    <div class="nav-icons">
+      <i class="nav-icon fas fa-heart" id="likedPostsBtn" title="Liked Posts"></i>
+      <i class="nav-icon fas fa-cog" id="settingsBtn" title="Settings"></i>
+      <i class="nav-icon fas fa-moon" id="darkModeToggle" title="Dark Mode"></i>
+    </div>
+  </div>
 
-    <div id="gameScreen">
+  <div class="page-title" id="pageTitle">Feed</div>
+
+  <div class="feed" id="feed">
+    <!-- Posts will be rendered here -->
+  </div>
+
+  <button class="load-more" id="loadMoreBtn">Load More Posts</button>
+
+  <div class="profile-popup" id="profilePopup">
+    <span class="popup-close">&times;</span>
+    <div id="profileContent"></div>
+  </div>
+
+  <div class="hashtag-popup" id="hashtagPopup">
+    <span class="popup-close">&times;</span>
+    <div id="hashtagContent"></div>
+  </div>
+
+  <div class="settings-popup" id="settingsPopup">
+    <span class="popup-close">&times;</span>
+    <h3>Settings</h3>
+    <div class="settings-option">
+      <label for="postLimit">Posts Per Load:</label>
+      <select id="postLimit">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="28" selected>28</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    <div class="settings-option">
+      <label>Dark Mode:</label>
+      <label class="switch">
+        <input type="checkbox" id="darkModeSwitch">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="settings-option">
+      <label>Randomize Feed:</label>
+      <label class="switch">
+        <input type="checkbox" id="randomizeSwitch" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="settings-option">
+      <label>Auto-play Videos:</label>
+      <label class="switch">
+        <input type="checkbox" id="autoplaySwitch">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="fullscreen-overlay" id="fullscreenOverlay">
+    <button class="exit-fullscreen" id="exitFullscreen">&times;</button>
+    <div class="fullscreen-content" id="fullscreenContent"></div>
+    <div class="fullscreen-title" id="fullscreenTitle"></div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="report-modal hidden" id="reportModal">
+    <h3>Report Post</h3>
+    <p>Please select a reason for reporting this post:</p>
+    <div class="report-reasons">
+      <div class="report-reason">
+        <input type="radio" id="reason1" name="reportReason" value="Spam">
+        <label for="reason1">Spam or misleading content</label>
+      </div>
+      <div class="report-reason">
+        <input type="radio" id="reason2" name="reportReason" value="Harmful">
+        <label for="reason2">Harmful or dangerous content</label>
+      </div>
+      <div class="report-reason">
+        <input type="radio" id="reason3" name="reportReason" value="Hate">
+        <label for="reason3">Hate speech or symbols</label>
+      </div>
+      <div class="report-reason">
+        <input type="radio" id="reason4" name="reportReason" value="Violence">
+        <label for="reason4">Violence or graphic content</label>
+      </div>
+      <div class="report-reason">
+        <input type="radio" id="reason5" name="reportReason" value="Harassment">
+        <label for="reason5">Harassment or bullying</label>
+      </div>
+    </div>
+    <div class="report-actions">
+      <button class="report-cancel" id="reportCancel">Cancel</button>
+      <button class="report-submit" id="reportSubmit">Submit Report</button>
+    </div>
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab active" data-tab="feed">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </div>
+    <div class="tab" data-tab="liked">
+      <i class="fas fa-heart"></i>
+      <span>Liked</span>
+    </div>
+    <div class="tab" data-tab="search">
+      <i class="fas fa-search"></i>
+      <span>Search</span>
+    </div>
+    <div class="tab" data-tab="settings">
+      <i class="fas fa-cog"></i>
+      <span>Settings</span>
+    </div>
+  </div>
+
+  <script>
+
+    let posts = [
+      {
+        id: 33,
+        PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+        DisplayName: "Meko User",
+        Name: "Sedka",
+        Location: "",
+        PostDate: "August 3, 2025",
+        Header: "",
+        Text: "We played, we tried We laughed, we cried We succeeded, we died We respawned and thrived From the zombies, to the endermen  From the skeletons, to the pigmen  From the spiders and creepers  And from those annoying griefers  From the biome of jungle to sands To the mushrooms and other obscure lands From the snow and ice To the swamps which never looked too nice From the moments with friends we’ll cherish From a time we hoped Herobrine would perish From the great animations  To the Youtube sensations Along with those musical incantations I thank Mojang for creating my childhood Much better than just ‘good’ I think I speak for everyone here When I say this is not game of the year It’s the game of the century As it offered us plenty And these memories will never leave Just like the thought of first playing as Steve So I say close your eyes And listen to the music with surprise As your memories of Minecraft where once apart But now can be fixed like a broken heart In order to find your memories core You must go back to the world of Minecraft once more And defeat the Ender Dragon one last time As the sweet sounds of your childhood begin to chime One last thing, for me to say Which would be, have a nice day Also for you to never forget this game Nor the journey that came As apart of that journey was the end Quite literally, not pretend Just like this poem, which I hope you all read  As I would love it if this poem and this game is remembered once I’m dead.  thank you for reading my poem spread this and make people feel and see their memories and chime their day and also childhood one wise man says the memory you Cherise will never go Un banish a  true Minecraft player has one thing is their hearts a beautiful fire that lit their kindness and make them shine more beautiful than the stars i hope this made ur day it would mean a whole lot to me have a nice minecraft day -@zacharyplays7820",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 355364,
+        Shares: 1,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 32,
+        PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+        DisplayName: "Meko User",
+        Name: "MenSlopy",
+        Location: "",
+        PostDate: "August 1, 2025",
+        Header: "",
+        Text: "I Dont Know Why but im scared to scroll on Meko Today😔",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 53462,
+        Shares: 1327,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 32,
+        PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+        DisplayName: "Meko User",
+        Name: "sedka",
+        Location: "",
+        PostDate: "August 1, 2025",
+        Header: "",
+        Text: "Ako Lang ba pero yung gaisano Fire Accident sa general santo city, ay planned Demolishment",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 53462,
+        Shares: 1327,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 31,
+        PFP: "https://i.pinimg.com/236x/50/c2/bd/50c2bd27dc452e24350c0805de733c51.jpg",
+        DisplayName: "Meko User",
+        Name: "HAB",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "Edged✅ #2200",
+        YoutubeIframe: "",
+        Photos: "https://i.pinimg.com/474x/3e/91/d7/3e91d73e6cdd703c041ba0722f80b611.jpg",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 85722,
+        Shares: 482,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 30,
+        PFP: "https://i.pinimg.com/236x/50/c2/bd/50c2bd27dc452e24350c0805de733c51.jpg",
+        DisplayName: "Meko User",
+        Name: "HAB",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "Edged✅ #2200",
+        YoutubeIframe: "",
+        Photos: "https://i.pinimg.com/236x/6b/4f/f0/6b4ff0165e6835e19f4805533bf53e61.jpg",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 85722,
+        Shares: 482,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 29,
+        PFP: "https://i.pinimg.com/236x/50/c2/bd/50c2bd27dc452e24350c0805de733c51.jpg",
+        DisplayName: "Meko User",
+        Name: "HAB",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "Dang Model #2200",
+        YoutubeIframe: "",
+        Photos: "https://i.pinimg.com/474x/db/23/fe/db23fe2f54d3424ebe03a46080a14d04.jpg",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 85722,
+        Shares: 482,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 28,
+        PFP: "https://i.pinimg.com/236x/50/c2/bd/50c2bd27dc452e24350c0805de733c51.jpg",
+        DisplayName: "Meko User",
+        Name: "HAB",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "what a hotty #2200",
+        YoutubeIframe: "",
+        Photos: "https://i.pinimg.com/474x/28/b7/c6/28b7c627bbdba214d6423767d6901702.jpg",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 4262,
+        Shares: 2,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 27,
+        PFP: "https://i.pinimg.com/236x/50/c2/bd/50c2bd27dc452e24350c0805de733c51.jpg",
+        DisplayName: "Meko User",
+        Name: "HAB",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "She Pretty",
+        YoutubeIframe: "",
+        Photos: "https://dreamfiancee.com/wp-content/uploads/2023/02/dating-asian-girls-768x768.jpg",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 8572,
+        Shares: 329,
+        RedFlagged: false,
+        comments: 24
+      },
+  {
+    id: 17,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Jaen Rodriguez",
+    Location: "Miami, FL",
+    PostDate: "July 31, 2025",
+    Header: "",
+    Text: "How To Stop Lust - 5 Biblical Methods That Actually Work",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 7352,
+    Shares: 672,
+    RedFlagged: false,
+    comments: 423
+  },
+
+  // Top reply
+  {
+    id: 18,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Marcus Johnson",
+    Location: "Dallas, TX",
+    PostDate: "July 31, 2025",
+    Header: "Replied to @Jaen Rodriguez",
+    Text: "This is exactly what our youth need to hear! The 3rd point about accountability partners changed my life when I was struggling.",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 892,
+    Shares: 45,
+    RedFlagged: false,
+    comments: 23,
+    replyTo: 17
+  },
+
+  // Reply to reply
+  {
+    id: 19,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Tyler Chen",
+    Location: "San Francisco, CA",
+    PostDate: "July 31, 2025",
+    Header: "Replied to @Marcus Johnson",
+    Text: "Accountability partners? Sounds like controlling people's private lives. This purity culture is toxic.",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 342,
+    Shares: 12,
+    RedFlagged: false,
+    comments: 8,
+    replyTo: 18
+  },
+
+  // Another reply chain
+  {
+    id: 20,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Emily Wilson",
+    Location: "Chicago, IL",
+    PostDate: "July 31, 2025",
+    Header: "Replied to @Jaen Rodriguez",
+    Text: "As a therapist, I appreciate the spiritual perspective but would caution against complete suppression. Healthy integration is key.",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 567,
+    Shares: 34,
+    RedFlagged: false,
+    comments: 15,
+    replyTo: 17
+  },
+
+  {
+    id: 21,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Pastor Dave Williams",
+    Location: "Nashville, TN",
+    PostDate: "July 31, 2025",
+    Header: "Replied to @Emily Wilson",
+    Text: "@Emily Wilson With respect, Scripture is clear about fleeing from sexual immorality. Integration is compromise.",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 421,
+    Shares: 28,
+    RedFlagged: false,
+    comments: 7,
+    replyTo: 20
+  },
+
+  // More realistic debate examples
+  {
+    id: 22,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Aisha Thompson",
+    Location: "Atlanta, GA",
+    PostDate: "July 31, 2025",
+    Header: "Replied to @Jaen Rodriguez",
+    Text: "Y'all acting like lust is just a guy problem. Women struggle too but we're shamed into silence. Thanks for addressing this @Jaen Rodriguez!",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 1024,
+    Shares: 89,
+    RedFlagged: false,
+    comments: 42,
+    replyTo: 17
+  },
+
+  {
+    id: 23,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Kevin Zhang",
+    Location: "Seattle, WA",
+    PostDate: "July 31, 2025",
+    Header: "Replied to @Aisha Thompson",
+    Text: "@Aisha Thompson Exactly! The double standard is ridiculous. My girlfriend and I are working through this together thanks to posts like Jaen's.",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 587,
+    Shares: 23,
+    RedFlagged: false,
+    comments: 5,
+    replyTo: 22
+  },
+
+  // Heated argument example
+  {
+    id: 24,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Jamal Carter",
+    Location: "Detroit, MI",
+    PostDate: "July 31, 2025",
+    Header: "Replied to @Jaen Rodriguez",
+    Text: "This is why religion is dangerous. Shaming natural human desires leads to repression and worse outcomes. Be responsible, not ashamed!",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 876,
+    Shares: 134,
+    RedFlagged: true,
+    comments: 97,
+    replyTo: 17
+  },
+
+  {
+    id: 25,
+    PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    DisplayName: "Meko User",
+    Name: "Rebecca Smith",
+    Location: "Colorado Springs, CO",
+    PostDate: "July 31, 2025",
+    Header: "Replied to @Jamal Carter",
+    Text: "@Jamal Carter Typical response from someone who doesn't understand spiritual discipline. Freedom comes from self-control, not indulgence.",
+    YoutubeIframe: "",
+    Photos: "",
+    RawVideos: "",
+    RawIframe: "",
+    Likes: 432,
+    Shares: 18,
+    RedFlagged: false,
+    comments: 14,
+    replyTo: 24
+  },
+      {
+        id: 16,
+        PFP: "https://i.pinimg.com/236x/50/c2/bd/50c2bd27dc452e24350c0805de733c51.jpg",
+        DisplayName: "Meko User",
+        Name: "HAB",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "Asian Girl Genetics",
+        YoutubeIframe: "",
+        Photos: "https://i.pinimg.com/736x/d6/98/0d/d6980d7df891d6e75cda017ed6ee2cc1.jpg",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 2453,
+        Shares: 32,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 15,
+        PFP: "https://i.pinimg.com/736x/eb/d0/64/ebd064b819a0d395b0ba449b0b9929cd.jpg",
+        DisplayName: "Meko User",
+        Name: "Heice",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "Cat <3",
+        YoutubeIframe: "",
+        Photos: "https://i.imgur.com/A6m3E80_d.webp?maxwidth=1520&amp;fidelity=grand",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 3542,
+        Shares: 1,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 14,
+        PFP: "https://i.pinimg.com/736x/cc/bb/e6/ccbbe672da735eb688531af38104c66d.jpg",
+        DisplayName: "Meko User",
+        Name: "STAK",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "LET DOWN BUT CHOIR(Magistically)",
+        YoutubeIframe: "https://youtu.be/-RFdnFV6MAI?si=AtsHN1XJ2_DxNiut",
+        Photos: "",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 2436,
+        Shares: 532,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 15,
+        PFP: "https://i.pinimg.com/236x/65/de/ae/65deae80abbca11968e61b3efc803701.jpg",
+        DisplayName: "RadioGuy",
+        Name: "RadioGuy",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "LET DOWN BUT CHOIR(Magistically)",
+        YoutubeIframe: "https://youtu.be/-Z_NvVMUcG8?si=IR-mM45DxokIxYBT",
+        Photos: "",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 2436,
+        Shares: 532,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 13,
+        PFP: "https://i.pinimg.com/236x/85/18/ca/8518ca4f01ff414bb3ac70d22835003c.jpg",
+        DisplayName: "Meko User",
+        Name: "Jay",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "5yo Me After Learning How to Hide a text on Javascript",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "https://i.imgur.com/aN41TB5.mp4",
+        RawIframe: "",
+        Likes: 1216,
+        Shares: 25,
+        RedFlagged: false,
+        comments: 0
+      },
+      {
+        id: 12,
+        PFP: "https://i.imgur.com/pzeKvfQ_d.png?maxwidth=290&amp;fidelity=grand&quot",
+        DisplayName: "Meko User",
+        Name: "Colin",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "Dang Good Moves",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "https://i.imgur.com/T2MnpVq.mp4",
+        RawIframe: "",
+        Likes: 6,
+        Shares: 1,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 11,
+        PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+        DisplayName: "Meko User",
+        Name: "××",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "Dang Good Moves",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "https://i.imgur.com/T2MnpVq.mp4",
+        RawIframe: "",
+        Likes: 425,
+        Shares: 1,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 10,
+        PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+        DisplayName: "Meko User",
+        Name: "××",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "We can all use a lift now and then",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "https://i.imgur.com/96S2xAE.mp4",
+        RawIframe: "",
+        Likes: 425,
+        Shares: 1,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 9,
+        PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+        DisplayName: "Meko User",
+        Name: "ChaiTea",
+        Location: "",
+        PostDate: "July 31, 2025",
+        Header: "",
+        Text: "can it blow it?",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "https://i.imgur.com/DqEiY9d.mp4",
+        RawIframe: "",
+        Likes: 638,
+        Shares: 2,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 1,
+        PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+        DisplayName: "Meko User",
+        Name: "Denzal",
+        Location: "New York",
+        PostDate: "July 27, 2023",
+        Header: "My Gaming Adventure",
+        Text: "Just beat Minecraft for the first time! #Gaming #Achievement",
+        YoutubeIframe: "https://youtu.be/dgIvvxAfCSk?si=PSIhs88lyE2uy_jE",
+        Photos: "",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 138,
+        Shares: 12,
+        RedFlagged: false,
+        comments: 24
+      },
+      {
+        id: 2,
+        PFP: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+        DisplayName: "Meko User",
+        Name: "Denzal",
+        Location: "Los Angeles",
+        PostDate: "July 26, 2023",
+        Header: "Movie Night",
+        Text: "Watching my favorite movie tonight #MovieLover #Weekend",
+        YoutubeIframe: "https://youtu.be/8zuDc18wyiw?si=HD8cAvAFnrYUfhjJ",
+        Photos: "",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 89,
+        Shares: 5,
+        RedFlagged: false,
+        comments: 15
+      },
+      {
+        id: 3,
+        PFP: "https://i.imgur.com/0y0y0y0.jpg",
+        DisplayName: "Meko User",
+        Name: "Deng",
+        Location: "General Santos City",
+        PostDate: "March 30, 2023",
+        Header: "Welcome to Meko!",
+        Text: "Hello everyone, this is my first post on Meko! #Welcome #NewUser",
+        YoutubeIframe: "",
+        Photos: "https://i.imgur.com/WpVscLR_d.webp?maxwidth=760&amp;fidelity=grand",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 1384,
+        Shares: 572,
+        RedFlagged: false,
+        comments: 243
+      },
+      {
+        id: 4,
+        PFP: "https://play-lh.googleusercontent.com/gjX-aBU0iIAmfJqUWg8rWifLPDWNwRe0aIj46216Bq0cpKnEm6nC3pG7-3uh56wd5AE=s94-rw",
+        DisplayName: "Share",
+        Name: "Share",
+        Location: "Internet",
+        PostDate: "July 25, 2023",
+        Header: "Test Post",
+        Text: "This is a test post with a video #Test #Video",
+        RawVideos: "https://i.imgur.com/0xMBsY2.mp4",
+        YoutubeIframe: "",
+        Photos: "",
+        RawIframe: "",
+        Likes: 84,
+        Shares: 2,
+        RedFlagged: false,
+        comments: 7
+      },
+      {
+        id: 5,
+        PFP: "https://randomuser.me/api/portraits/women/44.jpg",
+        DisplayName: "Travel Lover",
+        Name: "Sarah",
+        Location: "Paris, France",
+        PostDate: "July 24, 2023",
+        Header: "Beautiful Paris",
+        Text: "The Eiffel Tower at sunset is breathtaking! #Travel #Paris #Photography",
+        YoutubeIframe: "",
+        Photos: "https://i.imgur.com/JqYeZbL.jpg",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 542,
+        Shares: 127,
+        RedFlagged: false,
+        comments: 89
+      },
+      {
+        id: 6,
+        PFP: "https://randomuser.me/api/portraits/men/32.jpg",
+        DisplayName: "Tech Guru",
+        Name: "Mike",
+        Location: "San Francisco",
+        PostDate: "July 23, 2023",
+        Header: "New Gadget Alert",
+        Text: "Just got the new smartphone and it's amazing! #Tech #Gadgets",
+        YoutubeIframe: "https://youtu.be/XqZsoesa55w",
+        Photos: "",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 321,
+        Shares: 45,
+        RedFlagged: false,
+        comments: 76
+      },
+      {
+        id: 7,
+        PFP: "https://randomuser.me/api/portraits/women/68.jpg",
+        DisplayName: "Foodie",
+        Name: "Emma",
+        Location: "Tokyo, Japan",
+        PostDate: "July 22, 2023",
+        Header: "Sushi Time",
+        Text: "Best sushi I've ever had! #Food #Japan #Sushi",
+        YoutubeIframe: "",
+        Photos: "https://i.imgur.com/5R5qWYF.jpg",
+        RawVideos: "",
+        RawIframe: "",
+        Likes: 876,
+        Shares: 231,
+        RedFlagged: true,
+        comments: 154
+      },
+      {
+        id: 8,
+        PFP: "https://randomuser.me/api/portraits/men/75.jpg",
+        DisplayName: "Fitness Coach",
+        Name: "David",
+        Location: "Miami",
+        PostDate: "July 21, 2023",
+        Header: "Workout Routine",
+        Text: "My new workout routine is showing great results! #Fitness #Gym #Health",
+        YoutubeIframe: "",
+        Photos: "",
+        RawVideos: "https://i.imgur.com/9JZbL9x.mp4",
+        RawIframe: "",
+        Likes: 432,
+        Shares: 98,
+        RedFlagged: false,
+        comments: 67
+      }
+    ];
+
+    // App state
+    let currentTab = 'feed';
+    let currentPage = 1;
+    let postLimit = 28;
+    let darkMode = false;
+    let randomizeFeed = true;
+    let autoplayVideos = false;
+    let currentReportPostId = null;
+    let lastTapTime = 0;
+
+    // DOM elements
+    const feedEl = document.getElementById('feed');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const profilePopup = document.getElementById('profilePopup');
+    const hashtagPopup = document.getElementById('hashtagPopup');
+    const settingsPopup = document.getElementById('settingsPopup');
+    const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+    const fullscreenContent = document.getElementById('fullscreenContent');
+    const fullscreenTitle = document.getElementById('fullscreenTitle');
+    const exitFullscreen = document.getElementById('exitFullscreen');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const reportModal = document.getElementById('reportModal');
+    const reportCancel = document.getElementById('reportCancel');
+    const reportSubmit = document.getElementById('reportSubmit');
+    const pageTitle = document.getElementById('pageTitle');
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeSwitch = document.getElementById('darkModeSwitch');
+    const randomizeSwitch = document.getElementById('randomizeSwitch');
+    const autoplaySwitch = document.getElementById('autoplaySwitch');
+    const postLimitSelect = document.getElementById('postLimit');
+    const likedPostsBtn = document.getElementById('likedPostsBtn');
+    const settingsBtn = document.getElementById('settingsBtn');
+    const searchInput = document.getElementById('searchInput');
+    const tabs = document.querySelectorAll('.tab');
+
+    // Initialize the app
+    function init() {
+      loadSettings();
+      renderPosts();
+      setupEventListeners();
+    }
+
+    // Load settings from localStorage
+    function loadSettings() {
+      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+      const savedRandomize = localStorage.getItem('randomizeFeed') !== 'false';
+      const savedAutoplay = localStorage.getItem('autoplayVideos') === 'true';
+      const savedPostLimit = localStorage.getItem('postLimit') || 28;
+
+      darkMode = savedDarkMode;
+      randomizeFeed = savedRandomize;
+      autoplayVideos = savedAutoplay;
+      postLimit = parseInt(savedPostLimit);
+
+      if (darkMode) {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.classList.replace('fa-moon', 'fa-sun');
+        darkModeSwitch.checked = true;
+      }
+
+      randomizeSwitch.checked = randomizeFeed;
+      autoplaySwitch.checked = autoplayVideos;
+      postLimitSelect.value = postLimit;
+    }
+
+    // Save settings to localStorage
+    function saveSettings() {
+      localStorage.setItem('darkMode', darkMode);
+      localStorage.setItem('randomizeFeed', randomizeFeed);
+      localStorage.setItem('autoplayVideos', autoplayVideos);
+      localStorage.setItem('postLimit', postLimit);
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+      // Close popups when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!profilePopup.contains(e.target) && !e.target.classList.contains('name')) {
+          profilePopup.style.display = 'none';
+        }
+        if (!hashtagPopup.contains(e.target) && !e.target.classList.contains('hashtag')) {
+          hashtagPopup.style.display = 'none';
+        }
+        if (!settingsPopup.contains(e.target) && e.target.id !== 'settingsBtn' && !e.target.closest('#settingsBtn')) {
+          settingsPopup.style.display = 'none';
+        }
+      });
+
+      // Close buttons
+      document.querySelectorAll('.popup-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.parentElement.style.display = 'none';
+        });
+      });
+
+      // Load more posts
+      loadMoreBtn.addEventListener('click', () => {
+        currentPage++;
+        renderPosts();
+      });
+
+      // Fullscreen
+      exitFullscreen.addEventListener('click', () => {
+        fullscreenOverlay.style.display = 'none';
+      });
+
+      // Dark mode toggle
+      darkModeToggle.addEventListener('click', toggleDarkMode);
+      darkModeSwitch.addEventListener('change', toggleDarkMode);
+
+      // Randomize feed toggle
+      randomizeSwitch.addEventListener('change', (e) => {
+        randomizeFeed = e.target.checked;
+        saveSettings();
+        currentPage = 1;
+        renderPosts();
+      });
+
+      // Autoplay toggle
+      autoplaySwitch.addEventListener('change', (e) => {
+        autoplayVideos = e.target.checked;
+        saveSettings();
+      });
+
+      // Post limit change
+      postLimitSelect.addEventListener('change', (e) => {
+        postLimit = parseInt(e.target.value);
+        saveSettings();
+        currentPage = 1;
+        renderPosts();
+      });
+
+      // Liked posts button
+      likedPostsBtn.addEventListener('click', () => {
+        currentTab = 'liked';
+        updateTabUI();
+        renderPosts();
+      });
+
+      // Settings button
+      settingsBtn.addEventListener('click', () => {
+        settingsPopup.style.display = 'block';
+      });
+
+      // Search input
+      searchInput.addEventListener('input', (e) => {
+        if (e.target.value.length > 2) {
+          currentTab = 'search';
+          updateTabUI();
+          renderPosts();
+        } else if (currentTab === 'search') {
+          currentTab = 'feed';
+          updateTabUI();
+          renderPosts();
+        }
+      });
+
+      // Report modal
+      reportCancel.addEventListener('click', closeReportModal);
+      reportSubmit.addEventListener('click', submitReport);
+
+      // Tab navigation
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          currentTab = tab.getAttribute('data-tab');
+          updateTabUI();
+          renderPosts();
+        });
+      });
+    }
+
+    // Update tab UI
+    function updateTabUI() {
+      tabs.forEach(tab => {
+        if (tab.getAttribute('data-tab') === currentTab) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      // Update page title
+      switch (currentTab) {
+        case 'liked':
+          pageTitle.textContent = 'Liked Posts';
+          break;
+        case 'search':
+          pageTitle.textContent = 'Search Results';
+          break;
+        case 'settings':
+          pageTitle.textContent = 'Settings';
+          break;
+        default:
+          pageTitle.textContent = 'Feed';
+      }
+
+      // Show/hide elements based on tab
+      if (currentTab === 'settings') {
+        feedEl.style.display = 'none';
+        loadMoreBtn.style.display = 'none';
+        settingsPopup.style.display = 'block';
+      } else {
+        feedEl.style.display = 'block';
+        loadMoreBtn.style.display = 'block';
+        settingsPopup.style.display = 'none';
+      }
+    }
+
+    // Toggle dark mode
+    function toggleDarkMode() {
+      darkMode = !darkMode;
+      document.body.classList.toggle('dark-mode');
       
-<nav id="stickyNav">
-    <h2>Fiz🎣</h2>
-<small id="caughtStreakDisplay">Caught Streak: 0</small>
-<small>Cash: ₱<span id="cashCount">0</span></small>
-</nav>
+      if (darkMode) {
+        darkModeToggle.classList.replace('fa-moon', 'fa-sun');
+        darkModeSwitch.checked = true;
+      } else {
+        darkModeToggle.classList.replace('fa-sun', 'fa-moon');
+        darkModeSwitch.checked = false;
+      }
+      
+      saveSettings();
+    }
 
-      <div class="FullMenuio">
-<div class="exp-container">
-    <span id="levelText">Level 1</span> 
+    // Render posts based on current tab
+    function renderPosts() {
+      feedEl.innerHTML = '';
+      currentPage = currentTab === 'feed' ? currentPage : 1;
+      
+      let postsToRender = [];
+      
+      switch (currentTab) {
+        case 'liked':
+          postsToRender = getLikedPosts();
+          pageTitle.textContent = `Liked Posts (${postsToRender.length})`;
+          break;
+        case 'search':
+          const searchTerm = searchInput.value.toLowerCase();
+          postsToRender = posts.filter(post => 
+            post.Text.toLowerCase().includes(searchTerm) || 
+            (post.Header && post.Header.toLowerCase().includes(searchTerm))
+          ).reverse();
+          pageTitle.textContent = `Search Results for "${searchTerm}"`;
+          break;
+        default:
+          postsToRender = [...posts].reverse(); // Show newest first
+          if (randomizeFeed) {
+            postsToRender = shuffleArray(postsToRender);
+          }
+      }
+      
+      const startIdx = 0;
+      const endIdx = Math.min(postLimit * currentPage, postsToRender.length);
+      const postsToShow = postsToRender.slice(startIdx, endIdx);
+      
+      if (postsToShow.length === 0) {
+        feedEl.innerHTML = `<div class="post"><div class="content"><p>No posts found</p></div></div>`;
+        loadMoreBtn.style.display = 'none';
+        return;
+      }
+      
+      postsToShow.forEach((post) => {
+        const likedKey = `liked_${post.id}`;
+        const liked = localStorage.getItem(likedKey) === 'true';
+        const reportedKey = `reported_${post.id}`;
+        const reported = localStorage.getItem(reportedKey) === 'true';
+        
+        let postHTML = `<div class="post" data-id="${post.id}">
+          <div class="header">
 
-</div>
+            <div class="info">
+              <h2>${post.RedFlagged ? 'Unknown' : `<span class='name'
+              data-user='${post.Name}'>${post.Name}</span>`}</h2>
+              <p>${post.PostDate} ${post.Location ? `- ${post.Location}` : ''}</p>
+            </div>
+          </div>
+          ${post.RedFlagged ? '<div class="warning">⚠ This Post Has Been Red Flagged!</div>' : ''}
+          <div class="content">
+            ${post.Header ? `<h3>${post.Header}</h3>` : ''}
+            <p>${highlightHashtags(post.Text)}</p>
+            ${post.YoutubeIframe ? `<iframe src="${convertYoutube(post.YoutubeIframe)}?autoplay=${autoplayVideos ? 1 : 0}" allowfullscreen></iframe>` : ''}
+            ${post.Photos ? `<img src="${post.Photos}" alt="post">` : ''}
+            ${post.RawVideos ? `<video  class="raw-video" src="${post.RawVideos}" 
+              ${autoplayVideos ? 'autoplay muted' : ''} controls allowfullscreen controlsList="nodownload" 
+              oncontextmenu="return false"></video>` : ''}
+          </div>
+          <div class="footer">
+            <button onclick="toggleLike(${post.id})" class="${liked ? 'liked' : ''}">
+              ${liked ? '❤️' : '👍'} Like (${getLikeCount(post.id, post.Likes)})
+            </button>
+            <button onclick="sharePost(${post.id})">↗ Share (${post.Shares})</button>
+            <button onclick="openReportModal(${post.id})" class="${reported ? 'reported' : ''}">
+              ${reported ? '⚠ Reported' : 'Report'}
+            </button>
+          </div>
+        </div>`;
+        
+        feedEl.innerHTML += postHTML;
+      });
+      
+      // Hide load more button if all posts are shown
+      if (endIdx >= postsToRender.length) {
+        loadMoreBtn.style.display = 'none';
+      } else {
+        loadMoreBtn.style.display = 'block';
+      }
+      
+      addEventListeners();
+      setupMediaDoubleTap();
+    }
 
-        <h3><span>Username</span>'s Kit</h3>
-        <script>
-document.addEventListener("DOMContentLoaded", function() {
-    let username = localStorage.getItem("username") || "Player"; // Default to "Player" if no username is set
-    document.querySelector("h3 span").textContent = username;
-});
+    // Get all liked posts
+    function getLikedPosts() {
+      return posts.filter(post => localStorage.getItem(`liked_${post.id}`) === 'true').reverse();
+    }
 
-        </script>
+    // Shuffle array
+    function shuffleArray(array) {
+      const newArray = [...array];
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    }
 
-<p>Cash: ₱<span id="cashCount">0</span></p>
-<div id="weather-info">
-    <h2>🌤️ Weather Info</h2>
-    <p><strong>Time of Day:</strong> <span id="timeOfDay">Day</span></p>
-    <p><strong>Season:</strong> <span id="currentSeason">Spring</span></p>
-    <p><strong>Weather:</strong> <span id="currentWeather">Clear</span></p>
-</div>
+    // Convert YouTube URL to embed
+    function convertYoutube(url) {
+      const match = url.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        return `https://www.youtube.com/embed/${match[1]}`;
+      }
+      return '';
+    }
 
+    // Toggle like on a post
+    function toggleLike(postId) {
+      const key = `liked_${postId}`;
+      const wasLiked = localStorage.getItem(key) === 'true';
+      localStorage.setItem(key, wasLiked ? 'false' : 'true');
+      
+      // Refresh the current view
+      if (currentTab === 'liked' && wasLiked) {
+        // Remove from liked view if unliking in the liked tab
+        document.querySelector(`.post[data-id="${postId}"]`)?.remove();
+        if (document.querySelectorAll('.post').length === 0) {
+          feedEl.innerHTML = `<div class="post"><div class="content"><p>No liked posts</p></div></div>`;
+        }
+      } else {
+        // Otherwise just update the button
+        const likeBtn = document.querySelector(`.post[data-id="${postId}"] .footer button:first-child`);
+        if (likeBtn) {
+          const isLiked = localStorage.getItem(key) === 'true';
+          likeBtn.innerHTML = `${isLiked ? '❤️' : '👍'} Like (${getLikeCount(postId, posts.find(p => p.id === postId).Likes)})`;
+          likeBtn.classList.toggle('liked', isLiked);
+        }
+      }
+    }
 
-<button id="openShop">🛒 Open Shop</button>
-<button onclick="openFishIndex()">View Fish Index</button>
+    // Get like count including local storage
+    function getLikeCount(postId, base) {
+      const liked = localStorage.getItem(`liked_${postId}`) === 'true';
+      return liked ? base + 1 : base;
+    }
 
-<div class="overlay" id="fishIndexOverlay">
-    <div class="overlay-content">
-        <button class="close-btn" onclick="closeFishIndex()">X</button>
-        <h2>Fish Index</h2>
-        <input type="text" id="fishSearch" oninput="searchFish()" placeholder="Search Fish..." />
-        <div id="fishListContainer"></div>
-    </div>
-</div>
+    // Share post
+    function sharePost(postId) {
+      const post = posts.find(p => p.id === postId);
+      if (!post) return;
+      
+      const titleSlug = post.Text.slice(0, 20).replace(/\s+/g, '-').toLowerCase();
+      const url = `${window.location.origin}/post/${postId}/${titleSlug}`;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: post.Header || post.Text.slice(0, 30),
+          text: post.Text,
+          url: url
+        }).catch(err => {
+          console.log('Error sharing:', err);
+          prompt("Share this post:", url);
+        });
+      } else {
+        prompt("Share this post:", url);
+      }
+      
+      // Increment share count (in a real app, this would be server-side)
+      post.Shares += 1;
+    }
 
-<h4>🎣Rod Equipment</h4>
-<select id="rodSelect"></select>
-<figure></figure>
-<div id="rodStats"></div>
+    // Highlight hashtags in text
+    function highlightHashtags(text) {
+      return text.replace(/#(\w+)/g, '<a href="#" class="hashtag" onclick="openHashtag(\'$1\')">#$1</a>');
+    }
 
+    // Open hashtag popup
+    function openHashtag(tag) {
+      const popup = document.getElementById("hashtagPopup");
+      const content = document.getElementById("hashtagContent");
+      
+      const matching = posts.filter(p => p.Text.includes(`#${tag}`));
+      let totalLikes = matching.reduce((sum, p) => sum + getLikeCount(p.id, p.Likes), 0);
+      
+      let html = `<h3>#${tag}</h3>
+                 <p>${matching.length} posts • ${totalLikes} likes</p>
+                 <div style="margin-top: 15px;">`;
+      
+      matching.slice(0, 5).forEach(p => {
+        html += `<div style="margin-bottom: 10px; padding: 10px; background: rgba(106, 0, 255, 0.1); border-radius: 8px;">
+                  <p style="margin: 0; font-weight: bold;">${p.Name}</p>
+                  <p style="margin: 5px 0 0; font-size: 0.9em;">${p.Text}</p>
+                 </div>`;
+      });
+      
+      if (matching.length > 5) {
+        html += `<p style="margin-top: 10px;">+ ${matching.length - 5} more posts</p>`;
+      }
+      
+      content.innerHTML = html;
+      popup.style.display = "block";
+    }
 
+    // Add event listeners to posts
+    function addEventListeners() {
+      document.querySelectorAll('.name').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const user = el.getAttribute('data-user');
+          openProfile(user);
+        });
+      });
+      
+      document.querySelectorAll('.hashtag').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const tag = el.textContent.substring(1);
+          openHashtag(tag);
+        });
+      });
+    }
 
+    // Open profile popup
+    function openProfile(user) {
+      const popup = document.getElementById("profilePopup");
+      const content = document.getElementById("profileContent");
+      
+      const matching = posts.filter(p => p.Name === user);
+      const totalLikes = matching.reduce((sum, p) => sum + getLikeCount(p.id, p.Likes), 0);
+      const totalShares = matching.reduce((sum, p) => sum + p.Shares, 0);
+      
+      let html = `<div style="display: flex; align-items: center; margin-bottom: 15px;">
 
-<div id="shopPopup" style="display: none;">
-    <h2>🛍️ Fishing Rod Shop</h2>
-    <div id="shopItems"></div>
-    <button id="closeShop">Close</button>
-</div>
-</div>
-<div id="customAlert" style="display: none;">
-    <p id="alertMessage"></p>
-    <button id="closeAlert">OK</button>
-</div>
-<div class="area-container">
-<fieldset class="area">
-  <img src="">
-  <h3>🪸Deep Sea Canyon🫧</h3>
-  <p>a dark of abys of canyon👀🫧</p>
-  <p>Rumbling sounds are been heard along of the coast⚠️</p>
-  <center>
-        <button id="StartButtonFish" onclick="startFishing('DEEPSEACANYON')">🎣
-        Fish on
-        here</button>
-  </center>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" style="margin-top:1000px;">
-  <h3>Bill Board</h3>
-<p> Ads:</p>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'e8ba9bd749df815e35f948cc1889b85b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/e8ba9bd749df815e35f948cc1889b85b/invoke.js"></script>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" style="margin-top:9000px;">
-  <h3>🌌Twilight Depths (1,000m)</h3>
-  <p>Dimly lit, home to strange deep-sea fish.</p>
- 
-  <center>
-        <button id="StartButtonFish" onclick="startFishing('TWILIGHTTRENCH')">🎣 Fish
-        on Ocean</button>
-  </center>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" style="margin-top:1000px;">
-  <h3>Bill Board</h3>
-<p> Ads:</p>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'e8ba9bd749df815e35f948cc1889b85b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/e8ba9bd749df815e35f948cc1889b85b/invoke.js"></script>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" style="margin-top: 5000px;">
-  <h3>🫧Midnight Trench (3,000m)️</h3>
-  <p>No sunlight, mysterious and dangerous creatures lurk.</p>
-  <center>
-        <button id="StartButtonFish" onclick="startFishing('MIDNIGHTTRENCH')">🎣 Fish
-        on Ocean</button>
-  </center>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" style="margin-top:1000px;">
-  <h3>Bill Board</h3>
-<p> Ads:</p>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'e8ba9bd749df815e35f948cc1889b85b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/e8ba9bd749df815e35f948cc1889b85b/invoke.js"></script>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" style="margin-top: 50000px;">
-  <h3>🫧Thermocline Layer</h3>
-  <p>A Huge Sand Layer which covers the unknown parts of the ocean👀</p>
-</fieldset>
-</div>
-<div class="area-container">
-<fieldset class="area" >
-  <h3>🫧🐟Pheristoric Shift Area (50,000m)</h3>
-  <p>A Huge Sand Layer which covers the unknown parts of the ocean👀</p>
-  <center>
-        <button id="StartButtonFish" onclick="startFishing('PHERISTORICSHIFTTRENCH')">🎣 Fish
-        on Ocean</button>
-  </center>
-</fieldset>
-</div>
+                   <div>
+                     <h3 style="margin: 0 0 5px;">${user}</h3>
+                     <p style="margin: 0; color: var(--light-text);">${matching.length} posts</p>
+                   </div>
+                 </div>
+                 <div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
+                   <div style="text-align: center;">
+                     <p style="margin: 0; font-weight: bold;">${totalLikes}</p>
+                     <p style="margin: 0; font-size: 0.9em; color: var(--light-text);">Likes</p>
+                   </div>
+                   <div style="text-align: center;">
+                     <p style="margin: 0; font-weight: bold;">${totalShares}</p>
+                     <p style="margin: 0; font-size: 0.9em; color: var(--light-text);">Shares</p>
+                   </div>
+                 </div>
+                 <h4 style="margin-bottom: 10px;">Recent Posts</h4>`;
+      
+      matching.slice(0, 3).forEach(p => {
+        html += `<div style="margin-bottom: 10px; padding: 10px; background: rgba(106, 0, 255, 0.1); border-radius: 8px;">
+                  <p style="margin: 0 0 5px;">${p.Text}</p>
+                  <p style="margin: 0; font-size: 0.8em; color: var(--light-text);">
+                    ${p.Likes} Likes
+                  </p>
+                 </div>`;
+      });
+      
+      if (matching.length > 3) {
+        html += `<p style="margin-top: 10px; text-align: center;">View all ${matching.length} posts</p>`;
+      }
+      
+      content.innerHTML = html;
+      popup.style.display = "block";
+    }
 
-<button id="inventoryButton">🎒 Inventory</button>
+    // Setup double tap for fullscreen media
+    function setupMediaDoubleTap() {
+      document.querySelectorAll('.post iframe, .post video, .post img').forEach(media => {
+        media.addEventListener('click', (e) => {
+          const currentTime = new Date().getTime();
+          const tapLength = currentTime - lastTapTime;
+          
+          if (tapLength < 300 && tapLength > 0) {
+            // Double tap detected
+            const postId = media.closest('.post').getAttribute('data-id');
+            const post = posts.find(p => p.id === parseInt(postId));
+            if (!post) return;
+            
+            openFullscreenMedia(media, post.Text);
+            e.preventDefault();
+          }
+          
+          lastTapTime = currentTime;
+        });
+      });
+    }
 
-<!-- 🔹 Inventory Pop-Up -->
-<div id="inventoryPopup">
-    <div id="inventoryContent">
+    // Open media in fullscreen
+    function openFullscreenMedia(media, title) {
+      fullscreenContent.innerHTML = '';
+      
+      if (media.tagName === 'IMG') {
+        const img = document.createElement('img');
+        img.src = media.src;
+        img.style.maxHeight = '100%';
+        img.style.maxWidth = '100%';
+        img.style.objectFit = 'contain';
+        fullscreenContent.appendChild(img);
+      } else if (media.tagName === 'VIDEO') {
+        const video = document.createElement('video');
+        video.src = media.src;
+        video.controls = true;
+        video.autoplay = true;
+        video.style.width = '100%';
+        video.style.height = '100%';
+        fullscreenContent.appendChild(video);
+      } else if (media.tagName === 'IFRAME') {
+        const iframe = document.createElement('iframe');
+        iframe.src = media.src;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.setAttribute('allowfullscreen', '');
+        fullscreenContent.appendChild(iframe);
+      }
+      
+      fullscreenTitle.textContent = title;
+      fullscreenOverlay.style.display = 'flex';
+    }
 
-        <h3 style="color:white;">🎣 Fish Inventory</h3>
-        <button onclick="sellAllExceptRare()">Sell All (Except Rare)</button>
-<input type="text" id="inventorySearch" placeholder="Search for a fish..." oninput="updateInventoryUI()">
-<div id="inventory"></div>
-   </div>
-</div>
+    // Open report modal
+    function openReportModal(postId) {
+      currentReportPostId = postId;
+      modalOverlay.style.display = 'block';
+      reportModal.classList.remove('hidden');
+    }
 
+    // Close report modal
+    function closeReportModal() {
+      modalOverlay.style.display = 'none';
+      reportModal.classList.add('hidden');
+      currentReportPostId = null;
+      document.querySelectorAll('input[name="reportReason"]').forEach(radio => {
+        radio.checked = false;
+      });
+    }
 
-<div id="miniGame" style="display: none; text-align: center; background: #222; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); color: white;">
-    <p style="color: cyan; text-shadow: 0px 0px 5px cyan;">Catch the Fish!</p>
-<figure></figure>
-    <small id="minusProgressText" style="color: red; font-size: 18px; font-weight:
-    bold; text-shadow: 0px 0px 10px red;"></small> 
+    // Submit report
+    function submitReport() {
+      const reason = document.querySelector('input[name="reportReason"]:checked')?.value;
+      if (!reason || !currentReportPostId) {
+        alert('Please select a reason for reporting');
+        return;
+      }
+      
+      // In a real app, this would send to a server
+      localStorage.setItem(`reported_${currentReportPostId}`, 'true');
+      
+      // Update the report button
+      const reportBtn = document.querySelector(`.post[data-id="${currentReportPostId}"] .footer button:last-child`);
+      if (reportBtn) {
+        reportBtn.textContent = '⚠ Reported';
+        reportBtn.classList.add('reported');
+      }
+      
+      // Show feedback
+      alert('Thank you for your report. We will review this content.');
+      
+      closeReportModal();
+    }
 
-    <!-- Exclamation Mark for Rarity -->
-    <div id="exclamationMark" class="exclamation-mark" style="display: none;">!</div>
-
-    <!-- Progress Bar & Fish -->
-    <div id="progressContainer">
-        <div id="progressBar"></div>
-        <div id="fishIcon">🐟</div>
-    </div>
-
-<div id="comboMessage" style="position: absolute; font-size: 24px; font-weight: bold; color: gold; 
-    text-shadow: 0px 0px 10px gold; display: none; pointer-events: none;">
-</div>
-
-    <div id="rodWheelContainer">
-        <button id="tapButton" onclick="tapButton()">🎣</button>
-    </div>
-</div>
-<figure style="color:#111111;">
-The abyss whispers secrets only the drowned can hear. Beneath the waves, where light dares not reach, it waits—its form shifting, its tendrils reaching beyond time. The stars are not misaligned… yet. But when they are, the deep one will rise, and the dreamers will awaken.
-</figure>
-</div>
-
-    <script defer src="ServerServiceScript/alertsSYSTEM.js"></script>
-<script defer src="ServerServiceScript/main.js"></script> <!-- Main after Rod -->
-<script defer src="ServerServiceScript/Rod.js"></script> <!-- Load Rod.js First -->
-
-<script defer src="ServerServiceScript/Shopitem.js"></script>
-<script defer src="ServerServiceScript/BannedChecker.js"></script>
-<script defer src="ServerServiceScript/DeepseaAudioSoundSfx.js"></script>
-
-
+    // Initialize the app when DOM is loaded
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
 </html>
-
-<audio id="musicgameSFX" src="Sounds/sfx-bg.mp3" loop></audio>
-<audio id="Music-Background" src="Sounds/BGM.mp3" loop></audio>
-
-<script>// JUST SOUND MECHANICS DONT TOUCH IT OR I TOUCH YOU
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const inventoryButton = document.getElementById("inventoryButton");
-    const inventoryPopup = document.getElementById("inventoryPopup");
-    const closeInventory = document.getElementById("closeInventory");
-
-    // Toggle Inventory on Button Click
-    inventoryButton.addEventListener("click", function () {
-        inventoryPopup.style.display = (inventoryPopup.style.display === "block") ? "none" : "block";
-    });
-
-    // Close Inventory on Close Button Click
-    closeInventory.addEventListener("click", function () {
-        inventoryPopup.style.display = "none";
-    });
-
-    // Close Inventory on Outside Click
-    window.addEventListener("click", function (event) {
-        if (event.target === inventoryPopup) {
-            inventoryPopup.style.display = "none";
-        }
-    });
-});
-
-
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Check if user is registered
-    if (!localStorage.getItem("userRegistered")) {
-        window.location.href = "index.html"; // Redirect to register page if not registered
-    }
-});
-
-
-</script>
-
-<script>//EVENTS AND MORE
-const numParticles = 50;
-const numFish = 5;
-const floatingContainer = document.createElement("div");
-floatingContainer.classList.add("floating-background");
-document.body.appendChild(floatingContainer);
-
-// Generate floating particles
-for (let i = 0; i < numParticles; i++) {
-    let particle = document.createElement("div");
-    particle.classList.add("particle");
-    particle.style.left = Math.random() * 100 + "vw";
-    particle.style.animationDelay = Math.random() * 5 + "s";
-    particle.style.width = particle.style.height = Math.random() * 5 + 2 + "px";
-    floatingContainer.appendChild(particle);
-}
-
-// Generate scary fish shadows
-for (let i = 0; i < numFish; i++) {
-    let fish = document.createElement("div");
-    fish.classList.add("fish-shadow");
-    fish.style.left = Math.random() * 100 + "vw";
-    fish.style.top = Math.random() * 100 + "vh";
-    fish.style.animationDuration = Math.random() * 8 + 4 + "s";
-    fish.style.width = Math.random() * 200 + 50 + "px";
-    fish.style.height = Math.random() * 100 + 30 + "px";
-    floatingContainer.appendChild(fish);
-}
-const area = document.querySelector(".area");
-
-for (let i = 0; i < 20; i++) {
-    let particle = document.createElement("div");
-    particle.classList.add("particle");
-    resetParticle(particle); // Set initial position
-    area.appendChild(particle);
-    animateParticle(particle); // Start animation
-}
-
-function resetParticle(particle) {
-    particle.style.left = Math.random() * 100 + "%"; // Random horizontal position
-    particle.style.top = Math.random() * 100 + "%"; // Random vertical position
-    particle.style.width = particle.style.height = Math.random() * 6 + "px";
-}
-
-function animateParticle(particle) {
-    let duration = Math.random() * 5 + 5; // Random speed between 5-10s
-    particle.style.animation = `floatLoop ${duration}s linear infinite`;
-}
-
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    checkBanStatus(); // Check ban status on page load
-});
-
-window.addEventListener("storage", function (event) {
-    if (event.key === "bannedUsers") {
-        checkBanStatus(); // Recheck ban status if localStorage changes
-    }
-});
-
-function checkBanStatus() {
-    let username = localStorage.getItem("username");
-    let bannedUsers = JSON.parse(localStorage.getItem("bannedUsers")) || [];
-
-    if (username) {
-        let bannedUser = bannedUsers.find(user => user.username === username);
-
-        if (bannedUser) {
-            let banExpiry = bannedUser.expiry ? new Date(bannedUser.expiry).getTime() : null;
-            let now = Date.now();
-
-            if (bannedUser.permanent || (banExpiry && now < banExpiry)) {
-                showBanPopup(bannedUser);
-            } else {
-                // Remove expired bans
-                let updatedBannedUsers = bannedUsers.filter(user => user.username !== username);
-                localStorage.setItem("bannedUsers", JSON.stringify(updatedBannedUsers));
-            }
-        }
-    }
-}
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(function () {
-        let level = parseInt(localStorage.getItem("level")) || 0;
-        console.log("Player Level:", level); // Debugging
-
-        if (level >= 35) {
-            console.log("Player verified");
-        } else {
-            alert("You need to be at least Level 35 to enter the deep sea!"); 
-            console.log("Player Kicked");
-
-            setTimeout(() => {
-                window.location.href = "Game.html";
-            }, 50); // Short delay to let alert show
-        }
-    }, 200); // 2-second delay before checking
-});
-
-</script>
-
-<style>
- body {
-    margin: 0;
-    padding: 0;
-    min-height: 200vh; /* Allows scrolling */
-    background: black; /* Deep dark abyss */
-    overflow-x: hidden; /* Prevents horizontal scroll */
-    position: relative;
-}
-
-.area {
-    margin-top: 10px;
-    border: 1px solid #000;
-    padding: 10px;
-    background: #f9f9f9;
-    width: 100%;
-    max-width: 90%;
-    margin: 10px auto; /* ✅ Fix: Center the area */
-}
-
-/* Center `.area` on larger screens */
-@media (min-width: 768px) { 
-    .area {
-        max-width: 50%;
-    }
-}
-
-/* Container for floating elements (keeps them separate from UI) */
-.floating-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; 
-    pointer-events: none;
-}
-
-/* Falling Particles */
-@keyframes fall {
-    0% { transform: translateY(-10px) scale(1); opacity: 0.8; }
-    100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-}
-
-@keyframes floatLoop {
-    0% { transform: translateY(0px) scale(1); opacity: 0.2; }
-    100% { transform: translateY(100vh) scale(1.2); opacity: 0; }
-}
-
-.particle {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    animation: fall 10s linear infinite; /* ✅ Fix: Apply animation */
-}
-
-/* Randomize animation speed */
-.particle:nth-child(odd) { animation-duration: 7s; }
-.particle:nth-child(even) { animation-duration: 10s; }
-
-/* Scary Fish Shadows */
-@keyframes fish-move {
-    0% { transform: translateX(-50px) scale(1); opacity: 0.3; }
-    50% { transform: translateX(50px) scale(1.2); opacity: 0.1; }
-    100% { transform: translateX(-50px) scale(1); opacity: 0.3; }
-}
-
-.fish-shadow {
-    position: absolute;
-    width: 150px;
-    height: 80px;
-    background: rgba(0, 0, 0, 0.4);
-    filter: blur(5px); /* ✅ Fix: Reduce blur for clarity */
-    border-radius: 50%;
-    animation: fish-move 6s ease-in-out infinite alternate;
-}
-
-</style>
